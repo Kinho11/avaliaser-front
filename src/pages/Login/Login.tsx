@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { userSchema } from "../../utils/shemas";
+import { userSchema } from "../../utils/schemas";
+
+import { toast } from "react-toastify";
+import { toastConfig } from "../../utils/toast";
 
 import backgroundLogin from "../../assets/bg-login.png";
 
 import { Box, Button, Typography, Stack, InputLabel, OutlinedInput, InputAdornment, IconButton, FormControl  } from "@mui/material";
 import { LoginOutlined, Visibility, VisibilityOff, AccountCircle } from "@mui/icons-material";
 
-import { ILogin } from "../../utils";
+import { ILogin } from "../../utils/interface";
+import { useNavigate } from "react-router-dom";
 
 interface IUsuario {
   email: string,
@@ -16,23 +20,26 @@ interface IUsuario {
 }
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });
-
-  const [verificarEmail, setVerificarEmail] = useState([""]);
-  const [erro, setErro] = useState(false);
+  const [verificarEmail, setVerificarEmail] = useState("");
 
   const handleChange = (prop: keyof ILogin) => (event: React.ChangeEvent<HTMLInputElement>) => setValues({ ...values, [prop]: event.target.value });
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => event.preventDefault();
   const handleClickShowPassword = () => setValues({ ...values, showPassword: !values.showPassword });
 
-  const {register, handleSubmit, formState: { errors}} = useForm<IUsuario>({
+  const {register, handleSubmit, formState: { errors }} = useForm<IUsuario>({
     resolver: yupResolver(userSchema)
   });
 
   const onSubmit = (data: IUsuario) => {
-    setVerificarEmail(data.email.split("@"));
-    if(verificarEmail[1] !== "dbccompany.com.br") return setErro(true);
-    alert("deu certo!");
+    const dominio = verificarEmail.split("@");
+    if(dominio[1] === "dbccompany.com.br") {
+      navigate("/dashboard/admin");
+      toast.success("Seja bem-vindo(a)", toastConfig);
+    } else {
+      toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
+    }
   };
 
   return (
@@ -48,7 +55,7 @@ export const Login = () => {
 
               <FormControl sx={{ width: "60%" }} variant="outlined">
                 <InputLabel htmlFor="email">Email</InputLabel>
-                <OutlinedInput id="email" type="email" {...register("email")}  placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
+                <OutlinedInput id="email" type="email" {...register("email")} onChange={(e) => setVerificarEmail(e.target.value)} placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
                   <InputAdornment position="end">
                     <IconButton edge="end" sx={{ cursor: "initial", ":hover": {background: "transparent"} }}>
                       <AccountCircle />
@@ -56,12 +63,11 @@ export const Login = () => {
                   </InputAdornment>
                 } />
                 {errors.email && <Typography sx={{fontWeight:"600", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
-                {erro && <Typography color="error" sx={{fontWeight:"600", display: "flex", marginTop: "5px"}}>Email invalido!</Typography>}
               </FormControl>
 
               <FormControl sx={{ width: "60%" }} variant="outlined">
                 <InputLabel htmlFor="senha">Senha</InputLabel>
-                <OutlinedInput id="senha" {...register("senha")}  placeholder="Insira sua senha" type={values.showPassword ? "text" : "password"} label="Senha" value={values.password} onChange={handleChange("password")} endAdornment={
+                <OutlinedInput id="senha" {...register("senha")} placeholder="Insira sua senha" type={values.showPassword ? "text" : "password"} label="Senha" value={values.password} onChange={handleChange("password")} endAdornment={
                   <InputAdornment position="end">
                     <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} edge="end">
                       {values.showPassword ? <VisibilityOff /> : <Visibility />}
