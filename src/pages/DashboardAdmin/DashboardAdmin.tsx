@@ -91,8 +91,8 @@ export const DashboardAdmin = () => {
   return (
     <>
       <Header cargo="admin" nome="Marcus" avatar={foto} />
-      <Typography  sx={{textAlign: "center", marginTop:"100px",fontWeight:"700",color:"#090f27"}} variant="h3">Dashboard Colaboradores</Typography>
-      <Box sx={{height:"calc(100vh - 200px)",display:"flex",justifyContent:"center",alignItems:"center",marginTop:"-100px"}}>
+      <Typography  sx={{textAlign: "center", marginTop:"50px",fontWeight:"700",color:"#090f27"}} variant="h3">Dashboard Colaboradores</Typography>
+      <Box sx={{height:"calc(100vh - 200px)",display:"flex",justifyContent:"center",alignItems:"center"}}>
         <Paper sx={{ width: "60%", borderRadius: "10px" }}>
           <TableContainer sx={{ maxHeight:430 }}>
             <Table stickyHeader aria-label="sticky table">
