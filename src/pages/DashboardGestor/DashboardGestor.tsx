@@ -58,7 +58,7 @@ const columns: Column[] = [
 
 const data =[
   {codigo: 1,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
-  {codigo: 2,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
+  {codigo: 2,dataInicial:"11/12/2001",descricao: "Tabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaela de gestor"},
   {codigo: 3,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
   {codigo: 4,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
   {codigo: 5,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
@@ -103,8 +103,8 @@ export const DashboardGestor = () => {
                       {data.codigo}
                     </StyledTableCell>
                     <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.dataInicial}</StyledTableCell>  
-                    <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.descricao}</StyledTableCell>
-                    <StyledTableCell id="cargo" sx={{textAlign:"center"}}  ><Button id="botao-editar-admin"><AssignmentTurnedInIcon/></Button></StyledTableCell>
+                    <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{data.descricao}</StyledTableCell>
+                    <StyledTableCell id="cargo" sx={{textAlign:"center"}}  ><Button id="botao-editar-admin" title="Avaliar acompanhamento"><AssignmentTurnedInIcon/></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>

@@ -115,7 +115,7 @@ export const DashboardAdmin = () => {
                     </StyledTableCell>
                     <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.email}</StyledTableCell>
                     <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.cargo}</StyledTableCell>
-                    <StyledTableCell id="cargo"  sx={{textAlign:"center"}}  ><Button id="botao-editar-admin"><EditIcon/></Button></StyledTableCell>
+                    <StyledTableCell id="cargo"  sx={{textAlign:"center"}}  ><Button id="botao-editar-admin" title="Editar"><EditIcon/></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
