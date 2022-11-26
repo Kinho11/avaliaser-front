@@ -62,7 +62,7 @@ export const Login = () => {
                     </IconButton>
                   </InputAdornment>
                 } />
-                {errors.email && <Typography sx={{fontWeight:"600", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
+                {errors.email && <Typography id="erro-email" sx={{fontWeight:"600", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
               </FormControl>
 
               <FormControl sx={{ width: "60%" }} variant="outlined">
@@ -74,7 +74,7 @@ export const Login = () => {
                     </IconButton>
                   </InputAdornment>
                 }/>
-                {errors.senha && <Typography sx={{fontWeight:"600", display: "flex", marginTop: "5px"}} color="error">{errors.senha.message}</Typography>}
+                {errors.senha && <Typography id="erro-senha" sx={{fontWeight:"600", display: "flex", marginTop: "5px"}} color="error">{errors.senha.message}</Typography>}
               </FormControl>
               <Button id="botao-logar" size="medium" type="submit" endIcon={<LoginOutlined />} sx={{ width: "30%", backgroundColor: "#1e62fe" }} variant="contained">Entrar</Button>
             </Stack>
