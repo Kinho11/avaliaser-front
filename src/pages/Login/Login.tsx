@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { userSchema } from "../../utils/shemas";
 
 import backgroundLogin from "../../assets/bg-login.png";
 
@@ -7,12 +10,30 @@ import { LoginOutlined, Visibility, VisibilityOff, AccountCircle } from "@mui/ic
 
 import { ILogin } from "../../utils";
 
+interface IUsuario {
+  email: string,
+  senha: string
+}
+
 export const Login = () => {
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });
+
+  const [verificarEmail, setVerificarEmail] = useState([""]);
+  const [erro, setErro] = useState(false);
 
   const handleChange = (prop: keyof ILogin) => (event: React.ChangeEvent<HTMLInputElement>) => setValues({ ...values, [prop]: event.target.value });
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => event.preventDefault();
   const handleClickShowPassword = () => setValues({ ...values, showPassword: !values.showPassword });
+
+  const {register, handleSubmit, formState: { errors}} = useForm<IUsuario>({
+    resolver: yupResolver(userSchema)
+  });
+
+  const onSubmit = (data: IUsuario) => {
+    setVerificarEmail(data.email.split("@"));
+    if(verificarEmail[1] !== "dbccompany.com.br") return setErro(true);
+    alert("deu certo!");
+  };
 
   return (
     <>
@@ -20,33 +41,36 @@ export const Login = () => {
         <Box id="box-esquerda" sx={{ backgroundImage: `url(${backgroundLogin})`, width: "40%", height: "100%", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}></Box>
 
         <Box id="box-direita" sx={{ width: "60%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
-          <Box id="box-login" component="form" sx={{ backgroundColor: "#fff", width: "70%", borderRadius: 3, padding: 5, boxShadow: "0px 4px 14px rgba(0, 0, 0, 0.25)"}}>
+          <Box id="box-login" component="form" onSubmit={handleSubmit(onSubmit)} sx={{ backgroundColor: "#fff", width: "70%", borderRadius: 3, padding: 5, boxShadow: "0px 4px 14px rgba(0, 0, 0, 0.25)"}}>
             <Stack spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <Typography id="titulo" variant='h3' sx={{ color: "#1e62fe", fontWeight: "700" }}>AvaliaSer</Typography>
               <Typography id="subtitulo" variant='body1' sx={{ color: "#090F27", fontWeight: "600" }}>Faça seu login!</Typography>
 
               <FormControl sx={{ width: "60%" }} variant="outlined">
-                <InputLabel htmlFor="input-usuario">Email</InputLabel>
-                <OutlinedInput id="input-usuario" placeholder="fulano.silva" label="Email" endAdornment={
+                <InputLabel htmlFor="email">Email</InputLabel>
+                <OutlinedInput id="email" type="email" {...register("email")}  placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
                   <InputAdornment position="end">
                     <IconButton edge="end" sx={{ cursor: "initial", ":hover": {background: "transparent"} }}>
                       <AccountCircle />
                     </IconButton>
                   </InputAdornment>
                 } />
+                {errors.email && <Typography sx={{fontWeight:"600", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
+                {erro && <Typography color="error" sx={{fontWeight:"600", display: "flex", marginTop: "5px"}}>Email invalido!</Typography>}
               </FormControl>
 
               <FormControl sx={{ width: "60%" }} variant="outlined">
-                <InputLabel htmlFor="input-senha">Senha</InputLabel>
-                <OutlinedInput id="input-senha" placeholder="Insira sua senha" type={values.showPassword ? "text" : "password"} label="Senha" value={values.password} onChange={handleChange("password")} endAdornment={
+                <InputLabel htmlFor="senha">Senha</InputLabel>
+                <OutlinedInput id="senha" {...register("senha")}  placeholder="Insira sua senha" type={values.showPassword ? "text" : "password"} label="Senha" value={values.password} onChange={handleChange("password")} endAdornment={
                   <InputAdornment position="end">
                     <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} edge="end">
                       {values.showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 }/>
+                {errors.senha && <Typography sx={{fontWeight:"600", display: "flex", marginTop: "5px"}} color="error">{errors.senha.message}</Typography>}
               </FormControl>
-              <Button id="botao-logar" onClick={handleMouseDownPassword} size="medium" type="submit" endIcon={<LoginOutlined />} sx={{ width: "30%", backgroundColor: "#1e62fe" }} variant="contained">Entrar</Button>
+              <Button id="botao-logar" size="medium" type="submit" endIcon={<LoginOutlined />} sx={{ width: "30%", backgroundColor: "#1e62fe" }} variant="contained">Entrar</Button>
             </Stack>
           </Box>
         </Box>
