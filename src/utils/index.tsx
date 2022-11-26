@@ -1,7 +1,4 @@
-import React from "react";
-
-export const index = () => {
-  return (
-    <div>index</div>
-  );
-};
+export interface ILogin {
+  password: string,
+  showPassword: boolean,
+}
