@@ -91,9 +91,16 @@ export const DashboardAdmin = () => {
   return (
     <>
       <Header cargo="admin" nome="Marcus" avatar={foto} />
-      <Typography  sx={{textAlign: "center", marginTop:"50px",fontWeight:"700",color:"#090f27"}} variant="h3">Dashboard Colaboradores</Typography>
-      <Box sx={{height:"calc(100vh - 200px)",display:"flex",justifyContent:"center",alignItems:"center"}}>
-        <Paper sx={{ width: "60%", borderRadius: "10px" }}>
+      
+      <Box sx={{height:"calc(100vh - 200px)",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",gap:5}}>
+        <Typography  sx={{textAlign: "center", marginTop:"50px",fontWeight:"700",fontSize: {
+          xs:30,
+          md:44
+        },color:"#090f27"}} variant="h3">Dashboard Colaboradores</Typography>
+        <Paper sx={{ width: {
+          xs:"95%",
+          md:"60%"
+        }, borderRadius: "10px" }}>
           <TableContainer sx={{ maxHeight:430 }}>
             <Table stickyHeader aria-label="sticky table">
               <TableRow sx={{backgroundColor:"#090F27",color: "white"}}>
