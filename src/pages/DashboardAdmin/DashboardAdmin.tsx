@@ -22,12 +22,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
-
 
 interface Column {
   id: "nameColaborador" | "email" | "cargo" | "acoes";
@@ -40,22 +38,9 @@ interface Column {
 const columns: Column[] = [
   { id: "nameColaborador", label: "Colaborador(a)", minWidth: 5 },
   { id: "email", label: "E-mail", minWidth: 5 },
-  {
-    id: "cargo",
-    label: "Cargo",
-    minWidth: 5,
-    align: "right",
-    format: (value: number) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "acoes",
-    label: "Ações",
-    minWidth: 5,
-    align: "right",
-    format: (value: number) => value.toLocaleString("en-US"),
-  }
+  { id: "cargo", label: "Cargo", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
+  { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") }
 ];
-
 
 const data =[
   {nameColaborador: "Marcus",email:"marcuspaulo.moreno@dbccompany.com.br",cargo: "Admin"},
@@ -69,11 +54,8 @@ const data =[
   {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
   {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
   {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-
-
+  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"}
 ];
-
 
 export const DashboardAdmin = () => {
   const [page, setPage] = useState(0);
@@ -103,17 +85,19 @@ export const DashboardAdmin = () => {
         }, borderRadius: "10px" }}>
           <TableContainer sx={{ maxHeight:430 }}>
             <Table stickyHeader aria-label="sticky table">
-              <TableRow sx={{backgroundColor:"#090F27",color: "white"}}>
-                {columns.map((column) => (
-                  <TableCell
-                    key={column.id}
-                    align={column.align}
-                    style={{ top: 57, minWidth: column.minWidth,fontWeight:"700", fontSize:"1rem", textAlign: "center" }}
-                  >
-                    {column.label}
-                  </TableCell>
-                ))}
-              </TableRow>
+              <thead>
+                <TableRow sx={{ backgroundColor:"#090F27", color: "white", width: "100%" }}>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ top: 57, minWidth: column.minWidth,fontWeight:"700", fontSize:"1rem", textAlign: "center" }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </thead>
               <TableBody>
                 {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
                   <StyledTableRow  key={data.nameColaborador}>

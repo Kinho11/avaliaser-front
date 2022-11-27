@@ -3,7 +3,7 @@ import { Header } from "../../components/Header/Header";
 import { Box, FormControl, TextField, Stack, Typography, InputLabel, MenuItem, Select, Avatar, Button } from "@mui/material";
 
 import foto from "../../assets/bg-login.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { toast } from "react-toastify";
 import { toastConfig } from "../../utils/toast";
@@ -46,6 +46,10 @@ export const CadastrarAluno = () => {
   };
 
   
+  useEffect(() => {
+    console.log(selectedImage);
+  }, [selectedImage]);
+
 
   return (
     <>
@@ -107,7 +111,7 @@ export const CadastrarAluno = () => {
             {selectedImage && <Avatar alt="Foto Enviada" src={URL.createObjectURL(selectedImage)} sx={{ width: 150, height: 150 }} />}
             {!selectedImage && <Avatar alt="Foto Padrao" sx={{ width: 150, height: 150 }} />}
             <Button component="label" variant="contained">
-              <input id="imagemAluno" type="file" accept="image/*" hidden onChange={imageChange} />
+              <input id="imagemAluno" type="file" accept="image/*" onChange={imageChange} />
               <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir Foto</Typography>
             </Button>
 

@@ -92,17 +92,19 @@ export const DashboardGestor = () => {
         }, borderRadius: "10px" }}>
           <TableContainer sx={{ maxHeight:430 }}>
             <Table stickyHeader aria-label="sticky table">
-              <TableRow sx={{backgroundColor:"#090F27",color: "white"}}>
-                {columns.map((column) => (
-                  <TableCell
-                    key={column.id}
-                    align={column.align}
-                    style={{ top: 57, minWidth: column.minWidth,fontWeight:"700", fontSize:"1rem", textAlign: "center" }}
-                  >
-                    {column.label}
-                  </TableCell>
-                ))}
-              </TableRow>
+              <thead>
+                <TableRow sx={{backgroundColor:"#090F27",color: "white"}}>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ top: 57, minWidth: column.minWidth,fontWeight:"700", fontSize:"1rem", textAlign: "center" }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </thead>
               <TableBody>
                 {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
                   <StyledTableRow  key={data.codigo}>
