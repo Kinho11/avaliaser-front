@@ -12,7 +12,6 @@ import { Box, Button, Typography, Stack, InputLabel, OutlinedInput, InputAdornme
 import { LoginOutlined, Visibility, VisibilityOff, AccountCircle } from "@mui/icons-material";
 
 import { ILogin } from "../../utils/interface";
-import { useNavigate } from "react-router-dom";
 
 interface IUsuario {
   email: string,
@@ -20,7 +19,6 @@ interface IUsuario {
 }
 
 export const Login = () => {
-  const navigate = useNavigate();
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });
   const [verificarEmail, setVerificarEmail] = useState("");
 
@@ -35,7 +33,6 @@ export const Login = () => {
   const onSubmit = (data: IUsuario) => {
     const dominio = verificarEmail.split("@");
     if(dominio[1] === "dbccompany.com.br") {
-      navigate("/dashboard/admin");
       toast.success("Seja bem-vindo(a)", toastConfig);
     } else {
       toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);

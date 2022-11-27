@@ -14,7 +14,7 @@ import { useState } from "react";
 import { CadastrarAluno } from "./pages/CadastrarAluno/CadastrarAluno";
 
 function AppRoutes() {
-  const [cargo] = useState("gestor");
+  const [cargo] = useState("admin");
 
   if(cargo === "admin"){
     return (
