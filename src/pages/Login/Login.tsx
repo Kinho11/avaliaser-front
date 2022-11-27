@@ -54,19 +54,19 @@ export const Login = () => {
               <Typography id="subtitulo" variant='body1' sx={{ color: "#090F27", fontWeight: "600" }}>Faça seu login!</Typography>
 
               <FormControl sx={{ width: "60%" }} variant="outlined">
-                <InputLabel htmlFor="email">Email</InputLabel>
-                <OutlinedInput id="email" type="email" {...register("email")} onChange={(e) => setVerificarEmail(e.target.value)} placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
+                <InputLabel  htmlFor="email">Email</InputLabel>
+                <OutlinedInput  id="email" type="email" {...register("email")} onChange={(e) => setVerificarEmail(e.target.value)} placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
                   <InputAdornment position="end">
                     <IconButton edge="end" sx={{ cursor: "initial", ":hover": {background: "transparent"} }}>
                       <AccountCircle />
                     </IconButton>
                   </InputAdornment>
                 } />
-                {errors.email && <Typography id="erro-email" sx={{fontWeight:"600", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
+                {errors.email && <Typography id="erro-email" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
               </FormControl>
 
               <FormControl sx={{ width: "60%" }} variant="outlined">
-                <InputLabel htmlFor="senha">Senha</InputLabel>
+                <InputLabel  htmlFor="senha">Senha</InputLabel>
                 <OutlinedInput id="senha" {...register("senha")} placeholder="Insira sua senha" type={values.showPassword ? "text" : "password"} label="Senha" value={values.password} onChange={handleChange("password")} endAdornment={
                   <InputAdornment position="end">
                     <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} edge="end">
@@ -74,7 +74,7 @@ export const Login = () => {
                     </IconButton>
                   </InputAdornment>
                 }/>
-                {errors.senha && <Typography id="erro-senha" sx={{fontWeight:"600", display: "flex", marginTop: "5px"}} color="error">{errors.senha.message}</Typography>}
+                {errors.senha && <Typography id="erro-senha" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.senha.message}</Typography>}
               </FormControl>
               <Button id="botao-logar" size="medium" type="submit" endIcon={<LoginOutlined />} sx={{ width: "30%", backgroundColor: "#1e62fe" }} variant="contained">Entrar</Button>
             </Stack>

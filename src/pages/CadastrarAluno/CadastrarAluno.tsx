@@ -5,8 +5,24 @@ import { Box, FormControl, TextField, Stack, Typography, InputLabel, MenuItem, S
 import foto from "../../assets/bg-login.png";
 import { useState } from "react";
 
+import { toast } from "react-toastify";
+import { toastConfig } from "../../utils/toast";
+
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import { alunoSchema} from "../../utils/schemas";
+import { useForm } from "react-hook-form";
+
+interface IAluno{
+  nomeCompletoAluno: string,
+  emailAluno: string,
+  selectAluno: string,
+  imagemAluno: string
+}
+
 export const CadastrarAluno = () => {
   const [selectedImage, setSelectedImage] = useState();
+  const [verificarEmail, setVerificarEmail] = useState("");
 
   const imageChange = (e: any): void => {
     if (e.target.files && e.target.files.length > 0) {
@@ -14,27 +30,47 @@ export const CadastrarAluno = () => {
     }
   };
 
+  
+  const {register, handleSubmit, formState: { errors }} = useForm<IAluno>({
+    resolver: yupResolver(alunoSchema)
+  });
+
+  const cadastroAluno = (data: IAluno) =>{
+    const dominio = verificarEmail.split("@");
+    if(dominio[1] === "dbccompany.com.br") {
+      console.log(data);
+      toast.success("Aluno cadastrado com sucesso!", toastConfig);
+    } else {
+      toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
+    }
+  };
+
+  
+
   return (
     <>
       <Header cargo="gestor" nome="Marcus" avatar={foto} />
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
         <Typography sx={{textAlign: "center", marginBottom:"20px", fontWeight:"700",color:"#090f27"}} variant="h3">Cadastrar Aluno</Typography>
-        <Box component="form" sx={{ display: "flex", justifyContent: "space-between", backgroundColor: "#fff", width: "60%", borderRadius: "10px", padding: "50px 50px", boxShadow: "0px 4px 14px rgba(0, 0, 0, 0.25)" }}>
+        <Box component="form" onSubmit={handleSubmit(cadastroAluno)} sx={{ display: "flex", justifyContent: "space-between", backgroundColor: "#fff", width: "60%", borderRadius: "10px", padding: "50px 50px", boxShadow: "0px 4px 14px rgba(0, 0, 0, 0.25)" }}>
           <Stack component="div" spacing={2} sx={{ width: "50%" }}>
-            <FormControl sx={{ width: "40ch" }}>
-              <TextField label="Nome Completo" placeholder="Fulano da Silva" variant="filled" focused />
+            <FormControl sx={{ width: "50ch" }}>
+              <TextField id="nomeCompletoAluno" label="Nome Completo" placeholder="Fulano da Silva" variant="filled" error={!!errors.nomeCompletoAluno}  {...register("nomeCompletoAluno")} focused />
+              {errors.nomeCompletoAluno && <Typography id="erro-nomeCompletoAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.nomeCompletoAluno.message}</Typography>}
             </FormControl>
-            <FormControl sx={{ width: "40ch" }}>
-              <TextField label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" focused />
+            <FormControl sx={{ width: "50ch" }}>
+              <TextField id="emailAluno" label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" error={!!errors.emailAluno}  {...register("emailAluno")} onChange={(e) => setVerificarEmail(e.target.value)} focused />
+              {errors.emailAluno && <Typography id="erro-emailAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.emailAluno.message}</Typography>}
             </FormControl>
-            <FormControl variant="filled" sx={{ width: "40ch" }}>
-              <InputLabel id="demo-simple-select-filled-label">Trilha do Aluno</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="demo-simple-select-filled">
+            <FormControl variant="filled" sx={{ width: "50ch" }}>
+              <InputLabel id="selectAluno">Trilha do Aluno</InputLabel>
+              <Select labelId="demo-simple-select-filled-label" id="selectAluno" error={!!errors.selectAluno}  {...register("selectAluno")}>
                 <MenuItem value=""><em>Selecione a Trilha</em></MenuItem>
                 <MenuItem value="frontend">Front-End</MenuItem>
                 <MenuItem value="backend">Back-End</MenuItem>
                 <MenuItem value="qa">Quality Assurance</MenuItem>
               </Select>
+              {errors.selectAluno && <Typography id="erro-selectAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.selectAluno.message}</Typography>}
             </FormControl>
             <Button type="submit" variant="contained" sx={{ textTransform: "capitalize", width: "10ch" }}>Salvar</Button>
           </Stack>
@@ -42,7 +78,7 @@ export const CadastrarAluno = () => {
             {selectedImage && <Avatar alt="Foto Enviada" src={URL.createObjectURL(selectedImage)} sx={{ width: 150, height: 150 }} />}
             {!selectedImage && <Avatar alt="Foto Padrao" sx={{ width: 150, height: 150 }} />}
             <Button component="label" variant="contained">
-              <input type="file" accept="image/*" hidden onChange={imageChange} />
+              <input id="imagemAluno" {...register("imagemAluno")} type="file" accept="image/*" hidden onChange={imageChange} />
               <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir Foto</Typography>
             </Button>
           </Stack>
