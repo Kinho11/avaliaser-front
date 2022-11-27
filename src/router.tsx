@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import { Login } from "./pages/Login/Login";
@@ -5,16 +6,15 @@ import { NotFound } from "./pages/NotFound/NotFound";
 import { DashboardAdmin } from "./pages/DashboardAdmin/DashboardAdmin";
 import { DashboardGestor } from "./pages/DashboardGestor/DashboardGestor";
 import { DashboardInstrutor } from "./pages/DashboardInstrutor/DashboardInstrutor";
+import { CadastrarAluno } from "./pages/CadastrarAluno/CadastrarAluno";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { AuthProvider } from "./context/AuthContext";
-import { useState } from "react";
-import { CadastrarAluno } from "./pages/CadastrarAluno/CadastrarAluno";
 
 function AppRoutes() {
-  const [cargo] = useState("admin");
+  const [cargo] = useState("instrutor");
 
   if(cargo === "admin"){
     return (

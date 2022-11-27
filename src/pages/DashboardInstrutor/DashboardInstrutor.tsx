@@ -111,7 +111,7 @@ export const DashboardInstrutor = () => {
                     </StyledTableCell>
                     <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.nome}</StyledTableCell>  
                     <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.status}</StyledTableCell>
-                    <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-editar-admin" title="Editar"><EditIcon/></Button><Button title="Cadastrar feedback"><FactCheckIcon/></Button></StyledTableCell>
+                    <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-editar-admin" title="Editar"><EditIcon/></Button><Button title="Verificar feedback"><FactCheckIcon/></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
