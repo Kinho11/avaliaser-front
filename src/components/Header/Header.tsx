@@ -6,8 +6,10 @@ import { AddBox, AssignmentInd, Chat, PersonAdd, Logout } from "@mui/icons-mater
 import { IHeaderProps } from "../../utils/interface";
 
 import logo from "../../assets/dbc-logo.png";
+import { useNavigate } from "react-router-dom";
 
 export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget);
@@ -21,7 +23,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "center", backgroundColor: "#fff", paddingLeft: 4, paddingRight: 4, boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
               <a href="https://www.dbccompany.com.br/" id="logo-dbc-admin" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
-              <Button variant="outlined" id="button-dashboard-admin" sx={{ textTransform: "capitalize" }}>Dashboard</Button>
+              <Button variant="outlined" id="button-dashboard-admin" onClick={() => navigate("/dashboard/admin")} sx={{ textTransform: "capitalize" }}>Dashboard</Button>
               <Button variant="outlined" id="button-cadastro-admin" sx={{ textTransform: "capitalize" }} endIcon={<AssignmentInd />}>Cadastrar colaborador</Button>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -50,8 +52,8 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "center", backgroundColor: "#fff", paddingLeft: 4, paddingRight: 4, boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
               <a href="https://www.dbccompany.com.br/" id="logo-dbc-gestor" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
-              <Button variant="outlined" id="button-dashboard-gestor" sx={{ textTransform: "capitalize" }}>Dashboard</Button>
-              <Button variant="outlined" id="button-cadastro-gestor" sx={{ textTransform: "capitalize" }} endIcon={<PersonAdd />}>Cadastrar aluno</Button>
+              <Button variant="outlined" id="button-dashboard-gestor" onClick={() => navigate("/dashboard/gestor")} sx={{ textTransform: "capitalize" }}>Dashboard</Button>
+              <Button variant="outlined" id="button-cadastro-gestor" onClick={() => navigate("/cadastrar-aluno")} sx={{ textTransform: "capitalize" }} endIcon={<PersonAdd />}>Cadastrar aluno</Button>
               <Button variant="outlined" id="button-acompanhamento-gestor" sx={{ textTransform: "capitalize" }} endIcon={<AddBox />}>Cadastrar acompanhamento</Button>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -80,8 +82,8 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "center", backgroundColor: "#fff", paddingLeft: 4, paddingRight: 4, boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
               <a href="https://www.dbccompany.com.br/" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
-              <Button variant="outlined" id="dashboard-instrutor" sx={{ textTransform: "capitalize" }}>Dashboard</Button>
-              <Button variant="outlined" id="dashboard-cadastrar-instrutor" sx={{ textTransform: "capitalize" }} endIcon={<PersonAdd />}>Cadastrar aluno</Button>
+              <Button variant="outlined" id="dashboard-instrutor" onClick={() => navigate("/dashboard/instrutor")} sx={{ textTransform: "capitalize" }}>Dashboard</Button>
+              <Button variant="outlined" id="dashboard-cadastrar-instrutor" onClick={() => navigate("/cadastrar-aluno")} sx={{ textTransform: "capitalize" }} endIcon={<PersonAdd />}>Cadastrar aluno</Button>
               <Button variant="outlined" id="dashboard-feedback-instrutor" sx={{ textTransform: "capitalize" }} endIcon={<Chat />}>Cadastrar feedback</Button>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center" }}>

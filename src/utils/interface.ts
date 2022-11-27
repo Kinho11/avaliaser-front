@@ -8,3 +8,11 @@ export interface IHeaderProps {
   cargo: string,
   avatar: string
 }
+
+export interface IAuth {
+  cargo: string
+}
+
+export interface TChildren {
+  children: React.ReactNode;
+}
