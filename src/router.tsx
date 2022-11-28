@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import { Login } from "./pages/Login/Login";
@@ -15,12 +15,12 @@ import { EditarColaborador } from "./pages/EditarColaborador/EditarColaborador";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { AuthProvider } from "./context/AuthContext";
+import { AuthContext, AuthProvider } from "./context/AuthContext";
 
 function AppRoutes() {
-  const [cargo] = useState("admin");
+  const { cargo } = useContext(AuthContext);
 
-  if(cargo === "admin"){
+  if("ROLE_ADMIN"){
     return (
       <>
         <BrowserRouter>
@@ -38,7 +38,7 @@ function AppRoutes() {
         </BrowserRouter>
       </>
     );
-  } else if(cargo === "gestor"){
+  } else if("ROLE_GESTOR"){
     return (
       <>
         <BrowserRouter>
@@ -55,7 +55,7 @@ function AppRoutes() {
         </BrowserRouter>
       </>
     );
-  } else if(cargo === "instrutor"){
+  } else if("ROLE_INSTRUTOR"){
     return (
       <>
         <BrowserRouter>

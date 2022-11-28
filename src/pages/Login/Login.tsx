@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userSchema } from "../../utils/schemas";
@@ -13,6 +13,8 @@ import { Box, Button, Typography, Stack, InputLabel, OutlinedInput, InputAdornme
 import { LoginOutlined, Visibility, VisibilityOff, Email, ForwardToInbox } from "@mui/icons-material";
 
 import { ILogin, IUsuario } from "../../utils/interface";
+
+import { AuthContext } from "../../context/AuthContext";
 
 const style = {
   position: "absolute" as const,
@@ -29,6 +31,9 @@ const style = {
 };
 
 export const Login = () => {
+  // Funções context
+  const { usuarioLogin } = useContext(AuthContext);
+
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });
   const [verificarEmail, setVerificarEmail] = useState("");
   const [verificarEmailModal, setVerificarEmailModal] = useState("");
@@ -46,8 +51,7 @@ export const Login = () => {
   const onSubmit = (data: IUsuario) => {
     const dominio = verificarEmail.split("@");
     if(dominio[1] === "dbccompany.com.br") {
-      toast.success("Seja bem-vindo(a)", toastConfig);
-      console.log(data);
+      usuarioLogin(data);
     } else {
       toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
     }
