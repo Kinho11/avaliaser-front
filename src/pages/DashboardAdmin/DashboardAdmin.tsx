@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Paper, TableContainer, Table,TableBody, TablePagination, Button, styled, Typography } from "@mui/material";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
+
+import { Paper, TableContainer, Table,TableBody, TablePagination, Button, styled, Typography, Box, TableCell, tableCellClasses, TableRow } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+
+import { useNavigate } from "react-router-dom";
+
 import { Header } from "../../components/Header/Header";
 
 import foto from "../../assets/bg-login.png";
-import { Box } from "@mui/system";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,21 +44,20 @@ const columns: Column[] = [
 ];
 
 const data =[
-  {nameColaborador: "Marcus",email:"marcuspaulo.moreno@dbccompany.com.br",cargo: "Admin"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "colaborador"}
+  {nameColaborador: "Marcus",email:"marcuspaulo.moreno@dbccompany.com.br",cargo: "Instrutor"},
+  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
+  {nameColaborador: "Matheu",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
+  {nameColaborador: "Mathe",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
+  {nameColaborador: "Math",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
+  {nameColaborador: "Mat",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
+  {nameColaborador: "Ma",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
+  {nameColaborador: "M",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
 ];
 
+
+
 export const DashboardAdmin = () => {
+  const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -106,7 +106,7 @@ export const DashboardAdmin = () => {
                     </StyledTableCell>
                     <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{data.email}</StyledTableCell>
                     <StyledTableCell id="cargo" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.cargo}</StyledTableCell>
-                    <StyledTableCell id="acoes"  sx={{textAlign:"center"}}  ><Button id="botao-editar-admin" title="Editar"><EditIcon/></Button></StyledTableCell>
+                    <StyledTableCell id="acoes" sx={{textAlign:"center"}}><Button id="botao-editar-admin" title="Editar" onClick={() => { navigate("/editar-colaborador", { state: data }) }}><EditIcon/></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>

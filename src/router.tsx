@@ -10,6 +10,7 @@ import { CadastrarAluno } from "./pages/CadastrarAluno/CadastrarAluno";
 import { CadastrarColaborador } from "./pages/CadastrarColaborador/CadastrarColaborador";
 import { RedefinirSenha } from "./pages/RedefinirSenha/RedefinirSenha";
 import { AlterarSenha } from "./pages/AlterarSenha/AlterarSenha";
+import { EditarColaborador } from "./pages/EditarColaborador/EditarColaborador";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./context/AuthContext";
 
 function AppRoutes() {
-  const [cargo] = useState("");
+  const [cargo] = useState("admin");
 
   if(cargo === "admin"){
     return (
@@ -30,6 +31,7 @@ function AppRoutes() {
               <Route path="*" element={<NotFound />} />
               <Route path="/dashboard/admin" element={<DashboardAdmin />} />
               <Route path="/cadastrar-colaborador" element={<CadastrarColaborador />} />
+              <Route path="/editar-colaborador" element={<EditarColaborador />} />
               <Route path="/alterar-senha" element={<AlterarSenha />} />
             </Routes>
           </AuthProvider>
