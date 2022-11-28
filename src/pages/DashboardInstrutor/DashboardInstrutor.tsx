@@ -89,7 +89,7 @@ export const DashboardInstrutor = () => {
         <Paper sx={{ width: {
           xs:"95%",
           md:"60%"
-        }, borderRadius: "10px" }}>
+        }, borderRadius: "10px", boxShadow: "10px 10px 10px #2f407ccf"  }}>
           <TableContainer sx={{ maxHeight:430 }}>
             <Table stickyHeader aria-label="sticky table">
               <TableRow sx={{backgroundColor:"#090F27",color: "white"}}>

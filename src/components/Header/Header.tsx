@@ -20,7 +20,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
       {/* Header Admin */}
       {cargo === "admin" &&
         <Box>
-          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "center", backgroundColor: "#fff", paddingLeft: 4, paddingRight: 4, boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)" }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "center", backgroundColor: "#f8f8fff8", paddingLeft: 4, paddingRight: 4, boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
               <a href="https://www.dbccompany.com.br/" id="logo-dbc-admin" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
               <Button variant="outlined" id="button-dashboard-admin" onClick={() => navigate("/dashboard/admin")} sx={{ textTransform: "capitalize" }}>Dashboard</Button>
@@ -49,7 +49,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
       {/* Header Gestor */}
       {cargo === "gestor" &&
         <Box>
-          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "center", backgroundColor: "#fff", paddingLeft: 4, paddingRight: 4, boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)" }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "center", backgroundColor: "#f8f8fff8", paddingLeft: 4, paddingRight: 4, boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
               <a href="https://www.dbccompany.com.br/" id="logo-dbc-gestor" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
               <Button variant="outlined" id="button-dashboard-gestor" onClick={() => navigate("/dashboard/gestor")} sx={{ textTransform: "capitalize" }}>Dashboard</Button>
@@ -79,7 +79,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
       {/* Header instrutor */}
       {cargo === "instrutor" &&
         <Box>
-          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "center", backgroundColor: "#fff", paddingLeft: 4, paddingRight: 4, boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)" }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", textAlign: "center", backgroundColor: "#f8f8fff8", paddingLeft: 4, paddingRight: 4, boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
               <a href="https://www.dbccompany.com.br/" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
               <Button variant="outlined" id="dashboard-instrutor" onClick={() => navigate("/dashboard/instrutor")} sx={{ textTransform: "capitalize" }}>Dashboard</Button>

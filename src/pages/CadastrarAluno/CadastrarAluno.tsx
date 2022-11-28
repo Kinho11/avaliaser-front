@@ -61,7 +61,7 @@ export const CadastrarAluno = () => {
         }, borderRadius: "10px", padding: {
           xs: 5,
           md: 5
-        }, boxShadow: "0px 4px 14px rgba(0, 0, 0, 0.25)" }}>
+        }, boxShadow: "10px 10px 10px #2f407ccf"  }}>
           <Stack component="div" spacing={2} sx={{ width:{
             xs:"100%",
             md:"50%"

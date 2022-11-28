@@ -85,11 +85,11 @@ export const DashboardGestor = () => {
         <Typography  sx={{textAlign: "center", fontSize: {
           xs:30,
           md:44
-        },marginTop:"50px",fontWeight:"700",color:"#090f27"}} variant="h3">Dashboard Acompanhamentos</Typography>
+        },marginTop:"50px",fontWeight:"700",color:"white"}} variant="h3">Dashboard Acompanhamentos</Typography>
         <Paper sx={{ width: {
           xs:"95%",
           md:"65%"
-        }, borderRadius: "10px" }}>
+        }, borderRadius: "10px", boxShadow: "10px 10px 10px #2f407ccf"  }}>
           <TableContainer sx={{ maxHeight:430 }}>
             <Table stickyHeader aria-label="sticky table">
               <TableRow sx={{backgroundColor:"#090F27",color: "white"}}>

@@ -12,9 +12,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./context/AuthContext";
 import { useState } from "react";
 import { CadastrarAluno } from "./pages/CadastrarAluno/CadastrarAluno";
+import { CadastrarColaborador } from "./pages/CadastrarColaborador/CadastrarColaborador";
 
 function AppRoutes() {
-  const [cargo] = useState("gestor");
+  const [cargo] = useState("admin");
 
   if(cargo === "admin"){
     return (
@@ -26,6 +27,7 @@ function AppRoutes() {
               <Route path="/" element={<Login />} />
               <Route path="*" element={<NotFound />} />
               <Route path="/dashboard/admin" element={<DashboardAdmin />} />
+              <Route path="/cadastrar-colaborador" element={<CadastrarColaborador/>}/>
             </Routes>
           </AuthProvider>
         </BrowserRouter>
