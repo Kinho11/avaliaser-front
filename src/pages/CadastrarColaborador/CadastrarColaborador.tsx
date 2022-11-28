@@ -37,7 +37,10 @@ export const CadastrarColaborador = () => {
     <>
       <Header cargo="admin" nome="Marcus" avatar={foto} />
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center", marginBottom:"20px", fontWeight:"700",color:"white"}} variant="h3">Cadastrar Colaborador</Typography>
+        <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{
+          xs:"35px",
+          md:"40px"
+        }, fontWeight:"700",color:"white"}} variant="h3">Cadastrar Colaborador</Typography>
         <Box component="form" onSubmit={handleSubmit(cadastroColaborador)} sx={{ display: {
           xs:"block",
           md:"flex"
@@ -70,17 +73,19 @@ export const CadastrarColaborador = () => {
 
             <FormControl variant="filled">
 
-              <FormLabel sx={{color:"#1D58F9",fontWeight:"500"}} id="demo-controlled-radio-buttons-group">Perfil</FormLabel>
+              <FormLabel sx={{color:"#1D58F9",fontWeight:"500",marginBottom:"10px"}} id="demo-controlled-radio-buttons-group">Selecionar cargo</FormLabel>
 
-              <FormLabel color="primary" sx={{display:"flex", alignItems:"center", gap:1,fontWeight:"700",color:"#1D58F9"}}>
-                <input type="radio" value="gestorDePessoas" id="gestorDePessoas" {...register("tipoPerfil")} />
-                Gestor de Pessoas
-              </FormLabel>
+              <Box sx={{display:"flex",gap:4}}>
+                <FormLabel color="primary" sx={{display:"flex", alignItems:"center", gap:1,fontWeight:"700",color:"#1D58F9"}}>
+                  <input type="radio" value="gestorDePessoas" id="gestorDePessoas" {...register("tipoPerfil")} />
+                  Gestor de Pessoas
+                </FormLabel>
 
-              <FormLabel sx={{display:"flex", alignItems:"center", gap:1,fontWeight:"700",color:"#1D58F9"}}>
-                <input type="radio" value="instrutor" id="instrutor" {...register("tipoPerfil")}/>
-                Instrutor
-              </FormLabel>
+                <FormLabel sx={{display:"flex", alignItems:"center", gap:1,fontWeight:"700",color:"#1D58F9"}}>
+                  <input type="radio" value="instrutor" id="instrutor" {...register("tipoPerfil")}/>
+                  Instrutor
+                </FormLabel>
+              </Box>
 
             </FormControl>
 

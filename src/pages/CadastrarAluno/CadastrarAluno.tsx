@@ -55,7 +55,7 @@ export const CadastrarAluno = () => {
     <>
       <Header cargo="gestor" nome="Marcus" avatar={foto} />
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center", marginBottom:"20px", fontWeight:"700",color:"#090f27"}} variant="h3">Cadastrar Aluno</Typography>
+        <Typography sx={{textAlign: "center", marginBottom:"20px", fontWeight:"700",color:"white"}} variant="h3">Cadastrar Aluno</Typography>
         <Box component="form" onSubmit={handleSubmit(cadastroAluno)} sx={{ display: {
           xs:"block",
           md:"flex"
