@@ -73,6 +73,7 @@ function AppRoutes() {
   } else {
     return (
       <BrowserRouter>
+        <ToastContainer />
         <Routes>
           <Route index element={<Login />} />
           <Route path="*" element={<NotFound />} />

@@ -59,7 +59,7 @@ export const Login = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const onSubmitModal = (e: any): void => {
+  const onSubmitModal = () => {
     const dominio = verificarEmailModal.split("@");
     if(dominio[1] === "dbccompany.com.br") {
       toast.success("Verifique seu e-mail!", toastConfig);
@@ -136,7 +136,7 @@ export const Login = () => {
             <Box sx={style} component="form" onSubmit={(e) => {
               e.preventDefault();
               if(!inputEmailModal) return;
-              onSubmitModal(e);
+              onSubmitModal();
             }}>
               <img style={{ cursor: "pointer", marginTop: "-20px" }} src={logo} width={100} alt="Logo DBC" />
               <Typography id="modal-modal-titulo" sx={{ marginTop: "-10px" }} variant="h6" component="h2" color="#1e62fe">
