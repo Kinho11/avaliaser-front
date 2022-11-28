@@ -34,7 +34,7 @@ export const colaboradorSchema = yup.object().shape({
     .email("Por favor, digite um e-mail válido"),
   tipoPerfil: yup
     .string()
-    .required("Por favor, escolha uns dos tipos de perfil."),
+    .required("Por favor, escolha uns dos tipos de perfil.").nullable(),
 });
 
 

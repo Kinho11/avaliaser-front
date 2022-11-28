@@ -123,7 +123,6 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
 
               <Button variant="outlined" id="cadastrar-acompanhamento-gestor" onClick={handleCloseNavMenu} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<AddBox />}>Cadastrar acompanhamento</Button>
             </Box>
-
             <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}>
               <Typography id="boas-vindas-gestor" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {nome}!</Typography>
               <Tooltip title="Menu">

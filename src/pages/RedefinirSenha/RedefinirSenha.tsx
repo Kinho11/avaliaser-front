@@ -1,8 +1,5 @@
 import { useState } from "react";
 
-import { toast } from "react-toastify";
-import { toastConfig } from "../../utils/toast";
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -73,7 +70,7 @@ export const RedefinirSenha = () => {
                     </IconButton>
                   </InputAdornment>
                 } />
-                {errors.novaSenha && <Typography id="erro-email" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.novaSenha.message}</Typography>}
+                {errors.novaSenha && <Typography id="erro-nova-mensagem" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.novaSenha.message}</Typography>}
               </FormControl>
 
               <FormControl sx={{ width: {
@@ -88,7 +85,7 @@ export const RedefinirSenha = () => {
                     </IconButton>
                   </InputAdornment>
                 }/>
-                {errors.confirmarNovaSenha && <Typography id="erro-email" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.confirmarNovaSenha .message}</Typography>}
+                {errors.confirmarNovaSenha && <Typography id="erro-confirmar-nova-senha" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.confirmarNovaSenha.message}</Typography>}
               </FormControl>
 
               <Button id="botao-redefinir-senha" size="medium" type="submit" endIcon={<LoginOutlined />} sx={{ width: "30%", backgroundColor: "#1e62fe" }} variant="contained">Entrar</Button>
