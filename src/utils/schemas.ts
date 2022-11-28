@@ -36,3 +36,9 @@ export const colaboradorSchema = yup.object().shape({
     .string()
     .required("Por favor, escolha uns dos tipos de perfil."),
 });
+
+
+export const redefinirSenhaSchema = yup.object().shape({
+  novaSenha: yup.string().required("Por favor, digite sua nova senha").min(3,"A nova senha deve conter no mínimo 3 caracteres"),
+  confirmarNovaSenha: yup.string().required("Por favor, confirme sua nova senha.").oneOf([yup.ref("novaSenha")],"As senhas devem corresponder!")
+});
