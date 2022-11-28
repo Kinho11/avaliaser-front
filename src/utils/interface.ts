@@ -6,7 +6,7 @@ export interface ILogin {
 export interface IHeaderProps {
   nome: string,
   cargo: string,
-  avatar: string
+  avatar?: string
 }
 
 export interface IAuth {

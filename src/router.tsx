@@ -7,12 +7,14 @@ import { DashboardAdmin } from "./pages/DashboardAdmin/DashboardAdmin";
 import { DashboardGestor } from "./pages/DashboardGestor/DashboardGestor";
 import { DashboardInstrutor } from "./pages/DashboardInstrutor/DashboardInstrutor";
 import { CadastrarAluno } from "./pages/CadastrarAluno/CadastrarAluno";
+import { CadastrarColaborador } from "./pages/CadastrarColaborador/CadastrarColaborador";
+import { RedefinirSenha } from "./pages/RedefinirSenha/RedefinirSenha";
+import { AlterarSenha } from "./pages/AlterarSenha/AlterarSenha";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { AuthProvider } from "./context/AuthContext";
-import { CadastrarColaborador } from "./pages/CadastrarColaborador/CadastrarColaborador";
 
 function AppRoutes() {
   const [cargo] = useState("admin");
@@ -27,7 +29,8 @@ function AppRoutes() {
               <Route path="/" element={<Login />} />
               <Route path="*" element={<NotFound />} />
               <Route path="/dashboard/admin" element={<DashboardAdmin />} />
-              <Route path="/cadastrar-colaborador" element={<CadastrarColaborador/>}/>
+              <Route path="/cadastrar-colaborador" element={<CadastrarColaborador/>} />
+              <Route path="/alterar-senha" element={<AlterarSenha />} />
             </Routes>
           </AuthProvider>
         </BrowserRouter>
@@ -44,6 +47,7 @@ function AppRoutes() {
               <Route path="*" element={<NotFound />} />
               <Route path="/dashboard/gestor" element={<DashboardGestor />} />
               <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
+              <Route path="/alterar-senha" element={<AlterarSenha />} />
             </Routes>
           </AuthProvider>
         </BrowserRouter>
@@ -60,6 +64,7 @@ function AppRoutes() {
               <Route path="*" element={<NotFound />} />
               <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
               <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
+              <Route path="/alterar-senha" element={<AlterarSenha />} />
             </Routes>
           </AuthProvider>
         </BrowserRouter>
@@ -71,6 +76,7 @@ function AppRoutes() {
         <Routes>
           <Route index element={<Login />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/redefinir-senha" element={<RedefinirSenha />} />
         </Routes>
       </BrowserRouter>
     );

@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 
-import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Avatar, Button, Tooltip, MenuItem } from "@mui/material";
-
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Avatar, Button, Tooltip, MenuItem, Divider, ListItemIcon } from "@mui/material";
+import { AddBox, AssignmentInd, Chat, PersonAdd, LockReset, ExitToApp } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import logo from "../../assets/dbc-logo.png";
@@ -9,28 +9,17 @@ import logo from "../../assets/dbc-logo.png";
 import { IHeaderProps } from "../../utils/interface";
 
 import { useNavigate } from "react-router-dom";
-import { AddBox, AssignmentInd, Chat, Logout, PersonAdd } from "@mui/icons-material";
-import { ListItemIcon } from "@mui/material";
 
 export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  // Funções Header
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => { setAnchorElNav(event.currentTarget); };
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => { setAnchorElUser(event.currentTarget); };
+  const handleCloseNavMenu = () => { setAnchorElNav(null); };
+  const handleCloseUserMenu = () => { setAnchorElUser(null); };
 
   return (
     <>
@@ -76,9 +65,16 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                <MenuItem  onClick={handleCloseUserMenu}>
+                <MenuItem onClick={handleCloseUserMenu}>
                   <ListItemIcon>
-                    <Logout fontSize="small" />
+                    <LockReset fontSize="medium" />
+                  </ListItemIcon>
+                  <Typography textAlign="center">Trocar senha</Typography>
+                </MenuItem>
+                <Divider />
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <ListItemIcon>
+                    <ExitToApp fontSize="medium" />
                   </ListItemIcon>
                   <Typography textAlign="center">Sair</Typography>
                 </MenuItem>
@@ -136,9 +132,16 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <ListItemIcon>
+                    <LockReset fontSize="medium" />
+                  </ListItemIcon>
+                  <Typography textAlign="center">Trocar senha</Typography>
+                </MenuItem>
+                <Divider />
                 <MenuItem  onClick={handleCloseUserMenu}>
                   <ListItemIcon>
-                    <Logout fontSize="small" />
+                    <ExitToApp fontSize="medium" />
                   </ListItemIcon>
                   <Typography textAlign="center">Sair</Typography>
                 </MenuItem>
@@ -196,9 +199,16 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <ListItemIcon>
+                    <LockReset fontSize="medium" />
+                  </ListItemIcon>
+                  <Typography textAlign="center">Trocar senha</Typography>
+                </MenuItem>
+                <Divider />
                 <MenuItem  onClick={handleCloseUserMenu}>
                   <ListItemIcon>
-                    <Logout fontSize="small" />
+                    <ExitToApp fontSize="medium" />
                   </ListItemIcon>
                   <Typography textAlign="center">Sair</Typography>
                 </MenuItem>
