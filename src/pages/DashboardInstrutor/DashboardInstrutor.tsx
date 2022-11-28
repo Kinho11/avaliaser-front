@@ -80,21 +80,17 @@ export const DashboardInstrutor = () => {
   return (
     <>
       <Header cargo="instrutor" nome="Mayra" avatar={foto} />
-
-      <Box sx={{ height: "calc(100vh - 200px)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 5 }}>
-        <Typography sx={{
-          textAlign: "center", marginTop: "50px", fontWeight: "700", fontSize: {
-            xs: 30,
-            md: 44
-          }, color: "#090f27"
-        }} variant="h3">Dashboard Feedback</Typography>
-        <Paper sx={{
-          width: {
-            xs: "95%",
-            md: "60%"
-          }, borderRadius: "10px"
-        }}>
-          <TableContainer sx={{ maxHeight: 430 }}>
+      
+      <Box sx={{height:"calc(100vh - 200px)",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",gap:5}}>
+        <Typography  sx={{textAlign: "center", marginTop:"50px",fontWeight:"700",fontSize: {
+          xs:30,
+          md:44
+        },color:"#090f27"}} variant="h3">Dashboard Feedback</Typography>
+        <Paper sx={{ width: {
+          xs:"95%",
+          md:"60%"
+        }, borderRadius: "10px", boxShadow: "10px 10px 10px #2f407ccf"  }}>
+          <TableContainer sx={{ maxHeight:430 }}>
             <Table stickyHeader aria-label="sticky table">
               <TableRow sx={{ backgroundColor: "#090F27", color: "white" }}>
                 {columns.map((column) => (

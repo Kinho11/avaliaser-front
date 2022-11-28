@@ -78,11 +78,11 @@ export const DashboardAdmin = () => {
         <Typography  sx={{textAlign: "center", marginTop:"50px",fontWeight:"700",fontSize: {
           xs:30,
           md:44
-        },color:"#090f27"}} variant="h3">Dashboard Colaboradores</Typography>
+        },color:"white"}} variant="h3">Dashboard Colaboradores</Typography>
         <Paper sx={{ width: {
           xs:"95%",
           md:"60%"
-        }, borderRadius: "10px" }}>
+        }, borderRadius: "10px", boxShadow: "10px 10px 10px #2f407ccf"  }}>
           <TableContainer sx={{ maxHeight:430 }}>
             <Table stickyHeader aria-label="sticky table">
               <thead>
@@ -101,12 +101,12 @@ export const DashboardAdmin = () => {
               <TableBody>
                 {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
                   <StyledTableRow  key={data.nameColaborador}>
-                    <StyledTableCell  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">
+                    <StyledTableCell id="nome"  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">
                       {data.nameColaborador}
                     </StyledTableCell>
-                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.email}</StyledTableCell>
-                    <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.cargo}</StyledTableCell>
-                    <StyledTableCell id="cargo"  sx={{textAlign:"center"}}  ><Button id="botao-editar-admin" title="Editar"><EditIcon/></Button></StyledTableCell>
+                    <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{data.email}</StyledTableCell>
+                    <StyledTableCell id="cargo" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.cargo}</StyledTableCell>
+                    <StyledTableCell id="acoes"  sx={{textAlign:"center"}}  ><Button id="botao-editar-admin" title="Editar"><EditIcon/></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
