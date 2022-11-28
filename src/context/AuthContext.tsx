@@ -1,10 +1,10 @@
 import { createContext, useState } from "react";
 
-import { IAuth, TChildren } from "../utils/interface";
+import { IAuth, IChildren } from "../utils/interface";
 
 export const AuthContext = createContext({} as IAuth);
 
-export const AuthProvider = ({ children }: TChildren) => {
+export const AuthProvider = ({ children }: IChildren) => {
   const [cargo, setCargo] = useState<string>("");
 
   return (

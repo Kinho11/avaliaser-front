@@ -29,7 +29,7 @@ function AppRoutes() {
               <Route path="/" element={<Login />} />
               <Route path="*" element={<NotFound />} />
               <Route path="/dashboard/admin" element={<DashboardAdmin />} />
-              <Route path="/cadastrar-colaborador" element={<CadastrarColaborador/>} />
+              <Route path="/cadastrar-colaborador" element={<CadastrarColaborador />} />
               <Route path="/alterar-senha" element={<AlterarSenha />} />
             </Routes>
           </AuthProvider>

@@ -8,7 +8,7 @@ export const userSchema = yup.object().shape({
   senha: yup
     .string()
     .required("Por favor, digite sua senha")
-    .min(3, "A senha deve ter no mínimo 3 caracteres"),
+    .min(3, "A senha deve ter no mínimo 3 caracteres")
 });
 
 export const alunoSchema = yup.object().shape({

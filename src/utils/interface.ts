@@ -13,6 +13,11 @@ export interface IAuth {
   cargo: string
 }
 
-export interface TChildren {
+export interface IChildren {
   children: React.ReactNode;
+}
+
+export interface IUsuario {
+  email: string,
+  senha: string
 }
