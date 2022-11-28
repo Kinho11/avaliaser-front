@@ -1,4 +1,4 @@
-import { TableCell, tableCellClasses, TableRow, Typography, Box, Paper, TableContainer, Table, TableBody, Button, TablePagination,styled } from "@mui/material";
+import { TableCell, tableCellClasses, TableRow, Typography, Box, Paper, TableContainer, Table, TableBody, Button, TablePagination, styled } from "@mui/material";
 import { useState } from "react";
 import { Header } from "../../components/Header/Header";
 import foto from "../../assets/bg-login.png";
@@ -53,15 +53,15 @@ const columns: Column[] = [
   }
 ];
 
-const data =[
-  {codigo: 1,nome:"Marcus",status: "Positvo"},
-  {codigo: 1,nome:"Marcus",status: "Atenção"},
-  {codigo: 1,nome:"Marcus",status: "Atenção"},
-  {codigo: 1,nome:"Marcus",status: "Atenção"},
-  {codigo: 1,nome:"Marcus",status: "Atenção"},
-  {codigo: 1,nome:"Marcus",status: "Atenção"},
-  {codigo: 1,nome:"Marcus",status: "Atenção"},
-  {codigo: 1,nome:"Marcus",status: "Atenção"},
+const data = [
+  { codigo: 1, nome: "Marcus", status: "Positvo" },
+  { codigo: 1, nome: "Marcus", status: "Atenção" },
+  { codigo: 1, nome: "Marcus", status: "Atenção" },
+  { codigo: 1, nome: "Marcus", status: "Atenção" },
+  { codigo: 1, nome: "Marcus", status: "Atenção" },
+  { codigo: 1, nome: "Marcus", status: "Atenção" },
+  { codigo: 1, nome: "Marcus", status: "Atenção" },
+  { codigo: 1, nome: "Marcus", status: "Atenção" },
 ];
 
 export const DashboardInstrutor = () => {
@@ -80,24 +80,28 @@ export const DashboardInstrutor = () => {
   return (
     <>
       <Header cargo="instrutor" nome="Mayra" avatar={foto} />
-      
-      <Box sx={{height:"calc(100vh - 200px)",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",gap:5}}>
-        <Typography  sx={{textAlign: "center", marginTop:"50px",fontWeight:"700",fontSize: {
-          xs:30,
-          md:44
-        },color:"#090f27"}} variant="h3">Dashboard Feedback</Typography>
-        <Paper sx={{ width: {
-          xs:"95%",
-          md:"60%"
-        }, borderRadius: "10px" }}>
-          <TableContainer sx={{ maxHeight:430 }}>
+
+      <Box sx={{ height: "calc(100vh - 200px)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 5 }}>
+        <Typography sx={{
+          textAlign: "center", marginTop: "50px", fontWeight: "700", fontSize: {
+            xs: 30,
+            md: 44
+          }, color: "#090f27"
+        }} variant="h3">Dashboard Feedback</Typography>
+        <Paper sx={{
+          width: {
+            xs: "95%",
+            md: "60%"
+          }, borderRadius: "10px"
+        }}>
+          <TableContainer sx={{ maxHeight: 430 }}>
             <Table stickyHeader aria-label="sticky table">
-              <TableRow sx={{backgroundColor:"#090F27",color: "white"}}>
+              <TableRow sx={{ backgroundColor: "#090F27", color: "white" }}>
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
                     align={column.align}
-                    style={{ top: 57, minWidth: column.minWidth,fontWeight:"700", fontSize:"1rem", textAlign: "center" }}
+                    style={{ top: 57, minWidth: column.minWidth, fontWeight: "700", fontSize: "1rem", textAlign: "center" }}
                   >
                     {column.label}
                   </TableCell>
@@ -105,13 +109,13 @@ export const DashboardInstrutor = () => {
               </TableRow>
               <TableBody>
                 {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
-                  <StyledTableRow  key={data.codigo}>
-                    <StyledTableCell  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">
+                  <StyledTableRow key={data.codigo}>
+                    <StyledTableCell sx={{ textAlign: "center", fontWeight: "600", fontSize: "1rem" }} component="td" scope="row">
                       {data.codigo}
                     </StyledTableCell>
-                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.nome}</StyledTableCell>  
-                    <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.status}</StyledTableCell>
-                    <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-editar-admin" title="Editar"><EditIcon/></Button><Button title="Verificar feedback"><FactCheckIcon/></Button></StyledTableCell>
+                    <StyledTableCell id="nome" sx={{ textAlign: "center", fontWeight: "600", fontSize: "1rem" }} >{data.nome}</StyledTableCell>
+                    <StyledTableCell id="email" sx={{ textAlign: "center", fontWeight: "600", fontSize: "1rem" }} >{data.status}</StyledTableCell>
+                    <StyledTableCell id="cargo" sx={{ textAlign: "center" }}><Button id="botao-editar-admin" title="Editar"><EditIcon /></Button><Button title="Verificar feedback"><FactCheckIcon /></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
@@ -119,7 +123,7 @@ export const DashboardInstrutor = () => {
           </TableContainer>
           {/* Paginação */}
           <TablePagination
-            rowsPerPageOptions={[10,20,100]}
+            rowsPerPageOptions={[10, 20, 100]}
             component="div"
             count={data.length}
             rowsPerPage={rowsPerPage}
