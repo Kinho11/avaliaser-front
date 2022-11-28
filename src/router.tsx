@@ -17,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./context/AuthContext";
 
 function AppRoutes() {
-  const [cargo] = useState("admin");
+  const [cargo] = useState("");
 
   if(cargo === "admin"){
     return (
