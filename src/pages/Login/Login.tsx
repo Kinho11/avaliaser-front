@@ -51,7 +51,7 @@ export const Login = () => {
         <Box id="box-direita" sx={{ width: {
           xs:"100%",
           md:"60%"
-        }, height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap" }}>
+        }, height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap",backgroundColor:"#f8f8ff" }}>
 
           <Box id="box-login" component="form" onSubmit={handleSubmit(onSubmit)} sx={{ backgroundColor: "#fff", width: {
             xs:"90%",
