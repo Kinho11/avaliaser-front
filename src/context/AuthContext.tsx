@@ -39,13 +39,18 @@ export const AuthProvider = ({ children }: IChildren) => {
     }
   }
 
+  const usuarioLogout = () => {
+    localStorage.removeItem('token');
+    setTokenAuth('');
+  };
+
   const redefinirSenha = async (email: string) => {
     try {
       nProgress.start()
       await API.post(`/auth/recuperar-senha?email=${email}`, email, { 
         headers: { Authorization: localStorage.getItem("token") }
        }).then((response) => {
-        toast.success("Recuperação de senha realiza com sucesso.", toastConfig);
+        toast.success("Recuperação de senha realizada com sucesso.", toastConfig);
       });
     } catch (error) {
       toast.error("Email incorreto! Não será possivel continuar com a recuperação de senha!", toastConfig);
@@ -55,7 +60,7 @@ export const AuthProvider = ({ children }: IChildren) => {
   }
 
   return (
-    <AuthContext.Provider value={{ tokenAuth, usuarioLogin, usuarioLogado, redefinirSenha }}>
+    <AuthContext.Provider value={{ tokenAuth, usuarioLogin, usuarioLogado, redefinirSenha, usuarioLogout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Paper, TableContainer, Table,TableBody, TablePagination, Button, styled, Typography, Box, TableCell, tableCellClasses, TableRow } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header/Header";
 
 import foto from "../../assets/bg-login.png";
+import { AdminContext } from "../../context/AdminContext";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -29,7 +30,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 interface Column {
-  id: "nameColaborador" | "email" | "cargo" | "acoes";
+  id: "nome" | "email" | "cargo" | "acoes";
   label: string;
   minWidth?: number;
   align?: "right";
@@ -37,29 +38,19 @@ interface Column {
 }
 
 const columns: Column[] = [
-  { id: "nameColaborador", label: "Colaborador(a)", minWidth: 5 },
+  { id: "nome", label: "Colaborador(a)", minWidth: 5 },
   { id: "email", label: "E-mail", minWidth: 5 },
   { id: "cargo", label: "Cargo", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
   { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") }
 ];
-
-const data =[
-  {nameColaborador: "Marcus",email:"marcuspaulo.moreno@dbccompany.com.br",cargo: "Instrutor"},
-  {nameColaborador: "Matheus",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
-  {nameColaborador: "Matheu",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
-  {nameColaborador: "Mathe",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
-  {nameColaborador: "Math",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
-  {nameColaborador: "Mat",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
-  {nameColaborador: "Ma",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
-  {nameColaborador: "M",email:"Matheus@dbccompany.com.br",cargo: "Gestor"},
-];
-
 
 
 export const DashboardAdmin = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const {colaborador,pegarColaborador} = useContext(AdminContext);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -69,6 +60,10 @@ export const DashboardAdmin = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  useEffect(()=>{
+    pegarColaborador()
+  },[])
 
   return (
     <>
@@ -99,10 +94,10 @@ export const DashboardAdmin = () => {
                 </TableRow>
               </thead>
               <TableBody>
-                {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
-                  <StyledTableRow  key={data.nameColaborador}>
+                {colaborador.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
+                  <StyledTableRow  key={data.idUsuario}>
                     <StyledTableCell id="nome"  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">
-                      {data.nameColaborador}
+                      {data.nome}
                     </StyledTableCell>
                     <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{data.email}</StyledTableCell>
                     <StyledTableCell id="cargo" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.cargo}</StyledTableCell>
@@ -116,7 +111,7 @@ export const DashboardAdmin = () => {
           <TablePagination
             rowsPerPageOptions={[10,20,100]}
             component="div"
-            count={data.length}
+            count={colaborador.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
