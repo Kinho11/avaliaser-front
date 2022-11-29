@@ -28,7 +28,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>
-            <Box component="image" sx={{ mr: 2, display: { xs: "none", md: "flex" }}}>
+            <Box component="div" sx={{ mr: 2, display: { xs: "none", md: "flex" }}}>
               <a href="https://www.dbccompany.com.br/" id="logo-dbc-admin" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
             </Box>
 
@@ -46,7 +46,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
               </Menu>
             </Box>
 
-            <Box component="image"
+            <Box component="div"
               sx={{ mr: 2, display: { xs: "flex", md: "none" }, flexGrow: 1 }}>
               <a href="https://www.dbccompany.com.br/" id="logo-dbc-admin" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
             </Box>
@@ -90,7 +90,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>
-            <Box component="image" sx={{ mr: 2, display: { xs: "none", md: "flex" }}}>
+            <Box component="div" sx={{ mr: 2, display: { xs: "none", md: "flex" }}}>
               <a href="https://www.dbccompany.com.br/" id="logo-dbc-gestor" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
             </Box>
 
@@ -111,7 +111,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
               </Menu>
             </Box>
 
-            <Box component="image"
+            <Box component="div"
               sx={{ mr: 2, display: { xs: "flex", md: "none" }, flexGrow: 1 }}>
               <a href="https://www.dbccompany.com.br/" id="logo-dbc-gestor" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
             </Box>
@@ -123,7 +123,6 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
 
               <Button variant="outlined" id="cadastrar-acompanhamento-gestor" onClick={handleCloseNavMenu} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<AddBox />}>Cadastrar acompanhamento</Button>
             </Box>
-
             <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}>
               <Typography id="boas-vindas-gestor" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {nome}!</Typography>
               <Tooltip title="Menu">
@@ -157,7 +156,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>
-            <Box component="image" sx={{ mr: 2, display: { xs: "none", md: "flex" }}}>
+            <Box component="div" sx={{ mr: 2, display: { xs: "none", md: "flex" }}}>
               <a href="https://www.dbccompany.com.br/" id="logo-dbc-instrutor" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
             </Box>
 
@@ -178,7 +177,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
               </Menu>
             </Box>
 
-            <Box component="image"
+            <Box component="div"
               sx={{ mr: 2, display: { xs: "flex", md: "none" }, flexGrow: 1 }}>
               <a href="https://www.dbccompany.com.br/" id="logo-dbc-instrutor" title="DBC Company" rel="noreferrer" target={"_blank"}><img style={{ cursor: "pointer" }} src={logo} width={80} alt="Logo DBC" /></a>
             </Box>
