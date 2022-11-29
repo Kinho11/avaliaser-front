@@ -69,7 +69,7 @@ export const Header = () => {
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => { handleCloseUserMenu(); navigate("/alterar-senha"); }}>
                   <ListItemIcon>
                     <LockReset fontSize="medium" />
                   </ListItemIcon>
@@ -135,7 +135,7 @@ export const Header = () => {
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => { handleCloseUserMenu(); navigate("/alterar-senha"); }}>
                   <ListItemIcon>
                     <LockReset fontSize="medium" />
                   </ListItemIcon>
@@ -202,7 +202,7 @@ export const Header = () => {
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => { handleCloseUserMenu(); navigate("/alterar-senha"); }}>
                   <ListItemIcon>
                     <LockReset fontSize="medium" />
                   </ListItemIcon>
