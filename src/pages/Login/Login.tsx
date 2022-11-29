@@ -33,7 +33,7 @@ const style = {
 
 export const Login = () => {
   // Funções context
-  const { usuarioLogin, redefinirSenha } = useContext(AuthContext);
+  const { usuarioLogin, redefinirSenha, tokenAuth, usuarioLogado } = useContext(AuthContext);
 
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });
   const [verificarEmail, setVerificarEmail] = useState("");
@@ -73,6 +73,11 @@ export const Login = () => {
       toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
     }
   };
+
+  // if(tokenAuth){
+  //   const cargoSplitado = usuarioLogado.cargo.split("_")[1].toLowerCase();
+  //   <Navigate to={`/dashboard/${cargoSplitado}`} />
+  // }
 
   return (
     <>

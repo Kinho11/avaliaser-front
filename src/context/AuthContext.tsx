@@ -39,6 +39,11 @@ export const AuthProvider = ({ children }: IChildren) => {
     }
   }
 
+  const usuarioLogout = () => {
+    localStorage.removeItem('token');
+    setTokenAuth('');
+  };
+
   const redefinirSenha = async (email: string) => {
     try {
       nProgress.start()
@@ -55,7 +60,7 @@ export const AuthProvider = ({ children }: IChildren) => {
   }
 
   return (
-    <AuthContext.Provider value={{ tokenAuth, usuarioLogin, usuarioLogado, redefinirSenha }}>
+    <AuthContext.Provider value={{ tokenAuth, usuarioLogin, usuarioLogado, redefinirSenha, usuarioLogout }}>
       {children}
     </AuthContext.Provider>
   );
