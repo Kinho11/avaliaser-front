@@ -18,6 +18,7 @@ import 'nprogress/nprogress.css';
 import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
+import { CadastrarAcompanhamento } from "./pages/CadastrarAcompanhamento/CadastrarAcompanhamento";
 
 function AppRoutes() {
   return (
@@ -41,6 +42,7 @@ function AppRoutes() {
                 {/* Rotas Gestor */}
                 <Route path="/dashboard/gestor" element={<DashboardGestor />} />
                 <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
+                <Route path="/cadastrar-acompanhamento" element={<CadastrarAcompanhamento/>}/>
 
                 {/* Rotas Instrutor */}
                 <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />

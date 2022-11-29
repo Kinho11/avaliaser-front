@@ -110,7 +110,7 @@ export const Header = () => {
                   <Typography onClick={() => navigate("/cadastrar-aluno")} textAlign="center">Cadastrar aluno</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Cadastrar acompanhamento</Typography>
+                  <Typography onClick={() => navigate("/cadastrar-acompanhamento")}  textAlign="center">Cadastrar acompanhamento</Typography>
                 </MenuItem>
               </Menu>
             </Box>
@@ -125,7 +125,7 @@ export const Header = () => {
 
               <Button variant="outlined" id="cadastrar-aluno-gestor" onClick={() => navigate("/cadastrar-aluno")} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<PersonAdd />}>Cadastrar aluno</Button>
 
-              <Button variant="outlined" id="cadastrar-acompanhamento-gestor" onClick={handleCloseNavMenu} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<AddBox />}>Cadastrar acompanhamento</Button>
+              <Button variant="outlined" id="cadastrar-acompanhamento-gestor"  onClick={() => { handleCloseUserMenu(); navigate("/cadastrar-acompanhamento"); }} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<AddBox />}>Cadastrar acompanhamento</Button>
             </Box>
             <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}>
               <Typography id="boas-vindas-gestor" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {primeiroNome}!</Typography>

@@ -48,3 +48,9 @@ export const AlterarSenhaSchema = yup.object().shape({
   novaSenha: yup.string().required("Por favor, digite sua nova senha").min(3,"A nova senha deve conter no mínimo 3 caracteres"),
   confirmarNovaSenha: yup.string().required("Por favor, confirme sua nova senha.").oneOf([yup.ref("novaSenha")],"As senhas devem corresponder!")
 });
+
+
+export const CadastrarAcompanhamentoSchema = yup.object().shape({
+  descricao: yup.string().required("Por favor, digite alguma coisa na descrição"),
+  data: yup.string().required("Por favor, escolha uma data inicial")
+})
