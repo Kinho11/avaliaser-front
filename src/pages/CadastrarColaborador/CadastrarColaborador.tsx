@@ -15,7 +15,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { AdminContext } from "../../context/AdminContext";
 import { AuthContext } from "../../context/AuthContext";
 
-
 interface IColaborador{
   nome: string,
   email: string,
@@ -51,7 +50,7 @@ export const CadastrarColaborador = () => {
 
   return (
     <>
-      <Header cargo="admin" nome="Marcus" avatar={foto} />
+      <Header />
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
         <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{
           xs:"35px",

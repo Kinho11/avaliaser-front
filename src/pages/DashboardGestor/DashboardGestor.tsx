@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Header } from "../../components/Header/Header";
-import foto from "../../assets/bg-login.png";
+
 import { TableCell, tableCellClasses, TableRow, Typography, Box, Paper, TableContainer, Table, TableBody, Button, TablePagination,styled } from "@mui/material";
 
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
@@ -79,7 +79,7 @@ export const DashboardGestor = () => {
 
   return (
     <>
-      <Header cargo="gestor" nome="Marcus" avatar={foto} />
+      <Header />
      
       <Box sx={{height:"calc(100vh - 200px)",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",gap:5}}>
         <Typography  sx={{textAlign: "center", fontSize: {

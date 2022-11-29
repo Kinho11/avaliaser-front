@@ -11,8 +11,9 @@ export interface IHeaderProps {
 
 export interface IAuth {
   usuarioLogin: (infoUser: IUsuario) => Promise<void>,
+  redefinirSenha: (email: string) => Promise<void>,
   tokenAuth: string | null,
-  usuarioLogado: IUsuarioLogado,
+  usuarioLogado: any | undefined
 }
 
 export interface IAdmin{

@@ -2,7 +2,6 @@ import { Header } from "../../components/Header/Header";
 
 import { Box, FormControl, TextField, Stack, Typography, InputLabel, MenuItem, Select, Avatar, Button } from "@mui/material";
 
-import foto from "../../assets/bg-login.png";
 import { useState, useEffect } from "react";
 
 import { toast } from "react-toastify";
@@ -53,7 +52,7 @@ export const CadastrarAluno = () => {
 
   return (
     <>
-      <Header cargo="gestor" nome="Marcus" avatar={foto} />
+      <Header />
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
         <Typography sx={{textAlign: "center", marginBottom:"20px", fontWeight:"700",color:"white"}} variant="h3">Cadastrar Aluno</Typography>
         <Box component="form" onSubmit={handleSubmit(cadastroAluno)} sx={{ display: {
