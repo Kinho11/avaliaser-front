@@ -22,7 +22,6 @@ export interface IAdmin{
   deletarColaborador: (id: number) => Promise<void>,
   enviarFotoColaborador: (imagem: FileList) => Promise<void>,
   pegarColaborador: () => Promise<void>,
-  getID: () => Promise<void>,
   editarColaborador: (dadosEditados: IColaboradorEditado, id: number, imagem: FileList | undefined) => Promise<void>,
   colaborador: IPegarColaborador[]
 }

@@ -67,16 +67,6 @@ export const AdminProvider = ({ children }: IChildren) =>{
     }
   }
 
-  const getID = async () => {
-    try {
-      API.defaults.headers.common["Authorization"] = token;
-      const { data } = await API.get("/administrador/usuario/3")
-      localStorage.setItem("teste", JSON.stringify(data));
-    } catch (error) {
-      toast.error("deu erro");
-    }
-  }
-
   const pegarColaborador = async () => {
     try {
       nProgress.start();
@@ -105,7 +95,7 @@ export const AdminProvider = ({ children }: IChildren) =>{
   }
 
   return (
-    <AdminContext.Provider value={{ criarColaborador, pegarColaborador, colaborador, deletarColaborador, enviarFotoColaborador, editarColaborador, getID }}>
+    <AdminContext.Provider value={{ criarColaborador, pegarColaborador, colaborador, deletarColaborador, enviarFotoColaborador, editarColaborador }}>
       {children}
     </AdminContext.Provider>
   );

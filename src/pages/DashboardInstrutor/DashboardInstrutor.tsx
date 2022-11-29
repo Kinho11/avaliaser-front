@@ -55,13 +55,13 @@ const columns: Column[] = [
 
 const data = [
   { codigo: 1, nome: "Marcus", status: "Positvo" },
-  { codigo: 1, nome: "Marcus", status: "Atenção" },
-  { codigo: 1, nome: "Marcus", status: "Atenção" },
-  { codigo: 1, nome: "Marcus", status: "Atenção" },
-  { codigo: 1, nome: "Marcus", status: "Atenção" },
-  { codigo: 1, nome: "Marcus", status: "Atenção" },
-  { codigo: 1, nome: "Marcus", status: "Atenção" },
-  { codigo: 1, nome: "Marcus", status: "Atenção" },
+  { codigo: 2, nome: "Marcus", status: "Atenção" },
+  { codigo: 3, nome: "Marcus", status: "Atenção" },
+  { codigo: 4, nome: "Marcus", status: "Atenção" },
+  { codigo: 5, nome: "Marcus", status: "Atenção" },
+  { codigo: 6, nome: "Marcus", status: "Atenção" },
+  { codigo: 7, nome: "Marcus", status: "Atenção" },
+  { codigo: 8, nome: "Marcus", status: "Atenção" },
 ];
 
 export const DashboardInstrutor = () => {
@@ -82,27 +82,24 @@ export const DashboardInstrutor = () => {
       <Header />
       
       <Box sx={{height:"calc(100vh - 200px)",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",gap:5}}>
-        <Typography  sx={{textAlign: "center", marginTop:"50px",fontWeight:"700",fontSize: {
-          xs:30,
-          md:44
-        },color:"#090f27"}} variant="h3">Dashboard Feedback</Typography>
-        <Paper sx={{ width: {
-          xs:"95%",
-          md:"60%"
-        }, borderRadius: "10px", boxShadow: "10px 10px 10px #2f407ccf"  }}>
+        <Typography  sx={{textAlign: "center", marginTop:"50px",fontWeight:"700",fontSize: { xs:30, md:44
+        },color:"white"}} variant="h3">Dashboard Alunos</Typography>
+        <Paper sx={{ width: { xs:"95%", md:"60%" }, borderRadius: "10px", boxShadow: "10px 10px 10px #2f407ccf" }}>
           <TableContainer sx={{ maxHeight:430 }}>
             <Table stickyHeader aria-label="sticky table">
-              <TableRow sx={{ backgroundColor: "#090F27", color: "white" }}>
-                {columns.map((column) => (
-                  <TableCell
-                    key={column.id}
-                    align={column.align}
-                    style={{ top: 57, minWidth: column.minWidth, fontWeight: "700", fontSize: "1rem", textAlign: "center" }}
-                  >
-                    {column.label}
-                  </TableCell>
-                ))}
-              </TableRow>
+              <thead>
+                <TableRow sx={{ backgroundColor: "#090F27", color: "white" }}>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ top: 57, minWidth: column.minWidth, fontWeight: "700", fontSize: "1rem", textAlign: "center" }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </thead>
               <TableBody>
                 {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
                   <StyledTableRow key={data.codigo}>

@@ -33,7 +33,8 @@ const style = {
 
 export const Login = () => {
   // Funções context
-  const { usuarioLogin, redefinirSenha } = useContext(AuthContext);
+  const { usuarioLogin, redefinirSenha, tokenAuth } = useContext(AuthContext);
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
 
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });
   const [verificarEmail, setVerificarEmail] = useState("");
@@ -74,10 +75,8 @@ export const Login = () => {
     }
   };
 
-  // if(tokenAuth){
-  //   const cargoSplitado = usuarioLogado.cargo.split("_")[1].toLowerCase();
-  //   <Navigate to={`/dashboard/${cargoSplitado}`} />
-  // }
+  const cargoSplitado = infosUsuario?.cargo?.split("_")[1].toLowerCase();
+  if(tokenAuth) return <Navigate to={`/dashboard/${cargoSplitado}`} />
 
   return (
     <>

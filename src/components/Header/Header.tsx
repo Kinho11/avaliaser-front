@@ -8,11 +8,9 @@ import logo from "../../assets/dbc-logo.png";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { AdminContext } from "../../context/AdminContext";
 
 export const Header = () => {
   const { usuarioLogout } = useContext(AuthContext);
-  const { getID } = useContext(AdminContext)
   
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   const primeiroNome = infosUsuario.nome.split(" ")[0];
@@ -216,12 +214,6 @@ export const Header = () => {
                     <ExitToApp fontSize="medium" />
                   </ListItemIcon>
                   <Typography textAlign="center">Sair</Typography>
-                </MenuItem>
-                <MenuItem onClick={() => { handleCloseUserMenu(); getID(); }}>
-                  <ListItemIcon>
-                    <ExitToApp fontSize="medium" />
-                  </ListItemIcon>
-                  <Typography textAlign="center">Teste</Typography>
                 </MenuItem>
               </Menu>
             </Box>
