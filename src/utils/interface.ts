@@ -20,7 +20,10 @@ export interface IAuth {
 export interface IAdmin{
   criarColaborador: (userColaborador: IUserColaborador) => Promise<void>,
   deletarColaborador: (id: number) => Promise<void>,
+  enviarFotoColaborador: (imagem: FileList) => Promise<void>,
   pegarColaborador: () => Promise<void>,
+  getID: () => Promise<void>,
+  editarColaborador: (dadosEditados: IColaboradorEditado, id: number, imagem: FileList | undefined) => Promise<void>,
   colaborador: IPegarColaborador[]
 }
 
@@ -39,6 +42,11 @@ export interface IUsuarioLogado {
   email: string,
   foto: string | null,
   cargo: string
+}
+
+export interface IColaboradorEditado {
+  nome: string,
+  email: string
 }
 
 export interface IUserColaborador{
