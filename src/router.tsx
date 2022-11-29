@@ -18,6 +18,7 @@ import 'nprogress/nprogress.css';
 import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
+import { Intermediaria } from "./pages/Intermediaria/Intermediaria";
 
 function AppRoutes() {
   return (
@@ -48,6 +49,8 @@ function AppRoutes() {
 
                 {/* Trocar senha logado */}
                 <Route path="/alterar-senha" element={<AlterarSenha />} />
+
+                <Route path="/recuperar-senha" element={<Intermediaria />} />
               </Route>
             </Routes>
           </AdminProvider>
