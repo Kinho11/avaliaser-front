@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: IChildren) => {
       await API.post(`/auth/recuperar-senha?email=${email}`, email, { 
         headers: { Authorization: localStorage.getItem("token") }
        }).then((response) => {
-        toast.success("Recuperação de senha realiza com sucesso.", toastConfig);
+        toast.success("Recuperação de senha realizada com sucesso.", toastConfig);
       });
     } catch (error) {
       toast.error("Email incorreto! Não será possivel continuar com a recuperação de senha!", toastConfig);
