@@ -11,10 +11,8 @@ export interface IHeaderProps {
 
 export interface IAuth {
   usuarioLogin: (infoUser: IUsuario) => Promise<void>,
-  infosUsuarioLogado: () => Promise<void>,
   tokenAuth: string | null,
-  usuarioLogado: any | null,
-  cargo: string
+  usuarioLogado: IUsuarioLogado,
 }
 
 export interface IChildren {

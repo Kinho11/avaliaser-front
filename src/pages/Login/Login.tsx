@@ -15,6 +15,7 @@ import { LoginOutlined, Visibility, VisibilityOff, Email, ForwardToInbox } from 
 import { ILogin, IUsuario } from "../../utils/interface";
 
 import { AuthContext } from "../../context/AuthContext";
+import { Navigate } from "react-router-dom";
 
 const style = {
   position: "absolute" as const,
