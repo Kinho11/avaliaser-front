@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Avatar, Button, Tooltip, MenuItem, Divider, ListItemIcon } from "@mui/material";
 import {  AssignmentInd, LockReset, ExitToApp } from "@mui/icons-material";
@@ -10,12 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export const Header = () => {
-  const { usuarioLogado } = useContext(AuthContext);
+  const { usuarioLogado, usuarioLogout } = useContext(AuthContext);
   const primeiroNome = usuarioLogado.nome.split(" ")[0];
-
-  useEffect(() => {
-    console.log(usuarioLogado)
-  }, [usuarioLogado])
 
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -78,7 +74,7 @@ export const Header = () => {
                   <Typography textAlign="center">Trocar senha</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => { handleCloseUserMenu(); usuarioLogout(); }}>
                   <ListItemIcon>
                     <ExitToApp fontSize="medium" />
                   </ListItemIcon>

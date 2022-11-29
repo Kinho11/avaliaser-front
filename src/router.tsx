@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import 'nprogress/nprogress.css';
 
 import { AuthProvider } from "./context/AuthContext";
+import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
 
 function AppRoutes() {
   return (
@@ -26,21 +27,26 @@ function AppRoutes() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/alterar-senha" element={<AlterarSenha />} />
+            {/* Redefinir senha com token e email */}
             <Route path="/redefinir-senha" element={<RedefinirSenha />} />
 
-            {/* Rotas admin */}
-            <Route path="/dashboard/admin" element={<DashboardAdmin />} />
-            <Route path="/cadastrar-colaborador" element={<CadastrarColaborador />} />
-            <Route path="/editar-colaborador" element={<EditarColaborador />} />
-            
-            {/* Rotas Gestor */}
-            <Route path="/dashboard/gestor" element={<DashboardGestor />} />
-            <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
+            <Route element={<RotaPrivada />}>
+              {/* Rotas admin */}
+              <Route path="/dashboard/admin" element={<DashboardAdmin />} />
+              <Route path="/cadastrar-colaborador" element={<CadastrarColaborador />} />
+              <Route path="/editar-colaborador" element={<EditarColaborador />} />
+              
+              {/* Rotas Gestor */}
+              <Route path="/dashboard/gestor" element={<DashboardGestor />} />
+              <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
 
-            {/* Rotas Instrutor */}
-            <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
-            <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
+              {/* Rotas Instrutor */}
+              <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
+              <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
+
+              {/* Trocar senha logado */}
+              <Route path="/alterar-senha" element={<AlterarSenha />} />
+            </Route>
           </Routes>
         </AuthProvider>
       </BrowserRouter>
