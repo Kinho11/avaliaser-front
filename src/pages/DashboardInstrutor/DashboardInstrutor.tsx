@@ -79,7 +79,7 @@ export const DashboardInstrutor = () => {
 
   return (
     <>
-      <Header cargo="instrutor" nome="Mayra" avatar={foto} />
+      <Header />
       
       <Box sx={{height:"calc(100vh - 200px)",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",gap:5}}>
         <Typography  sx={{textAlign: "center", marginTop:"50px",fontWeight:"700",fontSize: {

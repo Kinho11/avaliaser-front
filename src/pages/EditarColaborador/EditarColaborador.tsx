@@ -2,7 +2,6 @@ import { Header } from "../../components/Header/Header";
 
 import { Box, FormControl, TextField, Stack, Typography, Avatar, Button, FormLabel } from "@mui/material";
 
-import foto from "../../assets/bg-login.png";
 import { useState } from "react";
 
 import { useForm } from "react-hook-form";
@@ -31,7 +30,7 @@ export const EditarColaborador = () => {
 
   return (
     <>
-      <Header cargo="admin" nome="Marcus" avatar={foto} />
+      <Header />
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
         <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{
           xs:"35px",

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userSchema } from "../../utils/schemas";
@@ -33,7 +33,7 @@ const style = {
 
 export const Login = () => {
   // Funções context
-  const { usuarioLogin } = useContext(AuthContext);
+  const { usuarioLogin, redefinirSenha } = useContext(AuthContext);
 
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });
   const [verificarEmail, setVerificarEmail] = useState("");
@@ -67,9 +67,8 @@ export const Login = () => {
   const onSubmitModal = () => {
     const dominio = verificarEmailModal.split("@");
     if(dominio[1] === "dbccompany.com.br") {
-      toast.success("Verifique seu e-mail!", toastConfig);
+      redefinirSenha(inputEmailModal);
       handleClose();
-      console.log(inputEmailModal);
     } else {
       toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
     }

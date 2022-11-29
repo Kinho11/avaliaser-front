@@ -1,16 +1,22 @@
-import { FC, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Avatar, Button, Tooltip, MenuItem, Divider, ListItemIcon } from "@mui/material";
-import { AddBox, AssignmentInd, Chat, PersonAdd, LockReset, ExitToApp } from "@mui/icons-material";
+import {  AssignmentInd, LockReset, ExitToApp } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import logo from "../../assets/dbc-logo.png";
 
-import { IHeaderProps } from "../../utils/interface";
-
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
-export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
+export const Header = () => {
+  const { usuarioLogado } = useContext(AuthContext);
+  const primeiroNome = usuarioLogado.nome.split(" ")[0];
+
+  useEffect(() => {
+    console.log(usuarioLogado)
+  }, [usuarioLogado])
+
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -24,7 +30,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
   return (
     <>
       {/* Header Admin */}
-      {cargo === "admin" && 
+      {usuarioLogado.cargo === "ROLE_ADMIN" && 
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>
@@ -58,10 +64,10 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
             </Box>
 
             <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}>
-              <Typography id="boas-vindas-admin" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {nome}!</Typography>
+              <Typography id="boas-vindas-admin" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {primeiroNome}!</Typography>
               <Tooltip title="Menu">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar id="menu-avatar-admin" alt="Foto Usuario" src={avatar} />
+                  <Avatar id="menu-avatar-admin" alt="Foto Usuario" src={`data:image/jpeg;base64,${usuarioLogado.foto}`} />
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
@@ -85,8 +91,8 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
       </AppBar>
       }
 
-      {/* Header Gestor */}
-      {cargo === "gestor" && 
+      {/* Header Gestor
+      {usuarioLogado.cargo === "ROLE_GESTOR" && 
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>
@@ -124,10 +130,10 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
               <Button variant="outlined" id="cadastrar-acompanhamento-gestor" onClick={handleCloseNavMenu} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<AddBox />}>Cadastrar acompanhamento</Button>
             </Box>
             <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}>
-              <Typography id="boas-vindas-gestor" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {nome}!</Typography>
+              <Typography id="boas-vindas-gestor" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {primeiroNome}!</Typography>
               <Tooltip title="Menu">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar id="menu-avatar-gestor" alt="Foto Usuario" src={avatar} />
+                  <Avatar id="menu-avatar-gestor" alt="Foto Usuario" src={`data:image/jpeg;base64,${usuarioLogado.foto}`} />
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
@@ -151,8 +157,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
       </AppBar>
       }
 
-      {/* Header Instrutor */}
-      {cargo === "instrutor" && 
+      {usuarioLogado.cargo === "ROLE_INSTRUTOR" && 
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>
@@ -191,10 +196,10 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
             </Box>
 
             <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}>
-              <Typography id="boas-vindas-instrutor" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {nome}!</Typography>
+              <Typography id="boas-vindas-instrutor" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {primeiroNome}!</Typography>
               <Tooltip title="Menu">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar id="menu-avatar-instrutor" alt="Foto Usuario" src={avatar} />
+                  <Avatar id="menu-avatar-instrutor" alt="Foto Usuario" src={`data:image/jpeg;base64,${usuarioLogado.foto}`} />
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
@@ -216,7 +221,7 @@ export const Header: FC<IHeaderProps> = ({ nome, cargo, avatar }) => {
           </Toolbar>
         </Box>
       </AppBar>
-      }
+      } */}
     </>
   );
 };
