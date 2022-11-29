@@ -10,8 +10,9 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export const Header = () => {
-  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}")
   const { usuarioLogout } = useContext(AuthContext);
+  
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   const primeiroNome = infosUsuario.nome.split(" ")[0];
 
   const navigate = useNavigate();

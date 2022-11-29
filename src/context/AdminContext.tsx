@@ -16,7 +16,7 @@ export const AdminProvider = ({ children }: IChildren) =>{
 
   const [colaborador,setColaborador] = useState<IPegarColaborador[]>([])
   
-  const criarColaborador = async(userColaborador: IUserColaborador) =>{
+  const criarColaborador = async(userColaborador: IUserColaborador) => {
     try {
       nProgress.start();
       API.defaults.headers.common["Authorization"] = token;
@@ -30,7 +30,7 @@ export const AdminProvider = ({ children }: IChildren) =>{
     }
   }
 
-  const pegarColaborador = async() =>{
+  const pegarColaborador = async () => {
     try {
       nProgress.start();
       API.defaults.headers.common["Authorization"] = token;
@@ -43,9 +43,22 @@ export const AdminProvider = ({ children }: IChildren) =>{
     }
   }
 
+  const deletarColaborador = async (id: number) => {
+    try {
+      nProgress.start();
+      API.defaults.headers.common["Authorization"] = token;
+      await API.delete(`/administrador/delete/${id}`);
+      toast.success("Usuario desativado com sucesso.", toastConfig);
+      pegarColaborador()
+    } catch (error) {
+      toast.error('Você não tem autorização para remover este usuario.', toastConfig);
+    } finally {
+      nProgress.done();
+    }
+  }
 
   return (
-    <AdminContext.Provider value={{criarColaborador,pegarColaborador,colaborador}}>
+    <AdminContext.Provider value={{ criarColaborador, pegarColaborador, colaborador, deletarColaborador }}>
       {children}
     </AdminContext.Provider>
   );

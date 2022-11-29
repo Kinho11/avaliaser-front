@@ -19,6 +19,7 @@ export interface IAuth {
 
 export interface IAdmin{
   criarColaborador: (userColaborador: IUserColaborador) => Promise<void>,
+  deletarColaborador: (id: number) => Promise<void>,
   pegarColaborador: () => Promise<void>,
   colaborador: IPegarColaborador[]
 }

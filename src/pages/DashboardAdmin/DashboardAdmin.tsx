@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { Paper, TableContainer, Table,TableBody, TablePagination, Button, styled, Typography, Box, TableCell, tableCellClasses, TableRow } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import { useNavigate } from "react-router-dom";
 
 import { Header } from "../../components/Header/Header";
 
-import foto from "../../assets/bg-login.png";
 import { AdminContext } from "../../context/AdminContext";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -50,7 +50,7 @@ export const DashboardAdmin = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const {colaborador,pegarColaborador} = useContext(AdminContext);
+  const { colaborador, pegarColaborador, deletarColaborador } = useContext(AdminContext);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -63,7 +63,7 @@ export const DashboardAdmin = () => {
 
   useEffect(()=>{
     pegarColaborador()
-  },[])
+  }, [])
 
   return (
     <>
@@ -78,7 +78,7 @@ export const DashboardAdmin = () => {
           xs:"95%",
           md:"60%"
         }, borderRadius: "10px", boxShadow: "10px 10px 10px #2f407ccf"  }}>
-          <TableContainer sx={{ maxHeight:430 }}>
+          <TableContainer id="tabela-admin" sx={{ maxHeight:430 }}>
             <Table stickyHeader aria-label="sticky table">
               <thead>
                 <TableRow sx={{ backgroundColor:"#090F27", color: "white", width: "100%" }}>
@@ -101,7 +101,10 @@ export const DashboardAdmin = () => {
                     </StyledTableCell>
                     <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{data.email}</StyledTableCell>
                     <StyledTableCell id="cargo" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.cargo}</StyledTableCell>
-                    <StyledTableCell id="acoes" sx={{textAlign:"center"}}><Button id="botao-editar-admin" title="Editar" onClick={() => { navigate("/editar-colaborador", { state: data }) }}><EditIcon/></Button></StyledTableCell>
+                    <StyledTableCell id="acoes" sx={{textAlign:"center"}}>
+                      <Button id="botao-editar-admin" title="Editar" onClick={() => { navigate("/editar-colaborador", { state: data }) }}><EditIcon/></Button>
+                      <Button id="botao-deletar-admin" title="Deletar" onClick={() => deletarColaborador(data.idUsuario)}><DeleteForeverIcon /></Button>
+                    </StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
