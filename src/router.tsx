@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import { Login } from "./pages/Login/Login";
@@ -18,9 +18,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext, AuthProvider } from "./context/AuthContext";
 
 function AppRoutes() {
+  const [teste,setTeste] = useState<string>()
   const { cargo } = useContext(AuthContext);
 
-  if("ROLE_ADMIN"){
+  useEffect(()=>{
+    setTeste(cargo)
+  },[cargo])
+
+  if(teste === "ROLE_ADMIN"){
     return (
       <>
         <BrowserRouter>
