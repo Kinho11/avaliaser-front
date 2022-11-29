@@ -19,6 +19,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
 import { CadastrarAcompanhamento } from "./pages/CadastrarAcompanhamento/CadastrarAcompanhamento";
+import { AvaliarAcompanhamento } from "./pages/AvaliarAcompanhamento/AvaliarAcompanhamento";
 
 function AppRoutes() {
   return (
@@ -43,6 +44,7 @@ function AppRoutes() {
                 <Route path="/dashboard/gestor" element={<DashboardGestor />} />
                 <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
                 <Route path="/cadastrar-acompanhamento" element={<CadastrarAcompanhamento/>}/>
+                <Route path="/avaliar-acompanhamneto" element={<AvaliarAcompanhamento/>} />
 
                 {/* Rotas Instrutor */}
                 <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
