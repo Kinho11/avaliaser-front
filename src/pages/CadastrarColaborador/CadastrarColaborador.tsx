@@ -3,7 +3,7 @@ import { Header } from "../../components/Header/Header";
 import { Box, FormControl, TextField, Stack, Typography,  Avatar, Button,FormLabel } from "@mui/material";
 
 import foto from "../../assets/bg-login.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { toast } from "react-toastify";
 import { toastConfig } from "../../utils/toast";
@@ -12,17 +12,22 @@ import { toastConfig } from "../../utils/toast";
 import { colaboradorSchema} from "../../utils/schemas";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { AdminContext } from "../../context/AdminContext";
+import { AuthContext } from "../../context/AuthContext";
 
 
 interface IColaborador{
-  nomeCompletoColaborador: string,
-  emailColaborador: string,
-  tipoPerfil: string
+  nome: string,
+  email: string,
+  cargo: string,
 }
 
 export const CadastrarColaborador = () => {
   const [selectedImage, setSelectedImage] = useState();
   const [verificarEmail, setVerificarEmail] = useState("");
+
+
+  const {criarColaborador} = useContext(AdminContext)
 
   const imageChange = (e: any): void => {
     if (e.target.files && e.target.files.length > 0) {
@@ -35,14 +40,13 @@ export const CadastrarColaborador = () => {
   });
 
   const cadastroColaborador = (data: IColaborador) => {
-    const dominio = verificarEmail.split("@");
-    if(dominio[1] === "dbccompany.com.br") {
-      console.log(data);
-      console.log(selectedImage);
-      toast.success("Aluno cadastrado com sucesso!", toastConfig);
-    } else {
-      toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
-    }
+    criarColaborador(data);
+    // const dominio = verificarEmail.split("@");
+    // if(dominio[1] === "dbccompany.com.br") {
+    //   console.log(selectedImage);
+    // } else {
+      // toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
+    // }
   };
 
   return (
@@ -74,15 +78,15 @@ export const CadastrarColaborador = () => {
               xs:"100%",
               md:"100%"
             } }}>
-              <TextField id="nomeCompletoColaborador" {...register("nomeCompletoColaborador")} error={!!errors.nomeCompletoColaborador}label="Nome Completo" placeholder="Fulano da Silva" variant="filled" focused />
-              {errors.nomeCompletoColaborador && <Typography id="erro-nomeCompletoColaborador" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.nomeCompletoColaborador.message}</Typography>}
+              <TextField id="nome" {...register("nome")} error={!!errors.nome} label="Nome Completo" placeholder="Fulano da Silva" variant="filled" focused />
+              {errors.nome && <Typography id="erro-nome" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.nome.message}</Typography>}
             </FormControl>
             <FormControl sx={{ width:  {
               xs:"100%",
               md:"100%"
             } }}>
-              <TextField id="emailColaborador" {...register("emailColaborador")} onChange={(e) => setVerificarEmail(e.target.value)} label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" focused />
-              {errors.emailColaborador && <Typography id="erro-emailColaborador" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.emailColaborador.message}</Typography>}
+              <TextField id="email" {...register("email")} label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" focused />
+              {errors.email && <Typography id="erro-email" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
             </FormControl>
 
             <FormControl variant="filled">
@@ -90,17 +94,21 @@ export const CadastrarColaborador = () => {
               <FormLabel sx={{color:"#1D58F9",fontWeight:"500",marginBottom:"10px"}} id="demo-controlled-radio-buttons-group">Selecionar cargo</FormLabel>
 
               <Box sx={{display:"flex",gap:4}}>
-                <FormLabel color="primary" sx={{display:"flex", alignItems:"center", gap:1,fontWeight:"700",color:"#1D58F9"}}>
-                  <input type="radio" value="Gestor" id="gestorDePessoas" {...register("tipoPerfil")} />
-                  Gestor de Pessoas
-                </FormLabel>
+                <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
+                  <Stack spacing={2} direction="row">
+                    <input type="radio" value="GESTOR" id="gestor" {...register("cargo")}/>
+                    <Typography sx={{fontWeight:"700"}}>Gestor de Pessoas</Typography>
+                  </Stack>
+                </Box>
 
-                <FormLabel sx={{display:"flex", alignItems:"center", gap:1,fontWeight:"700",color:"#1D58F9"}}>
-                  <input type="radio" value="Instrutor" id="instrutor" {...register("tipoPerfil")}/>
-                  Instrutor
-                </FormLabel>
+                <Box sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
+                  <Stack spacing={2} direction="row">
+                    <input type="radio" value="INSTRUTOR" id="instrutor" {...register("cargo")} />
+                    <Typography sx={{fontWeight:"700"}}>Instrutor</Typography>
+                  </Stack>
+                </Box>
               </Box>
-              {errors.tipoPerfil && <Typography id="erro-tipoPerfil01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.tipoPerfil.message}</Typography>}
+              {errors.cargo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.cargo.message}</Typography>}
 
             </FormControl>
 

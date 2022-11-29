@@ -25,14 +25,14 @@ export const alunoSchema = yup.object().shape({
 });
 
 export const colaboradorSchema = yup.object().shape({
-  nomeCompletoColaborador: yup
+  nome: yup
     .string()
     .required("Por favor, digite seu nome completo").min(3,"O nome deve conter no mínimo 3 caracteres"),
-  emailColaborador: yup
+  email: yup
     .string()
     .required("Por favor, digite seu e-mail")
     .email("Por favor, digite um e-mail válido"),
-  tipoPerfil: yup
+  cargo: yup
     .string()
     .required("Por favor, escolha uns dos tipos de perfil.").nullable(),
 });

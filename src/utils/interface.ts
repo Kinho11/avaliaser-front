@@ -15,6 +15,12 @@ export interface IAuth {
   usuarioLogado: IUsuarioLogado,
 }
 
+export interface IAdmin{
+  criarColaborador: (userColaborador: IUserColaborador) => Promise<void>,
+  pegarColaborador: () => Promise<void>,
+  colaborador: IPegarColaborador[]
+}
+
 export interface IChildren {
   children: React.ReactNode;
 }
@@ -29,5 +35,20 @@ export interface IUsuarioLogado {
   nome: string,
   email: string,
   foto: string | null,
+  cargo: string
+}
+
+export interface IUserColaborador{
+  nome: string,
+  email: string,
+  cargo: string
+
+}
+
+export interface IPegarColaborador{
+  idUsuario: number,
+  nome: string,
+  email: string,
+  foto: string,
   cargo: string
 }

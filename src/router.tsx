@@ -15,6 +15,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { AuthProvider } from "./context/AuthContext";
+import { AdminProvider } from "./context/AdminContext";
 
 function AppRoutes() {
   return (
@@ -22,25 +23,27 @@ function AppRoutes() {
       <BrowserRouter>
         <ToastContainer />
         <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="/alterar-senha" element={<AlterarSenha />} />
-            <Route path="/redefinir-senha" element={<RedefinirSenha />} />
+         <AdminProvider>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="/alterar-senha" element={<AlterarSenha />} />
+              <Route path="/redefinir-senha" element={<RedefinirSenha />} />
 
-            {/* Rotas admin */}
-            <Route path="/dashboard/admin" element={<DashboardAdmin />} />
-            <Route path="/cadastrar-colaborador" element={<CadastrarColaborador />} />
-            <Route path="/editar-colaborador" element={<EditarColaborador />} />
-            
-            {/* Rotas Gestor */}
-            <Route path="/dashboard/gestor" element={<DashboardGestor />} />
-            <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
+              {/* Rotas admin */}
+                <Route path="/dashboard/admin" element={<DashboardAdmin />} />
+                <Route path="/cadastrar-colaborador" element={<CadastrarColaborador />} />
+                <Route path="/editar-colaborador" element={<EditarColaborador />} />
+              
+              {/* Rotas Gestor */}
+              <Route path="/dashboard/gestor" element={<DashboardGestor />} />
+              <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
 
-            {/* Rotas Instrutor */}
-            <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
-            <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
-          </Routes>
+              {/* Rotas Instrutor */}
+              <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
+              <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
+            </Routes>
+          </AdminProvider>
         </AuthProvider>
       </BrowserRouter>
     </>

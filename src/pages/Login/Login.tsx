@@ -33,11 +33,7 @@ const style = {
 
 export const Login = () => {
   // Funções context
-  const { usuarioLogin,cargo } = useContext(AuthContext);
-
-  useEffect(()=>{
-    console.log(cargo)
-  },[cargo])
+  const { usuarioLogin } = useContext(AuthContext);
 
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });
   const [verificarEmail, setVerificarEmail] = useState("");
