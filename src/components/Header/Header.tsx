@@ -142,7 +142,7 @@ export const Header = () => {
                   <Typography textAlign="center">Trocar senha</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem  onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => { handleCloseUserMenu(); usuarioLogout(); }}>
                   <ListItemIcon>
                     <ExitToApp fontSize="medium" />
                   </ListItemIcon>
@@ -209,7 +209,7 @@ export const Header = () => {
                   <Typography textAlign="center">Trocar senha</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem  onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => { handleCloseUserMenu(); usuarioLogout(); }}>
                   <ListItemIcon>
                     <ExitToApp fontSize="medium" />
                   </ListItemIcon>
