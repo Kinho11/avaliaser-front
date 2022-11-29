@@ -147,8 +147,8 @@ export const Login = () => {
               if(!inputEmailModal) return;
               onSubmitModal();
             }}>
-              <img style={{ cursor: "pointer", marginTop: "-20px" }} src={logo} width={100} alt="Logo DBC" />
-              <Typography id="modal-modal-titulo" sx={{ marginTop: "-10px" }} variant="h6" component="h2" color="#1e62fe">
+              <img style={{ cursor: "pointer" }} src={logo} width={100} alt="Logo DBC" />
+              <Typography id="modal-modal-titulo" sx={{ marginTop: "20px" }} variant="h6" component="h2" color="#1e62fe">
                 Informe seu e-mail DBC
               </Typography>
               <FormControl sx={{ mt: 2, width: { xs:"100%", md: "100%"} }} variant="outlined">

@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }: IChildren) => {
         headers: { Authorization: localStorage.getItem("token") }
        }).then((response) => {
         setUsuarioLogado(response.data)
+        localStorage.setItem("infoUsuario", JSON.stringify(response.data));
         const cargoSplitado = response.data.cargo.split("_")[1].toLowerCase();
         navigate(`/dashboard/${cargoSplitado}`);
       })
@@ -41,6 +42,7 @@ export const AuthProvider = ({ children }: IChildren) => {
 
   const usuarioLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('infoUsuario');
     setTokenAuth('');
   };
 

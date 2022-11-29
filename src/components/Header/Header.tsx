@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Avatar, Button, Tooltip, MenuItem, Divider, ListItemIcon } from "@mui/material";
-import {  AssignmentInd, LockReset, ExitToApp } from "@mui/icons-material";
+import {  AssignmentInd, LockReset, ExitToApp, AddBox, Chat, PersonAdd } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import logo from "../../assets/dbc-logo.png";
@@ -10,8 +10,9 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export const Header = () => {
-  const { usuarioLogado, usuarioLogout } = useContext(AuthContext);
-  const primeiroNome = usuarioLogado.nome.split(" ")[0];
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}")
+  const { usuarioLogout } = useContext(AuthContext);
+  const primeiroNome = infosUsuario.nome.split(" ")[0];
 
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -26,7 +27,7 @@ export const Header = () => {
   return (
     <>
       {/* Header Admin */}
-      {usuarioLogado.cargo === "ROLE_ADMIN" && 
+      {infosUsuario.cargo === "ROLE_ADMIN" && 
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>
@@ -63,7 +64,7 @@ export const Header = () => {
               <Typography id="boas-vindas-admin" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {primeiroNome}!</Typography>
               <Tooltip title="Menu">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar id="menu-avatar-admin" alt="Foto Usuario" src={`data:image/jpeg;base64,${usuarioLogado.foto}`} />
+                  <Avatar id="menu-avatar-admin" alt="Foto Usuario" src={`data:image/jpeg;base64,${infosUsuario.foto}`} />
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
@@ -87,8 +88,8 @@ export const Header = () => {
       </AppBar>
       }
 
-      {/* Header Gestor
-      {usuarioLogado.cargo === "ROLE_GESTOR" && 
+      {/* Header Gestor */}
+      {infosUsuario.cargo === "ROLE_GESTOR" && 
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>
@@ -129,7 +130,7 @@ export const Header = () => {
               <Typography id="boas-vindas-gestor" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {primeiroNome}!</Typography>
               <Tooltip title="Menu">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar id="menu-avatar-gestor" alt="Foto Usuario" src={`data:image/jpeg;base64,${usuarioLogado.foto}`} />
+                  <Avatar id="menu-avatar-gestor" alt="Foto Usuario" src={`data:image/jpeg;base64,${infosUsuario.foto}`} />
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
@@ -153,7 +154,8 @@ export const Header = () => {
       </AppBar>
       }
 
-      {usuarioLogado.cargo === "ROLE_INSTRUTOR" && 
+      {/* Header Instrutor */}
+      {infosUsuario.cargo === "ROLE_INSTRUTOR" && 
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>
@@ -195,7 +197,7 @@ export const Header = () => {
               <Typography id="boas-vindas-instrutor" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {primeiroNome}!</Typography>
               <Tooltip title="Menu">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar id="menu-avatar-instrutor" alt="Foto Usuario" src={`data:image/jpeg;base64,${usuarioLogado.foto}`} />
+                  <Avatar id="menu-avatar-instrutor" alt="Foto Usuario" src={`data:image/jpeg;base64,${infosUsuario.foto}`} />
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
@@ -217,7 +219,7 @@ export const Header = () => {
           </Toolbar>
         </Box>
       </AppBar>
-      } */}
+      } 
     </>
   );
 };
