@@ -34,6 +34,12 @@ export interface IAluno {
   alunos: IAlunosCadastrados[]
 }
 
+export interface IColaborador{
+  criarAcompanhamento: (acompanhamento: ICriarAcompanhamento) => Promise<void>,
+  pegarAcompanhamento: () => Promise<void>
+  acompanhamento: ICriarAcompanhamento[]
+}
+
 export interface ICadastroAluno {
   nome: string,
   email: string,
@@ -87,4 +93,11 @@ export interface IPegarColaborador{
   email: string,
   foto: string,
   cargo: string
+}
+
+export interface ICriarAcompanhamento{
+  idAcompanhamento: number,
+  titulo: string,
+  descricao: string,
+  dataInicio: string
 }

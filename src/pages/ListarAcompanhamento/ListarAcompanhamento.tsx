@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Header } from "../../components/Header/Header";
 
 import { TableCell, tableCellClasses, TableRow, Typography, Box, Paper, TableContainer, Table, TableBody, Button, TablePagination,styled } from "@mui/material";
 
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import { Navigate, useNavigate } from "react-router-dom";
+import { GestorContext } from "../../context/GestorContext";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -29,7 +30,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 interface Column {
-  id: "codigo" | "dataInicial" | "descricao" | "acoes";
+  id: "codigo" | "titulo" | "dataInicial" | "descricao" | "acoes";
   label: string;
   minWidth?: number;
   align?: "right";
@@ -38,6 +39,7 @@ interface Column {
 
 const columns: Column[] = [
   { id: "codigo", label: "Codigo", minWidth: 5 },
+  { id: "titulo", label: "Titulo", minWidth: 5 },
   { id: "dataInicial", label: "Data inicial", minWidth: 5 },
   {
     id: "descricao",
@@ -56,15 +58,6 @@ const columns: Column[] = [
 
 ];
 
-
-const data =[
-  {codigo: 1,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
-  {codigo: 2,dataInicial:"11/12/2001",descricao: "Tabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaela de gestor"},
-  {codigo: 3,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
-  {codigo: 4,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
-  {codigo: 5,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
-  {codigo: 6,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
-];
 export const ListarAcompanhamento = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -73,10 +66,14 @@ export const ListarAcompanhamento = () => {
     setPage(newPage);
   };
 
+  const { acompanhamento, pegarAcompanhamento} = useContext(GestorContext);
+
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  useEffect(() => { pegarAcompanhamento() }, [])
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   if(infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
@@ -110,15 +107,16 @@ export const ListarAcompanhamento = () => {
                 </TableRow>
               </thead>
               <TableBody>
-                {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
-                  <StyledTableRow  key={data.codigo}>
+                {acompanhamento.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((acompanhamentos) => (
+                  <StyledTableRow  key={acompanhamentos.idAcompanhamento}>
                     <StyledTableCell  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">
-                      {data.codigo}
+                      {acompanhamentos.idAcompanhamento}
                     </StyledTableCell>
-                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.dataInicial}</StyledTableCell>  
-                    <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{data.descricao}</StyledTableCell>
+                    <StyledTableCell id="titulo" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{acompanhamentos.titulo}</StyledTableCell>  
+                    <StyledTableCell id="dataInicio" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.dataInicio}</StyledTableCell>
+                    <StyledTableCell id="descricao" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.descricao}</StyledTableCell>
                     <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
-                    onClick={()=>{navigate("/avaliar-acompanhamneto",{state: data})}}
+                    onClick={()=>{navigate("/avaliar-acompanhamneto",{state: acompanhamentos})}}
                     title="Avaliar acompanhamento"><AssignmentTurnedInIcon/></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}
@@ -129,7 +127,7 @@ export const ListarAcompanhamento = () => {
           <TablePagination
             rowsPerPageOptions={[10,20,100]}
             component="div"
-            count={data.length}
+            count={acompanhamento.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
