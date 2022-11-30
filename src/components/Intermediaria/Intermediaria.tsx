@@ -1,5 +1,5 @@
 import { Box } from "@mui/material"
-import logo from "../../assets/logo-branco.png";
+import logo from "../../assets/logo-branco.webp";
 
 export const Intermediaria = () => {
   return (

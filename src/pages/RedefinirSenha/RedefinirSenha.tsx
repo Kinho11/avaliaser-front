@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import backgroundRedefinriSenha from "../../assets/bg-redefinir-senha.png";
+import backgroundRedefinriSenha from "../../assets/bg-redefinir-senha.webp";
 
 import { Box, Button, Typography, Stack, InputLabel, OutlinedInput, InputAdornment, IconButton, FormControl  } from "@mui/material";
 import { LoginOutlined, Visibility, VisibilityOff,EnhancedEncryption } from "@mui/icons-material";
