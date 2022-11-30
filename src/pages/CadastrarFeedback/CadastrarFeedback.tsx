@@ -5,6 +5,7 @@ import logo from "../../assets/dbc-logo.png";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CadastrarFeedbackSchema } from '../../utils/schemas';
+import { Navigate } from 'react-router-dom';
 
 
 interface ICadastrarFeedback {
@@ -16,15 +17,19 @@ interface ICadastrarFeedback {
 
 
 export const CadastrarFeedback = () => {
-
+  
+  
   const {register, handleSubmit, formState:{errors}} = useForm<ICadastrarFeedback>({
     resolver: yupResolver(CadastrarFeedbackSchema)
   })
-
+  
   const cadastrarFeedback = (data:ICadastrarFeedback ) => {
     console.log(data)
   }
-
+  
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+  if(infosUsuario.cargo !== "ROLE_INSTRUTOR") return <Navigate to="/"/>
+  
   return (
     <>
       <Header/>

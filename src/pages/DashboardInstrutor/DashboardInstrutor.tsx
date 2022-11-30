@@ -3,7 +3,7 @@ import { TableCell, tableCellClasses, TableRow, Typography, Box, Paper, TableCon
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header/Header";
 import { AlunoContext } from "../../context/AlunoContext";
 
@@ -44,20 +44,22 @@ const columns: Column[] = [
 
 export const DashboardInstrutor = () => {
   const { getAlunos, alunos, deletarAluno } = useContext(AlunoContext);
-
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   const navigate = useNavigate();
-
+  
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
+  
   const handleChangePage = (event: unknown, newPage: number) => { setPage(newPage); };
-
+  
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
+  
   useEffect(() => { getAlunos(); }, [])
+  
+  if(infosUsuario.cargo !== "ROLE_INSTRUTOR") return <Navigate to="/"/>
 
   return (
     <>

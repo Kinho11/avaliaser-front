@@ -12,6 +12,7 @@ import { alunoSchema} from "../../utils/schemas";
 import { useForm } from "react-hook-form";
 import { ICadastroAluno } from "../../utils/interface";
 import { AlunoContext } from "../../context/AlunoContext";
+import { Navigate } from "react-router-dom";
 
 export const CadastrarAluno = () => {
   const { criarAluno } = useContext(AlunoContext)
@@ -37,6 +38,9 @@ export const CadastrarAluno = () => {
       toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
     }
   };
+
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+  if(infosUsuario.cargo !== "ROLE_INSTRUTOR" && infosUsuario.cargo !== "ROLE_GESTOR") return <Navigate to="/"/>
 
   return (
     <>

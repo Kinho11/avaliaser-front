@@ -25,6 +25,7 @@ import 'nprogress/nprogress.css';
 import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import { AlunoProvider } from "./context/AlunoContext";
+import { ListarAcompanhamento } from "./pages/ListarAcompanhamento/ListarAcompanhamento";
 
 function AppRoutes() {
   return (
@@ -52,6 +53,7 @@ function AppRoutes() {
                 <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
                 <Route path="/cadastrar-acompanhamento" element={<CadastrarAcompanhamento/>}/>
                 <Route path="/avaliar-acompanhamneto" element={<AvaliarAcompanhamento/>} />
+                <Route path="/lista-acompanhamento" element={<ListarAcompanhamento/>}/>
 
                 {/* Rotas Instrutor */}
                 <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />

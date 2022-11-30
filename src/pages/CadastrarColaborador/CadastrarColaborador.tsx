@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { AdminContext } from "../../context/AdminContext";
 import { toastConfig } from "../../utils/toast";
 import { toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
 
 interface IColaborador{
   nome: string,
@@ -48,6 +49,9 @@ export const CadastrarColaborador = () => {
     //   toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
     // }
   };
+
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+  if(infosUsuario.cargo !== "ROLE_ADMIN") return <Navigate to="/"/>
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { Box, Typography, Stack, FormControl, TextField, Button, Paper, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TablePagination, TableRow } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom"
+import { Navigate, useLocation, useNavigate } from "react-router-dom"
 import { Header } from "../../components/Header/Header";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 
@@ -82,6 +82,9 @@ export const VerificarAluno = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+  if(infosUsuario.cargo !== "ROLE_INSTRUTOR") return <Navigate to="/"/>
   
   return (
     <>

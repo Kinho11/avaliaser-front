@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Typography, Stack, FormControl, TextField, FormLabel, Button, InputLabel, MenuItem, Select } from "@mui/material";
 import React from "react"
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { Header } from "../../components/Header/Header"
 import { AvaliarAcompanhamentoSchema } from "../../utils/schemas";
 
@@ -27,6 +27,9 @@ export const AvaliarAcompanhamento = () => {
   const avaliarAcompanhamento = (data: IAvaliarAcompanhamento) => {
     console.log(data)
   }
+
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+  if(infosUsuario.cargo !== "ROLE_GESTOR") return <Navigate to="/"/>
 
   return (
     <>

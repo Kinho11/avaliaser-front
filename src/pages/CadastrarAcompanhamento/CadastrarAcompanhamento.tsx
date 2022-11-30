@@ -5,6 +5,7 @@ import logo from "../../assets/dbc-logo.png";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CadastrarAcompanhamentoSchema } from "../../utils/schemas";
+import { Navigate } from "react-router-dom";
 
 
 interface ICadastrarAcompanhamento{
@@ -23,6 +24,9 @@ export const CadastrarAcompanhamento = () => {
   const cadastrarAcompanhamento = (data:ICadastrarAcompanhamento) =>{
     console.log(data)
   }
+
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+  if(infosUsuario.cargo !== "ROLE_GESTOR") return <Navigate to="/"/>
 
   return (
     <>
