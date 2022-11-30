@@ -31,8 +31,14 @@ export const EditarColaborador = () => {
     resolver: yupResolver(editarColaboradorSchema)
   });
 
+
+  const imagemAPI = new FormData();
+  if(selectedImage) {
+    imagemAPI.append("file", selectedImage)
+  }
+
   const cadastroColaborador = (data: IColaboradorEditado) => {
-    editarColaborador(data, state.idUsuario, selectedImage);
+    editarColaborador(data, state.idUsuario, imagemAPI);
   }
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
@@ -65,7 +71,7 @@ export const EditarColaborador = () => {
             <Avatar alt="Foto Enviada" src={selectedImage ? URL.createObjectURL(selectedImage) : state.foto ? `data:image/jpeg;base64,${state.foto}` : ""} sx={{ width: 150, height: 150 }} />
             
             <Button component="label" variant="contained">
-              <input id="imagemAluno" type="file" accept="image/jpeg" hidden onChange={imageChange} />
+              <input id="imagemAluno" type="file" hidden accept="image/jpeg" onChange={imageChange} />
               <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir nova Foto</Typography>
             </Button>
 

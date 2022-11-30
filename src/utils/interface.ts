@@ -19,11 +19,10 @@ export interface IAuth {
 }
 
 export interface IAdmin{
-  criarColaborador: (userColaborador: IUserColaborador) => Promise<void>,
+  criarColaborador: (userColaborador: IUserColaborador, imagem: FormData) => Promise<void>,
   deletarColaborador: (id: number) => Promise<void>,
-  enviarFotoColaborador: (imagem: FileList) => Promise<void>,
   pegarColaborador: () => Promise<void>,
-  editarColaborador: (dadosEditados: IColaboradorEditado, id: number, imagem: FileList | undefined) => Promise<void>,
+  editarColaborador: (dadosEditados: IColaboradorEditado, id: number, imagem: FormData) => Promise<void>,
   colaborador: IPegarColaborador[]
 }
 

@@ -21,7 +21,7 @@ interface IColaborador{
 }
 
 export const CadastrarColaborador = () => {
-  const { criarColaborador, enviarFotoColaborador } = useContext(AdminContext);
+  const { criarColaborador } = useContext(AdminContext);
 
   const [selectedImage, setSelectedImage] = useState();
   const [verificarEmail, setVerificarEmail] = useState("");
@@ -36,14 +36,13 @@ export const CadastrarColaborador = () => {
     resolver: yupResolver(colaboradorSchema)
   });
 
-  const cadastroColaborador = (data: IColaborador) => {
-    if(selectedImage) {
-      criarColaborador(data);
-      enviarFotoColaborador(selectedImage);
-    } else {
-      criarColaborador(data);
-    };
+  const imagemAPI = new FormData();
+  if(selectedImage) {
+    imagemAPI.append("file", selectedImage)
+  }
 
+  const cadastroColaborador = (data: IColaborador) => {
+    criarColaborador(data, imagemAPI);
   };
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
