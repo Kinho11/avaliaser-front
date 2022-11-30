@@ -12,6 +12,11 @@ import { AlterarSenha } from "./pages/AlterarSenha/AlterarSenha";
 import { EditarColaborador } from "./pages/EditarColaborador/EditarColaborador";
 import { CadastrarAcompanhamento } from "./pages/CadastrarAcompanhamento/CadastrarAcompanhamento";
 import { Intermediaria } from "./pages/Intermediaria/Intermediaria";
+import { VerificarAluno } from "./pages/VerificarAluno/VerificarAluno";
+import { AvaliarAcompanhamento } from "./pages/AvaliarAcompanhamento/AvaliarAcompanhamento";
+import { CadastrarFeedback } from "./pages/CadastrarFeedback/CadastrarFeedback";
+
+import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,9 +24,7 @@ import 'nprogress/nprogress.css';
 
 import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
-import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
-import { AvaliarAcompanhamento } from "./pages/AvaliarAcompanhamento/AvaliarAcompanhamento";
-import { CadastrarFeedback } from "./pages/CadastrarFeedback/CadastrarFeedback";
+import { AlunoProvider } from "./context/AlunoContext";
 
 function AppRoutes() {
   return (
@@ -29,8 +32,9 @@ function AppRoutes() {
       <BrowserRouter>
         <ToastContainer />
         <AuthProvider>
-         <AdminProvider>
-          <Routes>
+          <AdminProvider>
+          <AlunoProvider>
+            <Routes>
               <Route path="/" element={<Login />} />
               <Route path="*" element={<NotFound />} />
               {/* Redefinir senha com token e email */}
@@ -52,6 +56,7 @@ function AppRoutes() {
                 <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
                 <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
                 <Route path="/cadastrar-feedback" element={<CadastrarFeedback/>}/>
+                <Route path="/verificar-aluno" element={<VerificarAluno />} />
 
                 {/* Trocar senha logado */}
                 <Route path="/alterar-senha" element={<AlterarSenha />} />
@@ -59,6 +64,7 @@ function AppRoutes() {
                 <Route path="/recuperar-senha" element={<Intermediaria />} />
               </Route>
             </Routes>
+          </AlunoProvider>
           </AdminProvider>
         </AuthProvider>
       </BrowserRouter>

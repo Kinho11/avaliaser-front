@@ -13,6 +13,7 @@ export interface IAuth {
   usuarioLogin: (infoUser: IUsuario) => Promise<void>,
   redefinirSenha: (email: string) => Promise<void>,
   usuarioLogout: () => void,
+  trocarSenhaLogado: (senhas: ISenhas) => Promise<void>,
   tokenAuth: string | null,
   usuarioLogado: any | undefined
 }
@@ -22,13 +23,37 @@ export interface IAdmin{
   deletarColaborador: (id: number) => Promise<void>,
   enviarFotoColaborador: (imagem: FileList) => Promise<void>,
   pegarColaborador: () => Promise<void>,
-  getID: () => Promise<void>,
   editarColaborador: (dadosEditados: IColaboradorEditado, id: number, imagem: FileList | undefined) => Promise<void>,
   colaborador: IPegarColaborador[]
 }
 
+export interface IAluno {
+  getAlunos: () => Promise<void>,
+  deletarAluno: (id: number) => Promise<void>,
+  criarAluno: (infosAluno: ICadastroAluno) => Promise<void>,
+  alunos: IAlunosCadastrados[]
+}
+
+export interface ICadastroAluno {
+  nome: string,
+  email: string,
+  stack: string
+}
+
+export interface IAlunosCadastrados {
+  idAluno: number,
+  nome: string,
+  stack: string,
+  foto: string
+}
+
 export interface IChildren {
   children: React.ReactNode;
+}
+
+export interface ISenhas {
+  senhaAntiga: string,
+  senhaNova: string
 }
 
 export interface IUsuario {

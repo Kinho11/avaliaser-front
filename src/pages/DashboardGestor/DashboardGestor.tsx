@@ -86,7 +86,7 @@ export const DashboardGestor = () => {
         <Typography  sx={{textAlign: "center", fontSize: {
           xs:30,
           md:44
-        },marginTop:"50px",fontWeight:"700",color:"white"}} variant="h3">Dashboard Acompanhamentos</Typography>
+        },marginTop:"50px",fontWeight:"700",color:"white"}} variant="h3">Dashboard Alunos</Typography>
         <Paper sx={{ width: {
           xs:"95%",
           md:"65%"
