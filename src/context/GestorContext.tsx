@@ -1,18 +1,16 @@
 import { createContext, useState } from "react";
 import { API } from "../utils/api";
-import { ICriarAcompanhamento, IChildren, IColaborador } from "../utils/interface";
+import { ICriarAcompanhamento, IChildren, IGestor } from "../utils/interface";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { toastConfig } from "../utils/toast";
 import nProgress from "nprogress";
 
-export const GestorContext = createContext({} as IColaborador);
+export const GestorContext = createContext({} as IGestor);
 
 export const GestorProvider = ({children} : IChildren) =>{
   const token = localStorage.getItem("token");
-
   const navigate = useNavigate();
-
   const [acompanhamento,setAcompanhamento] = useState<ICriarAcompanhamento[]>([])
 
   const criarAcompanhamento = async (acompanhamento: ICriarAcompanhamento) =>{
@@ -27,7 +25,6 @@ export const GestorProvider = ({children} : IChildren) =>{
     } finally{
       nProgress.done()
     }
-
   }
 
   const pegarAcompanhamento = async() =>{
@@ -45,7 +42,7 @@ export const GestorProvider = ({children} : IChildren) =>{
   }
 
   return (
-    <GestorContext.Provider value={{criarAcompanhamento,pegarAcompanhamento,acompanhamento}}>
+    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento }}>
       {children}
     </GestorContext.Provider>
   );

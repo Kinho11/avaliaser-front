@@ -7,25 +7,14 @@ import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import { Navigate, useNavigate } from "react-router-dom";
 import { GestorContext } from "../../context/GestorContext";
 
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
+  [`&.${tableCellClasses.head}`]: { backgroundColor: theme.palette.common.black, color: theme.palette.common.white },
+  [`&.${tableCellClasses.body}`]: { fontSize: 14 },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
+  "&:nth-of-type(odd)": { backgroundColor: theme.palette.action.hover },
+  "&:last-child td, &:last-child th": { border: 0 },
 }));
 
 
@@ -41,32 +30,18 @@ const columns: Column[] = [
   { id: "codigo", label: "Codigo", minWidth: 5 },
   { id: "titulo", label: "Titulo", minWidth: 5 },
   { id: "dataInicial", label: "Data inicial", minWidth: 5 },
-  {
-    id: "descricao",
-    label: "Descrição",
-    minWidth: 5,
-    align: "right",
-    format: (value: number) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "acoes",
-    label: "Ações",
-    minWidth: 5,
-    align: "right",
-    format: (value: number) => value.toLocaleString("en-US"),
-  }
-
+  { id: "descricao", label: "Descrição", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
+  { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") }
 ];
 
 export const ListarAcompanhamento = () => {
+  const { acompanhamento, pegarAcompanhamento } = useContext(GestorContext);
+  const navigate = useNavigate()
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const navigate = useNavigate()
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
 
-  const { acompanhamento, pegarAcompanhamento} = useContext(GestorContext);
+  const handleChangePage = (event: unknown, newPage: number) => { setPage(newPage); };
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
@@ -126,16 +101,9 @@ export const ListarAcompanhamento = () => {
               </TableBody>
             </Table>
           </TableContainer>
+
           {/* Paginação */}
-          <TablePagination
-            rowsPerPageOptions={[10,20,100]}
-            component="div"
-            count={acompanhamento.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
+          <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={acompanhamento.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
         </Paper>
       </Box>
     </>

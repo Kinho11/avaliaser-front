@@ -33,7 +33,7 @@ export interface IAluno {
   alunos: IAlunosCadastrados[]
 }
 
-export interface IColaborador{
+export interface IGestor{
   criarAcompanhamento: (acompanhamento: ICriarAcompanhamento) => Promise<void>,
   pegarAcompanhamento: () => Promise<void>
   acompanhamento: ICriarAcompanhamento[]
