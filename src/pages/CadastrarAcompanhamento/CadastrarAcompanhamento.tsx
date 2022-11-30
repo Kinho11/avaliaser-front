@@ -1,5 +1,5 @@
 import { Box, Typography, Stack, FormControl, TextField } from "@mui/material"
-import React, { useContext } from "react"
+import { useContext } from "react"
 import { Header } from "../../components/Header/Header"
 import logo from "../../assets/dbc-logo.webp";
 import { useForm } from "react-hook-form";
@@ -19,14 +19,10 @@ interface ICadastrarAcompanhamento{
 }
 
 export const CadastrarAcompanhamento = () => {
-
   const { criarAcompanhamento } = useContext(GestorContext)
-
-
 
   const {register, handleSubmit, formState:{errors}}= useForm<ICadastrarAcompanhamento>({
     resolver: yupResolver(CadastrarAcompanhamentoSchema)
-
   })
 
   const cadastrarAcompanhamento = (data:ICadastrarAcompanhamento) =>{
