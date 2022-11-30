@@ -54,6 +54,7 @@ export const AuthProvider = ({ children }: IChildren) => {
        }).then((response) => {
         console.log(response.data)
         toast.success("Senha atualizada com sucesso.", toastConfig)
+        navigate(`/`);
       })
     } catch (error) {
       toast.error("Houve um erro", toastConfig)

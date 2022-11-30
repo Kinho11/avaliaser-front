@@ -8,7 +8,6 @@ import { Navigate } from 'react-router-dom';
 import { BotaoAzul } from '../../components/BotaoAzul/BotaoAzul';
 import { Titulo } from '../../components/Titulo/Titulo';
 
-
 interface ICadastrarFeedback {
   trilha: string,
   aluno: string,
@@ -16,10 +15,7 @@ interface ICadastrarFeedback {
   tipo: string
 }
 
-
 export const CadastrarFeedback = () => {
-  
-  
   const {register, handleSubmit, formState:{errors}} = useForm<ICadastrarFeedback>({
     resolver: yupResolver(CadastrarFeedbackSchema)
   })
@@ -92,7 +88,7 @@ export const CadastrarFeedback = () => {
               md:"100%"
             } }}>
               <InputLabel id="aluno">Selecione aluno</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="aluno" error={!!errors.aluno} {...register("aluno")} >
+              <Select labelId="demo-simple-select-filled-label" value="marcus" id="aluno" error={!!errors.aluno} {...register("aluno")} >
                 <MenuItem value="marcus">Marcus</MenuItem>
                 <MenuItem value="maria">Maria</MenuItem>
                 <MenuItem value="joao">Joao</MenuItem>
@@ -121,7 +117,7 @@ export const CadastrarFeedback = () => {
               md:"100%"
             } }}>
               <InputLabel id="tipo">Tipo</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="tipo" error={!!errors.tipo} {...register("tipo")} >
+              <Select labelId="demo-simple-select-filled-label" value="positivo" id="tipo" error={!!errors.tipo} {...register("tipo")} >
                 <MenuItem value="positivo">Positivo</MenuItem>
                 <MenuItem value="atencao">Atencao</MenuItem>
               </Select>

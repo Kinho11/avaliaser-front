@@ -8,8 +8,8 @@ import { CadastrarAcompanhamentoSchema } from "../../utils/schemas";
 import { Navigate } from "react-router-dom";
 import { BotaoAzul } from "../../components/BotaoAzul/BotaoAzul";
 import { Titulo } from "../../components/Titulo/Titulo";
-import { GestorContext } from "../../context/GestorContext";
 
+import { GestorContext } from "../../context/GestorContext";
 
 interface ICadastrarAcompanhamento{
   idAcompanhamento: number,

@@ -129,7 +129,7 @@ export const VerificarAluno = () => {
               },justifyContent:"space-between",gap:2,marginBottom:"20PX"}}>
                 <Typography sx={{whiteSpace:"nowrap"}}>Nome: <span style={{fontWeight:700}}>{state.nome}</span></Typography>
                 <Typography sx={{whiteSpace:"nowrap"}}>Turma: <span style={{fontWeight:700}}>{state.stack}</span></Typography>
-                <Typography sx={{whiteSpace:"nowrap"}}>Email: <span style={{fontWeight:700}}>marcuspaulo.moreno@gmai.com</span></Typography>
+                <Typography sx={{whiteSpace:"nowrap"}}>Email: <span style={{fontWeight:700}}>{state.email}</span></Typography>
               </Box>
               <img src={logo} style={{borderRadius:"50px",margin:"0 auto"}} alt="" width={100} />
             </Box>
@@ -165,7 +165,7 @@ export const VerificarAluno = () => {
                           {data.codigo}
                         </StyledTableCell>
                         <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.dataInicial}</StyledTableCell>  
-                        <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{data.descricao}</StyledTableCell>
+                        <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{data.descricao}</StyledTableCell>
                         <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
                         onClick={()=>{navigate("/avaliar-acompanhamneto",{state: data})}}
                         title="Avaliar acompanhamento"><AssignmentTurnedInIcon/></Button></StyledTableCell>
@@ -174,6 +174,7 @@ export const VerificarAluno = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+
               {/* Paginação */}
               <TablePagination
                 rowsPerPageOptions={[10,20,100]}

@@ -17,7 +17,6 @@ interface IAvaliarAcompanhamento{
 
 export const AvaliarAcompanhamento = () => {
   const { state } = useLocation();
-  console.log(state)
 
   const {register,handleSubmit, formState:{errors}} = useForm<IAvaliarAcompanhamento>({
     resolver: yupResolver(AvaliarAcompanhamentoSchema)
@@ -64,7 +63,7 @@ export const AvaliarAcompanhamento = () => {
               md:"100%"
             } }}>
               <InputLabel id="acompanhamento">Acompanhamento</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="acompanhamento" error={!!errors.acompanhamento} {...register("acompanhamento")}>
+              <Select labelId="demo-simple-select-filled-label" id="acompanhamento" error={!!errors.acompanhamento} {...register("acompanhamento")} value="AcompanhamentoUm">
                 <MenuItem value="AcompanhamentoUm">Acompanhamento 1</MenuItem>
                 <MenuItem value="AcompanhamentoDois">Acompanhamento 2</MenuItem>
                 <MenuItem value="AcompanhamentoTres">Acompanhamento 3</MenuItem>
@@ -107,7 +106,7 @@ export const AvaliarAcompanhamento = () => {
               md:"100%"
             } }}>
               <InputLabel id="aluno">Aluno</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="aluno" error={!!errors.aluno} {...register("aluno")}>
+              <Select labelId="demo-simple-select-filled-label" value="marcus" id="aluno" error={!!errors.aluno} {...register("aluno")}>
                 <MenuItem value="marcus">Marcus</MenuItem>
                 <MenuItem value="maria">Maria</MenuItem>
                 <MenuItem value="joao">Joao</MenuItem>
@@ -120,7 +119,7 @@ export const AvaliarAcompanhamento = () => {
               md:"100%"
             } }}>
               <InputLabel id="responsavel">Responsavel</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="responsavel" error={!!errors.responsavel} {...register("responsavel")}>
+              <Select labelId="demo-simple-select-filled-label" id="responsavel" error={!!errors.responsavel} {...register("responsavel")} value="matheus">
                 <MenuItem value="matheus">Matheus</MenuItem>
                 <MenuItem value="noah">Noah</MenuItem>
                 <MenuItem value="gaby">Gaby</MenuItem>
@@ -133,7 +132,7 @@ export const AvaliarAcompanhamento = () => {
               md:"100%"
             } }}>
               <InputLabel id="tipo">Tipo</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="tipo" error={!!errors.tipo} {...register("tipo")}>
+              <Select labelId="demo-simple-select-filled-label" value="positivo" id="tipo" error={!!errors.tipo} {...register("tipo")}>
                 <MenuItem value="positivo">Positivo</MenuItem>
                 <MenuItem value="atencao">Atencao</MenuItem>
               </Select>
