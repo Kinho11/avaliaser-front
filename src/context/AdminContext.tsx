@@ -17,7 +17,7 @@ export const AdminProvider = ({ children }: IChildren) =>{
   const [colaborador, setColaborador] = useState<IPegarColaborador[]>([])
   const [idColaboradorCadastrado, setIdColaboradorCadastrado] = useState<number>();
   
-  const criarColaborador = async(userColaborador: IUserColaborador) => {
+  const criarColaborador = async (userColaborador: IUserColaborador) => {
     try {
       nProgress.start();
       API.defaults.headers.common["Authorization"] = token;
@@ -71,7 +71,7 @@ export const AdminProvider = ({ children }: IChildren) =>{
     try {
       nProgress.start();
       API.defaults.headers.common["Authorization"] = token;
-      const { data } = await API.get(`/administrador/listar-usuarios?paginaQueEuQuero=0&tamanhoDeRegistrosPorPagina=10`)
+      const { data } = await API.get(`/administrador/listar-usuarios?paginaQueEuQuero=0&tamanhoDeRegistrosPorPagina=1000`)
       setColaborador(data.elementos)
     } catch (error) {
       toast.error("Houve algum erro", toastConfig);
@@ -85,10 +85,10 @@ export const AdminProvider = ({ children }: IChildren) =>{
       nProgress.start();
       API.defaults.headers.common["Authorization"] = token;
       await API.delete(`/administrador/delete/${id}`);
-      toast.success("Usuario desativado com sucesso.", toastConfig);
+      toast.success("Colaborador desativado com sucesso.", toastConfig);
       pegarColaborador()
     } catch (error) {
-      toast.error('Você não tem autorização para remover este usuario.', toastConfig);
+      toast.error('Você não tem autorização para remover este colaborador.', toastConfig);
     } finally {
       nProgress.done();
     }

@@ -12,16 +12,9 @@ export const userSchema = yup.object().shape({
 });
 
 export const alunoSchema = yup.object().shape({
-  nomeCompletoAluno: yup
-    .string()
-    .required("Por favor, digite seu nome completo").min(3,"O nome deve conter no mínimo 3 caracteres"),
-  emailAluno: yup
-    .string()
-    .required("Por favor, digite seu e-mail")
-    .email("Por favor, digite um e-mail válido"),
-  selectAluno: yup
-    .string()
-    .required("Por favor, escolha um dos tipos de trilha."),
+  nome: yup.string().required("Por favor, digite seu nome completo").min(3,"O nome deve conter no mínimo 3 caracteres"),
+  email: yup.string().required("Por favor, digite seu e-mail").email("Por favor, digite um e-mail válido"),
+  stack: yup.string().required("Por favor, escolha um dos tipos de trilha."),
 });
 
 export const colaboradorSchema = yup.object().shape({
