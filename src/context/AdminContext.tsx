@@ -15,16 +15,25 @@ export const AdminProvider = ({ children }: IChildren) =>{
   const navigate = useNavigate();
 
   const [colaborador, setColaborador] = useState<IPegarColaborador[]>([])
-  const [idColaboradorCadastrado, setIdColaboradorCadastrado] = useState<number>();
   
-  const criarColaborador = async (userColaborador: IUserColaborador) => {
+  const criarColaborador = async (userColaborador: IUserColaborador, imagem: FormData) => {
     try {
       nProgress.start();
       API.defaults.headers.common["Authorization"] = token;
       const { data } = await API.post(`/administrador/cadastrar-usuario?cargo=${userColaborador.cargo}`, userColaborador)
-      setIdColaboradorCadastrado(data.idUsuario);
       navigate("/dashboard/admin")
       toast.success("Colaborador cadastrado com sucesso!", toastConfig);
+
+      if(imagem){
+        await API.put(`/administrador/upload-imagem/${data.idUsuario}`, imagem, { 
+          headers: { Authorization: localStorage.getItem("token"), 'Content-Type': 'multipart/form-data' },
+         }).then((response) => {
+          toast.success("Foto enviada com sucesso", toastConfig);
+          localStorage.removeItem("idCadastrado")
+        }).catch((error) => {
+          toast.error("Foto não enviada", toastConfig)
+        })
+      }
     } catch (error) {
       toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);
     } finally{
@@ -32,7 +41,7 @@ export const AdminProvider = ({ children }: IChildren) =>{
     }
   }
 
-  const editarColaborador = async (dadosEditados: IColaboradorEditado, id: number, imagem: any) => {
+  const editarColaborador = async (dadosEditados: IColaboradorEditado, id: number, imagem: FormData) => {
     try {
       nProgress.start();
       await API.put(`/administrador/atualizar-usuario/${id}`, dadosEditados, {
@@ -41,28 +50,14 @@ export const AdminProvider = ({ children }: IChildren) =>{
         navigate("/dashboard/admin")
         toast.success("Colaborador editado com sucesso!", toastConfig);
       });
-      if(imagem){
+
+      if(imagem) {
         await API.put(`/administrador/upload-imagem/${id}`, imagem, { 
-          headers: { Authorization: localStorage.getItem("token"), 'Content-Type': 'multipart/form-data' },
-          }).then((response) => { console.log(response.data) })
+        headers: { Authorization: localStorage.getItem("token") },
+        }).then((response) => { toast.success("Foto editada com sucesso!", toastConfig); })
       }
     } catch (error) {
       toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);
-    } finally {
-      nProgress.done();
-    }
-  }
-
-  const enviarFotoColaborador = async (imagem: FileList) => {
-    try {
-      nProgress.start();
-      await API.put(`/administrador/upload-imagem/${idColaboradorCadastrado}`, imagem, { 
-        headers: { Authorization: localStorage.getItem("token"), 'Content-Type': 'multipart/form-data' },
-       }).then((response) => {
-        toast.success("Foto enviada com sucesso", toastConfig);
-      })
-    } catch (error) {
-      toast.error("Foto não enviada", toastConfig)
     } finally {
       nProgress.done();
     }
@@ -96,7 +91,7 @@ export const AdminProvider = ({ children }: IChildren) =>{
   }
 
   return (
-    <AdminContext.Provider value={{ criarColaborador, pegarColaborador, colaborador, deletarColaborador, enviarFotoColaborador, editarColaborador }}>
+    <AdminContext.Provider value={{ criarColaborador, pegarColaborador, colaborador, deletarColaborador, editarColaborador }}>
       {children}
     </AdminContext.Provider>
   );
