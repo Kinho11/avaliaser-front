@@ -8,8 +8,6 @@ import { colaboradorSchema} from "../../utils/schemas";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AdminContext } from "../../context/AdminContext";
-import { toastConfig } from "../../utils/toast";
-import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 import { BotaoVerde } from "../../components/BotaoVerde/BotaoVerde";
 import { Titulo } from "../../components/Titulo/Titulo";
@@ -24,7 +22,7 @@ export const CadastrarColaborador = () => {
   const { criarColaborador, enviarFotoColaborador } = useContext(AdminContext);
 
   const [selectedImage, setSelectedImage] = useState();
-  const [verificarEmail, setVerificarEmail] = useState("");
+
 
   const imageChange = (e: any): void => {
     if (e.target.files && e.target.files.length > 0) {

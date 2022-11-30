@@ -4,9 +4,6 @@ import { Box, FormControl, TextField, Stack, Typography, InputLabel, MenuItem, S
 
 import { useContext, useState } from "react";
 
-import { toast } from "react-toastify";
-import { toastConfig } from "../../utils/toast";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import { alunoSchema} from "../../utils/schemas";
 import { useForm } from "react-hook-form";
@@ -20,7 +17,6 @@ export const CadastrarAluno = () => {
   const { criarAluno } = useContext(AlunoContext)
 
   const [selectedImage, setSelectedImage] = useState();
-  const [verificarEmail, setVerificarEmail] = useState("");
 
   const imageChange = (e: any): void => {
     if (e.target.files && e.target.files.length > 0) {

@@ -1,6 +1,13 @@
 // import { Paper, TableContainer, Table, TableRow, TableCell, TableBody, Button, TablePagination, tableCellClasses, styled } from "@mui/material";
 import React from "react";
 
+export const ListarAlunos = () => {
+  return (
+    <div>ListarAlunos</div>
+  )
+}
+
+
 // import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 

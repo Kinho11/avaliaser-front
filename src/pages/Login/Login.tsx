@@ -37,7 +37,6 @@ export const Login = () => {
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
 
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });
-  const [verificarEmail, setVerificarEmail] = useState("");
   const [verificarEmailModal, setVerificarEmailModal] = useState("");
 
   // Funções exibir senha / esconder senha
