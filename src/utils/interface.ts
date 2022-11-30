@@ -19,11 +19,10 @@ export interface IAuth {
 }
 
 export interface IAdmin{
-  criarColaborador: (userColaborador: IUserColaborador) => Promise<void>,
+  criarColaborador: (userColaborador: IUserColaborador, imagem: FormData) => Promise<void>,
   deletarColaborador: (id: number) => Promise<void>,
-  enviarFotoColaborador: (imagem: FileList) => Promise<void>,
   pegarColaborador: () => Promise<void>,
-  editarColaborador: (dadosEditados: IColaboradorEditado, id: number, imagem: FileList | undefined) => Promise<void>,
+  editarColaborador: (dadosEditados: IColaboradorEditado, id: number, imagem: FormData) => Promise<void>,
   colaborador: IPegarColaborador[]
 }
 
@@ -32,6 +31,12 @@ export interface IAluno {
   deletarAluno: (id: number) => Promise<void>,
   criarAluno: (infosAluno: ICadastroAluno) => Promise<void>,
   alunos: IAlunosCadastrados[]
+}
+
+export interface IColaborador{
+  criarAcompanhamento: (acompanhamento: ICriarAcompanhamento) => Promise<void>,
+  pegarAcompanhamento: () => Promise<void>
+  acompanhamento: ICriarAcompanhamento[]
 }
 
 export interface ICadastroAluno {
@@ -87,4 +92,11 @@ export interface IPegarColaborador{
   email: string,
   foto: string,
   cargo: string
+}
+
+export interface ICriarAcompanhamento{
+  idAcompanhamento: number,
+  titulo: string,
+  descricao: string,
+  dataInicio: string
 }

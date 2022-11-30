@@ -1,6 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Typography, Stack, FormControl, TextField, FormLabel, Button, InputLabel, MenuItem, Select } from "@mui/material";
-import React from "react"
 import { useForm } from "react-hook-form";
 import { Navigate, useLocation } from "react-router-dom";
 import { Header } from "../../components/Header/Header"

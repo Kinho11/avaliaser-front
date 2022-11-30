@@ -43,8 +43,9 @@ export const AlterarSenhaSchema = yup.object().shape({
 
 
 export const CadastrarAcompanhamentoSchema = yup.object().shape({
+  titulo: yup.string().required("Por favor, digite algum titulo"),
   descricao: yup.string().required("Por favor, digite alguma coisa na descrição"),
-  data: yup.string().required("Por favor, escolha uma data inicial")
+  dataInicio: yup.string().required("Por favor, escolha uma data inicial")
 })
 
 export const AvaliarAcompanhamentoSchema = yup.object().shape({

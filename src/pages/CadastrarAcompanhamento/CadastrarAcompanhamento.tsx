@@ -1,5 +1,5 @@
 import { Box, Typography, Stack, FormControl, TextField } from "@mui/material"
-import React from "react"
+import { useContext } from "react"
 import { Header } from "../../components/Header/Header"
 import logo from "../../assets/dbc-logo.webp";
 import { useForm } from "react-hook-form";
@@ -8,23 +8,25 @@ import { CadastrarAcompanhamentoSchema } from "../../utils/schemas";
 import { Navigate } from "react-router-dom";
 import { BotaoAzul } from "../../components/BotaoAzul/BotaoAzul";
 import { Titulo } from "../../components/Titulo/Titulo";
+import { GestorContext } from "../../context/GestorContext";
 
 
 interface ICadastrarAcompanhamento{
+  idAcompanhamento: number,
+  titulo: string,
   descricao: string,
-  data: string
+  dataInicio: string
 }
 
 export const CadastrarAcompanhamento = () => {
-
+  const { criarAcompanhamento } = useContext(GestorContext)
 
   const {register, handleSubmit, formState:{errors}}= useForm<ICadastrarAcompanhamento>({
     resolver: yupResolver(CadastrarAcompanhamentoSchema)
-
   })
 
   const cadastrarAcompanhamento = (data:ICadastrarAcompanhamento) =>{
-    console.log(data)
+    criarAcompanhamento(data)
   }
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
@@ -60,6 +62,14 @@ export const CadastrarAcompanhamento = () => {
               xs:"100%",
               md:"100%"
             } }}>
+              <TextField id="titulo" error={!!errors.titulo} {...register("titulo")}label="Titulo acompanhamento" placeholder="Digite um titulo" variant="filled" focused />
+              {errors.titulo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.titulo.message}</Typography>}
+            </FormControl>
+
+            <FormControl sx={{ width: {
+              xs:"100%",
+              md:"100%"
+            } }}>
             <TextField
               id="descricao"
               error={!!errors.descricao}
@@ -77,17 +87,17 @@ export const CadastrarAcompanhamento = () => {
               md:"100%"
             } }}>
               <TextField
-                id="data"
-                error={!!errors.data}
+                id="dataInicio"
+                error={!!errors.dataInicio}
                 label="Data inicial"
                 type="date"
                 sx={{ width: "100%" }}
                 InputLabelProps={{
                   shrink: true,
                 }}
-                {...register("data")}
+                {...register("dataInicio")}
               />
-              {errors.data && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.data.message}</Typography>}
+              {errors.dataInicio && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.dataInicio.message}</Typography>}
             </FormControl>
 
           </Stack>

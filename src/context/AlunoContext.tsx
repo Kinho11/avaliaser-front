@@ -36,7 +36,7 @@ export const AlunoProvider = ({ children }: IChildren) => {
   const getAlunos = async () => {
     try {
       nProgress.start();
-      await API.get('/aluno/listar-alunos?paginaQueEuQuero=0&tamanhoDeRegistrosPorPagina=10', { 
+      await API.get('/aluno/listar-alunos?page=0&size=10', { 
         headers: { Authorization: localStorage.getItem("token") }
        }).then((response) => { setAlunos(response.data.elementos) })
     } catch (error) {

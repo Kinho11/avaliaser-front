@@ -8,7 +8,6 @@ import backgroundRedefinriSenha from "../../assets/bg-redefinir-senha.webp";
 import { Box, Button, Typography, Stack, InputLabel, OutlinedInput, InputAdornment, IconButton, FormControl  } from "@mui/material";
 import { LoginOutlined, Visibility, VisibilityOff,EnhancedEncryption } from "@mui/icons-material";
 
-
 import { ILogin } from "../../utils/interface";
 import { redefinirSenhaSchema } from "../../utils/schemas";
 
@@ -16,8 +15,6 @@ interface INovaSenha{
   novaSenha: string,
   confirmarNovaSenha: string
 }
-
-
 
 export const RedefinirSenha = () => {
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });

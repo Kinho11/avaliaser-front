@@ -3,7 +3,6 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom"
 import { Header } from "../../components/Header/Header";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 
-
 import logo from "../../assets/dbc-logo.webp";
 import { useState } from "react";
 
@@ -56,7 +55,6 @@ const columns: Column[] = [
 
 ];
 
-
 const data =[
   {codigo: 1,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
   {codigo: 2,dataInicial:"11/12/2001",descricao: "Tabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaela de gestor"},
@@ -65,7 +63,6 @@ const data =[
   {codigo: 5,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
   {codigo: 6,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
 ]
-
 
 export const VerificarAluno = () => {
   const { state } = useLocation();
