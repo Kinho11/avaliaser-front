@@ -51,14 +51,8 @@ export const Login = () => {
 
   // Submit Formulario Login
   const onSubmit = (data: IUsuario) => {
-    const dominio = verificarEmail.split("@");
-    if(dominio[1] === "dbccompany.com.br") {
-      usuarioLogin(data);
-    } else {
-      toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
-    }
-  };
-
+    usuarioLogin(data);
+  }
   // Funções Modal
   const [open, setOpen] = useState(false);
   const [inputEmailModal, setInputEmailModal] = useState("");
@@ -108,8 +102,8 @@ export const Login = () => {
                 xs:"90%",
                 md: "70%"
               } }} variant="outlined">
-                <InputLabel htmlFor="email">Email</InputLabel>
-                <OutlinedInput id="email" type="email" {...register("email")} onChange={(e) => setVerificarEmail(e.target.value)} placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
+                <InputLabel htmlFor="email"  error={!!errors.email}>Email</InputLabel>
+                <OutlinedInput id="email" type="email" error={!!errors.email} {...register("email")}  placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
                   <InputAdornment position="end">
                     <IconButton edge="end" sx={{ cursor: "initial", ":hover": {background: "transparent"} }}>
                       <Email />
@@ -123,7 +117,7 @@ export const Login = () => {
                 xs:"90%",
                 md: "70%"
               } }} variant="outlined">
-                <InputLabel htmlFor="senha">Senha</InputLabel>
+                <InputLabel htmlFor="senha" >Senha</InputLabel>
                 <OutlinedInput id="senha" {...register("senha")} placeholder="Insira sua senha" type={values.showPassword ? "text" : "password"} label="Senha" value={values.password} onChange={handleChange("password")} endAdornment={
                   <InputAdornment position="end">
                     <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} edge="end">

@@ -42,12 +42,6 @@ export const CadastrarColaborador = () => {
       criarColaborador(data);
     };
 
-    // const dominio = verificarEmail.split("@");
-    // if(dominio[1] === "dbccompany.com.br") {
-    //   console.log(data)
-    // } else {
-    //   toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
-    // }
   };
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
@@ -69,7 +63,7 @@ export const CadastrarColaborador = () => {
               {errors.nome && <Typography id="erro-nome" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.nome.message}</Typography>}
             </FormControl>
             <FormControl sx={{ width:  { xs:"100%", md:"100%" } }}>
-              <TextField id="email" {...register("email")} onChange={(e) => setVerificarEmail(e.target.value)} label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" focused />
+              <TextField id="email" error={!!errors.email} {...register("email")} label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" focused />
               {errors.email && <Typography id="erro-email" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
             </FormControl>
 

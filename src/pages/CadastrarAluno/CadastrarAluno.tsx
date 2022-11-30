@@ -31,12 +31,7 @@ export const CadastrarAluno = () => {
   });
 
   const cadastroAluno = (data: ICadastroAluno) => {
-    const dominio = verificarEmail.split("@");
-    if(dominio[1] === "dbccompany.com.br"){
-      criarAluno(data);
-    } else {
-      toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
-    }
+    criarAluno(data);
   };
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
@@ -75,7 +70,7 @@ export const CadastrarAluno = () => {
               xs:"100%",
               md:"100%"
             } }}>
-              <TextField id="emailAluno" label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" {...register("email")} onChange={(e) => setVerificarEmail(e.target.value)} focused />
+              <TextField id="emailAluno" label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" {...register("email")} error={!!errors.email} focused />
               {errors.email && <Typography id="erro-emailAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
             </FormControl>
             <FormControl variant="filled" sx={{ width:  {

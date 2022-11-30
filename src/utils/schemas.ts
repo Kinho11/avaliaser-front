@@ -1,10 +1,12 @@
 import * as  yup from "yup";
 
+const regexEmail = /^[A-Za-z0-9._%+-]+@dbccompany.com.br$/
+
 export const userSchema = yup.object().shape({
   email: yup
     .string()
     .required("Por favor, digite seu e-mail")
-    .email("Por favor, digite um e-mail válido"),
+    .email("Por favor, digite um e-mail válido").matches(regexEmail, "Só aceitamos email @dbccompany.com.br"),
   senha: yup
     .string()
     .required("Por favor, digite sua senha")
@@ -13,19 +15,19 @@ export const userSchema = yup.object().shape({
 
 export const alunoSchema = yup.object().shape({
   nome: yup.string().required("Por favor, digite seu nome completo").min(3,"O nome deve conter no mínimo 3 caracteres"),
-  email: yup.string().required("Por favor, digite seu e-mail").email("Por favor, digite um e-mail válido"),
+  email: yup.string().required("Por favor, digite seu e-mail").email("Por favor, digite um e-mail válido").matches(regexEmail, "Só aceitamos email @dbccompany.com.br"),
   stack: yup.string().required("Por favor, escolha um dos tipos de trilha."),
 });
 
 export const colaboradorSchema = yup.object().shape({
   nome: yup.string().required("Por favor, digite seu nome completo").min(3,"O nome deve conter no mínimo 3 caracteres"),
-  email: yup.string().required("Por favor, digite seu e-mail").email("Por favor, digite um e-mail válido"),
+  email: yup.string().required("Por favor, digite seu e-mail").email("Por favor, digite um e-mail válido").matches(regexEmail, "Só aceitamos email @dbccompany.com.br"),
   cargo: yup.string().required("Por favor, escolha um dos tipos de perfil.").nullable()
 });
 
 export const editarColaboradorSchema = yup.object().shape({
   nome: yup.string().required("Por favor, digite seu nome completo").min(3,"O nome deve conter no mínimo 3 caracteres"),
-  email: yup.string().required("Por favor, digite seu e-mail").email("Por favor, digite um e-mail válido")
+  email: yup.string().required("Por favor, digite seu e-mail").email("Por favor, digite um e-mail válido").matches(regexEmail, "Só aceitamos email @dbccompany.com.br")
 });
 
 export const redefinirSenhaSchema = yup.object().shape({
