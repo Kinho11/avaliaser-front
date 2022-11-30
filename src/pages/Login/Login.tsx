@@ -37,7 +37,6 @@ export const Login = () => {
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
 
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });
-  const [verificarEmail, setVerificarEmail] = useState("");
   const [verificarEmailModal, setVerificarEmailModal] = useState("");
 
   // Funções exibir senha / esconder senha
@@ -51,14 +50,8 @@ export const Login = () => {
 
   // Submit Formulario Login
   const onSubmit = (data: IUsuario) => {
-    const dominio = verificarEmail.split("@");
-    if(dominio[1] === "dbccompany.com.br") {
-      usuarioLogin(data);
-    } else {
-      toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
-    }
-  };
-
+    usuarioLogin(data);
+  }
   // Funções Modal
   const [open, setOpen] = useState(false);
   const [inputEmailModal, setInputEmailModal] = useState("");
@@ -75,7 +68,7 @@ export const Login = () => {
     }
   };
 
-  const cargoSplitado = infosUsuario?.cargo?.split("_")[1].toLowerCase();
+  const cargoSplitado = infosUsuario?.cargo?.split(" ")[0].toLowerCase();
   if(tokenAuth) return <Navigate to={`/dashboard/${cargoSplitado}`} />
 
   return (
@@ -108,8 +101,8 @@ export const Login = () => {
                 xs:"90%",
                 md: "70%"
               } }} variant="outlined">
-                <InputLabel htmlFor="email">Email</InputLabel>
-                <OutlinedInput id="email" type="email" {...register("email")} onChange={(e) => setVerificarEmail(e.target.value)} placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
+                <InputLabel htmlFor="email"  error={!!errors.email}>Email</InputLabel>
+                <OutlinedInput id="email" type="email" error={!!errors.email} {...register("email")}  placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
                   <InputAdornment position="end">
                     <IconButton edge="end" sx={{ cursor: "initial", ":hover": {background: "transparent"} }}>
                       <Email />
@@ -123,7 +116,7 @@ export const Login = () => {
                 xs:"90%",
                 md: "70%"
               } }} variant="outlined">
-                <InputLabel htmlFor="senha">Senha</InputLabel>
+                <InputLabel htmlFor="senha" >Senha</InputLabel>
                 <OutlinedInput id="senha" {...register("senha")} placeholder="Insira sua senha" type={values.showPassword ? "text" : "password"} label="Senha" value={values.password} onChange={handleChange("password")} endAdornment={
                   <InputAdornment position="end">
                     <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} edge="end">
@@ -135,11 +128,11 @@ export const Login = () => {
               </FormControl>
 
               <Button id="botao-logar" size="medium" type="submit" endIcon={<LoginOutlined />} sx={{ width: "30%", backgroundColor: "#1e62fe" }} variant="contained">Entrar</Button>
-              
             </Stack>
             <Typography variant="body1" onClick={handleOpen} sx={{ marginTop: "20px", textDecoration: "underline", color: "#1e62fe", cursor: "pointer", fontWeight: "600", transition: "0.3s", display: "inline-block", "&:hover": { opacity: "0.6", transition: "0.3s" } }}>Redefinir senha</Typography>
           </Box>
 
+          {/* Modal Redefinir Senha */}
           <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-titulo" aria-describedby="modal-modal-description" sx={{ backdropFilter: "blur(10px)" }}>
             <Box sx={style} component="form" onSubmit={(e) => {
               e.preventDefault();

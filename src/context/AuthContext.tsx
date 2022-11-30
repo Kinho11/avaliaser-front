@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }: IChildren) => {
        }).then((response) => {
         setUsuarioLogado(response.data)
         localStorage.setItem("infoUsuario", JSON.stringify(response.data));
-        const cargoSplitado = response.data.cargo.split("_")[1].toLowerCase();
+        const cargoSplitado = response.data.cargo.split(" ")[0].toLowerCase();
         navigate(`/dashboard/${cargoSplitado}`);
       })
     } catch (error) {

@@ -8,8 +8,9 @@ import { colaboradorSchema} from "../../utils/schemas";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AdminContext } from "../../context/AdminContext";
-import { toastConfig } from "../../utils/toast";
-import { toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
+import { BotaoVerde } from "../../components/BotaoVerde/BotaoVerde";
+import { Titulo } from "../../components/Titulo/Titulo";
 
 interface IColaborador{
   nome: string,
@@ -21,7 +22,7 @@ export const CadastrarColaborador = () => {
   const { criarColaborador, enviarFotoColaborador } = useContext(AdminContext);
 
   const [selectedImage, setSelectedImage] = useState();
-  const [verificarEmail, setVerificarEmail] = useState("");
+
 
   const imageChange = (e: any): void => {
     if (e.target.files && e.target.files.length > 0) {
@@ -41,19 +42,16 @@ export const CadastrarColaborador = () => {
       criarColaborador(data);
     };
 
-    // const dominio = verificarEmail.split("@");
-    // if(dominio[1] === "dbccompany.com.br") {
-    //   console.log(data)
-    // } else {
-    //   toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
-    // }
   };
+
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+  if(infosUsuario.cargo !== "Admin") return <Navigate to="/"/>
 
   return (
     <>
       <Header />
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px"}, fontWeight:"700",color:"white"}} variant="h3">Cadastrar Colaborador</Typography>
+        <Titulo texto="Cadastrar colaborador"/>
 
         <Box component="form" onSubmit={handleSubmit(cadastroColaborador)} sx={{ display: { xs:"block", md:"flex"}, justifyContent: "space-between", backgroundColor: "#fff", width: {xs:"90%",md:"50%"
         }, borderRadius: "10px", padding: { xs: 5, md: 5}, boxShadow: "10px 10px 10px #2f407ccf" }}>
@@ -65,7 +63,7 @@ export const CadastrarColaborador = () => {
               {errors.nome && <Typography id="erro-nome" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.nome.message}</Typography>}
             </FormControl>
             <FormControl sx={{ width:  { xs:"100%", md:"100%" } }}>
-              <TextField id="email" {...register("email")} onChange={(e) => setVerificarEmail(e.target.value)} label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" focused />
+              <TextField id="email" error={!!errors.email} {...register("email")} label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" focused />
               {errors.email && <Typography id="erro-email" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
             </FormControl>
 
@@ -103,9 +101,7 @@ export const CadastrarColaborador = () => {
               <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir Foto</Typography>
             </Button>
 
-            <Box sx={{display:"flex",width:"100%",maxHeight:"100%", justifyContent:"end",marginTop:"60px!important"}}>
-              <Button color="success" type="submit" variant="contained" sx={{textTransform: "capitalize", width:{ xs:"15ch", md:"15ch" }}}>Enviar</Button>
-            </Box>
+            <BotaoVerde texto="Enviar"/>
           </Stack>
         </Box>
       </Box>

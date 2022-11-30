@@ -65,7 +65,7 @@ const data =[
   {codigo: 5,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
   {codigo: 6,dataInicial:"11/12/2001",descricao: "Tabela de gestor"},
 ];
-export const DashboardGestor = () => {
+export const ListarAcompanhamento = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const navigate = useNavigate()
@@ -89,7 +89,7 @@ export const DashboardGestor = () => {
         <Typography  sx={{textAlign: "center", fontSize: {
           xs:30,
           md:44
-        },marginTop:"50px",fontWeight:"700",color:"white"}} variant="h3">Dashboard Alunos</Typography>
+        },marginTop:"50px",fontWeight:"700",color:"white"}} variant="h3">Lista acompanhamento</Typography>
         <Paper sx={{ width: {
           xs:"95%",
           md:"65%"

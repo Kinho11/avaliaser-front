@@ -14,6 +14,7 @@ export const Header = () => {
   
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   const primeiroNome = infosUsuario.nome.split(" ")[0];
+  const primeiroCargo = infosUsuario.cargo.split(" ")[0].toLowerCase();
 
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -28,7 +29,7 @@ export const Header = () => {
   return (
     <>
       {/* Header Admin */}
-      {infosUsuario.cargo === "ROLE_ADMIN" && 
+      {primeiroCargo === "admin" && 
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>
@@ -90,7 +91,7 @@ export const Header = () => {
       }
 
       {/* Header Gestor */}
-      {infosUsuario.cargo === "ROLE_GESTOR" && 
+      {primeiroCargo === "gestor" && 
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>
@@ -156,7 +157,7 @@ export const Header = () => {
       }
 
       {/* Header Instrutor */}
-      {infosUsuario.cargo === "ROLE_INSTRUTOR" && 
+      {primeiroCargo === "instrutor" && 
       <AppBar position="static" sx={{ backgroundColor: "#f8f8fff8" }}>
         <Box sx={{ padding: "0 50px" }}>
           <Toolbar disableGutters>

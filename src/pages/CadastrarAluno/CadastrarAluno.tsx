@@ -4,20 +4,19 @@ import { Box, FormControl, TextField, Stack, Typography, InputLabel, MenuItem, S
 
 import { useContext, useState } from "react";
 
-import { toast } from "react-toastify";
-import { toastConfig } from "../../utils/toast";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import { alunoSchema} from "../../utils/schemas";
 import { useForm } from "react-hook-form";
 import { ICadastroAluno } from "../../utils/interface";
 import { AlunoContext } from "../../context/AlunoContext";
+import { Navigate } from "react-router-dom";
+import { BotaoVerde } from "../../components/BotaoVerde/BotaoVerde";
+import { Titulo } from "../../components/Titulo/Titulo";
 
 export const CadastrarAluno = () => {
   const { criarAluno } = useContext(AlunoContext)
 
   const [selectedImage, setSelectedImage] = useState();
-  const [verificarEmail, setVerificarEmail] = useState("");
 
   const imageChange = (e: any): void => {
     if (e.target.files && e.target.files.length > 0) {
@@ -30,19 +29,18 @@ export const CadastrarAluno = () => {
   });
 
   const cadastroAluno = (data: ICadastroAluno) => {
-    const dominio = verificarEmail.split("@");
-    if(dominio[1] === "dbccompany.com.br"){
-      criarAluno(data);
-    } else {
-      toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
-    }
+    criarAluno(data);
   };
+
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+  if(infosUsuario.cargo !== "Instrutor" && infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
 
   return (
     <>
       <Header />
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center", marginBottom:"20px", fontWeight:"700",color:"white"}} variant="h3">Cadastrar Aluno</Typography>
+        <Titulo texto="Cadastrar aluno"/>
+
         <Box component="form" onSubmit={handleSubmit(cadastroAluno)} sx={{ display: {
           xs:"block",
           md:"flex"
@@ -71,7 +69,7 @@ export const CadastrarAluno = () => {
               xs:"100%",
               md:"100%"
             } }}>
-              <TextField id="emailAluno" label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" {...register("email")} onChange={(e) => setVerificarEmail(e.target.value)} focused />
+              <TextField id="emailAluno" label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" {...register("email")} error={!!errors.email} focused />
               {errors.email && <Typography id="erro-emailAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
             </FormControl>
             <FormControl variant="filled" sx={{ width:  {
@@ -87,6 +85,8 @@ export const CadastrarAluno = () => {
               </Select>
               {errors.stack && <Typography id="erro-selectAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.stack.message}</Typography>}
             </FormControl>
+            <Typography variant="body1" sx={{fontWeight:"700", display: "inline-block", marginTop: "10px", paddingBottom: 0, marginBottom: 0, color: "#ff9800"}} >*Imagens são opcionais</Typography>
+            <Typography variant="body1" sx={{fontWeight:"700", display: "inline-block", paddingTop: 0, marginTop: 0, color: "#ff9800"}} >*Só são aceitas imagens com extensão .jpg</Typography>
           </Stack>
           <Stack component="div" spacing={2} sx={{ width: {
             xs:"100%",
@@ -102,12 +102,7 @@ export const CadastrarAluno = () => {
               <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir Foto</Typography>
             </Button>
 
-            <Box sx={{display:"flex",width:"100%",height:"110%", justifyContent:"end",marginTop:"40px!important"}}>
-              <Button color="success" type="submit" variant="contained" sx={{textTransform: "capitalize", width:{
-                xs:"15ch",
-                md:"15ch"
-              }}}>Enviar</Button>
-            </Box>
+            <BotaoVerde texto="Enviar"/>
           </Stack>
         </Box>
       </Box>

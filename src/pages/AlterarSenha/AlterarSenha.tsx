@@ -1,4 +1,4 @@
-import {Box, Button, FormControl, Stack, TextField, Typography } from "@mui/material";
+import {Box, FormControl, Stack, TextField, Typography } from "@mui/material";
 import { useContext } from "react";
 import { Header } from "../../components/Header/Header";
 import logo from "../../assets/dbc-logo.png";
@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AlterarSenhaSchema } from "../../utils/schemas";
 import { AuthContext } from "../../context/AuthContext";
+import { BotaoAzul } from "../../components/BotaoAzul/BotaoAzul";
+import { Titulo } from "../../components/Titulo/Titulo";
 
 interface IAlterarSenha{
   senhaAntiga: string,
@@ -30,7 +32,7 @@ export const AlterarSenha = () => {
       <Header />
 
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px" }, fontWeight:"700",color:"white"}} variant="h3">Alterar senha</Typography>
+        <Titulo texto="Alterar senha"/>
 
         <Box component="form" onSubmit={handleSubmit(alterarSenha)} sx={{ display: { xs:"flex", md:"flex" },flexDirection:"column",alignItems:"center",backgroundColor: "#fff", width: { xs:"90%", md:"25%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf",gap:2 }}>
           <img  src={logo} alt="" width={150} />
@@ -52,7 +54,7 @@ export const AlterarSenha = () => {
             </FormControl>
           </Stack>
 
-          <Button type="submit" sx={{textTransform: "capitalize",width:{ xs:"20%", md:"150px" },display:"flex",margin:"0 auto"}} variant="contained">Enviar</Button>
+          <BotaoAzul texto="Enviar"/>
         </Box>
       </Box>
     </>
