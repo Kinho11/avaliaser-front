@@ -60,7 +60,7 @@ export const EditarColaborador = () => {
           </Stack>
 
           <Stack component="div" spacing={2} sx={{ width: { xs:"100%", md:"50%" }, display: "flex", alignItems: "center",marginTop:{ xs:2, md:0 }}}>
-            <Avatar alt="Foto Enviada" src={state.foto ? `data:image/jpeg;base64,${state.foto}` : selectedImage ? URL.createObjectURL(selectedImage) : ""} sx={{ width: 150, height: 150 }} />
+            <Avatar alt="Foto Enviada" src={selectedImage ? URL.createObjectURL(selectedImage) : state.foto ? `data:image/jpeg;base64,${state.foto}` : ""} sx={{ width: 150, height: 150 }} />
             
             <Button component="label" variant="contained">
               <input id="imagemAluno" type="file" accept="image/jpeg" hidden onChange={imageChange} />
