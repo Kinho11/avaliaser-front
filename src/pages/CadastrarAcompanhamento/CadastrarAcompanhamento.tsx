@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CadastrarAcompanhamentoSchema } from "../../utils/schemas";
 import { Navigate } from "react-router-dom";
+import { BotaoAzul } from "../../components/BotaoAzul/BotaoAzul";
+import { Titulo } from "../../components/Titulo/Titulo";
 
 
 interface ICadastrarAcompanhamento{
@@ -33,10 +35,7 @@ export const CadastrarAcompanhamento = () => {
       <Header/>
 
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{
-          xs:"35px",
-          md:"40px"
-        }, fontWeight:"700",color:"white"}} variant="h3">Cadastrar acompanhamento</Typography>
+        <Titulo texto="Cadastrar acompanhamento"/>
 
         <Box component="form" onSubmit={handleSubmit(cadastrarAcompanhamento)} sx={{ display: {
           xs:"flex",
@@ -93,10 +92,7 @@ export const CadastrarAcompanhamento = () => {
 
           </Stack>
 
-            <Button type="submit" sx={{textTransform: "capitalize",width:{
-              xs:"20%",
-              md:"150px"
-            },display:"flex",margin:"0 auto"}} variant="contained">Enviar</Button>
+          <BotaoAzul texto="Enviar"/>
         </Box>
       </Box>
     

@@ -11,6 +11,8 @@ import { AdminContext } from "../../context/AdminContext";
 import { toastConfig } from "../../utils/toast";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
+import { BotaoVerde } from "../../components/BotaoVerde/BotaoVerde";
+import { Titulo } from "../../components/Titulo/Titulo";
 
 interface IColaborador{
   nome: string,
@@ -51,7 +53,7 @@ export const CadastrarColaborador = () => {
     <>
       <Header />
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px"}, fontWeight:"700",color:"white"}} variant="h3">Cadastrar Colaborador</Typography>
+        <Titulo texto="Cadastrar colaborador"/>
 
         <Box component="form" onSubmit={handleSubmit(cadastroColaborador)} sx={{ display: { xs:"block", md:"flex"}, justifyContent: "space-between", backgroundColor: "#fff", width: {xs:"90%",md:"50%"
         }, borderRadius: "10px", padding: { xs: 5, md: 5}, boxShadow: "10px 10px 10px #2f407ccf" }}>
@@ -101,9 +103,7 @@ export const CadastrarColaborador = () => {
               <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir Foto</Typography>
             </Button>
 
-            <Box sx={{display:"flex",width:"100%",maxHeight:"100%", justifyContent:"end",marginTop:"60px!important"}}>
-              <Button color="success" type="submit" variant="contained" sx={{textTransform: "capitalize", width:{ xs:"15ch", md:"15ch" }}}>Enviar</Button>
-            </Box>
+            <BotaoVerde texto="Enviar"/>
           </Stack>
         </Box>
       </Box>

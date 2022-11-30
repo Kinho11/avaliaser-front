@@ -13,6 +13,8 @@ import { useForm } from "react-hook-form";
 import { ICadastroAluno } from "../../utils/interface";
 import { AlunoContext } from "../../context/AlunoContext";
 import { Navigate } from "react-router-dom";
+import { BotaoVerde } from "../../components/BotaoVerde/BotaoVerde";
+import { Titulo } from "../../components/Titulo/Titulo";
 
 export const CadastrarAluno = () => {
   const { criarAluno } = useContext(AlunoContext)
@@ -41,7 +43,8 @@ export const CadastrarAluno = () => {
     <>
       <Header />
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center", marginBottom:"20px", fontWeight:"700",color:"white"}} variant="h3">Cadastrar Aluno</Typography>
+        <Titulo texto="Cadastrar aluno"/>
+
         <Box component="form" onSubmit={handleSubmit(cadastroAluno)} sx={{ display: {
           xs:"block",
           md:"flex"
@@ -103,12 +106,7 @@ export const CadastrarAluno = () => {
               <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir Foto</Typography>
             </Button>
 
-            <Box sx={{display:"flex",width:"100%",maxHeight:"100%", justifyContent:"end",marginTop:"40px!important"}}>
-              <Button color="success" type="submit" variant="contained" sx={{textTransform: "capitalize", width:{
-                xs:"15ch",
-                md:"15ch"
-              }}}>Enviar</Button>
-            </Box>
+            <BotaoVerde texto="Enviar"/>
           </Stack>
         </Box>
       </Box>

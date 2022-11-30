@@ -13,6 +13,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { IColaboradorEditado } from "../../utils/interface";
 
 import { AdminContext } from "../../context/AdminContext";
+import { BotaoVerde } from "../../components/BotaoVerde/BotaoVerde";
+import { Titulo } from "../../components/Titulo/Titulo";
 
 export const EditarColaborador = () => {
   const { editarColaborador } = useContext(AdminContext);
@@ -40,7 +42,7 @@ export const EditarColaborador = () => {
     <>
       <Header />
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px" }, fontWeight:"700",color:"white"}} variant="h3">Editar Colaborador</Typography>
+        <Titulo texto="Editar colaborador"/>
 
         <Box component="form" onSubmit={handleSubmit(cadastroColaborador)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"50%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf"  }}>
 
@@ -67,9 +69,7 @@ export const EditarColaborador = () => {
               <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir nova Foto</Typography>
             </Button>
 
-            <Box sx={{display:"flex", width:"100%", justifyContent:"end", alignItems: "end", marginTop:"40px!important"}}>
-              <Button color="success" type="submit" variant="contained" sx={{textTransform: "capitalize", width:{ xs:"15ch", md:"15ch"}}}>Editar</Button>
-            </Box>
+            <BotaoVerde texto="Editar"/>
           </Stack>
         </Box>
       </Box>
