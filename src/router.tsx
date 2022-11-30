@@ -1,7 +1,6 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import { Login } from "./pages/Login/Login";
-import { NotFound } from "./pages/NotFound/NotFound";
 import { DashboardAdmin } from "./pages/DashboardAdmin/DashboardAdmin";
 import { DashboardGestor } from "./pages/DashboardGestor/DashboardGestor";
 import { DashboardInstrutor } from "./pages/DashboardInstrutor/DashboardInstrutor";
@@ -11,12 +10,13 @@ import { RedefinirSenha } from "./pages/RedefinirSenha/RedefinirSenha";
 import { AlterarSenha } from "./pages/AlterarSenha/AlterarSenha";
 import { EditarColaborador } from "./pages/EditarColaborador/EditarColaborador";
 import { CadastrarAcompanhamento } from "./pages/CadastrarAcompanhamento/CadastrarAcompanhamento";
-import { Intermediaria } from "./pages/Intermediaria/Intermediaria";
 import { VerificarAluno } from "./pages/VerificarAluno/VerificarAluno";
 import { AvaliarAcompanhamento } from "./pages/AvaliarAcompanhamento/AvaliarAcompanhamento";
 import { CadastrarFeedback } from "./pages/CadastrarFeedback/CadastrarFeedback";
 
 import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
+import { Intermediaria } from "./components/Intermediaria/Intermediaria";
+import { NotFound } from "./components/NotFound/NotFound";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

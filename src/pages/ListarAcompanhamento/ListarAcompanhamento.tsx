@@ -79,7 +79,7 @@ export const ListarAcompanhamento = () => {
   };
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
-  if(infosUsuario.cargo !== "ROLE_GESTOR") return <Navigate to="/"/>
+  if(infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
 
   return (
     <>

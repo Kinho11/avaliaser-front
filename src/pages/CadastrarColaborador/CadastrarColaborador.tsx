@@ -51,7 +51,7 @@ export const CadastrarColaborador = () => {
   };
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
-  if(infosUsuario.cargo !== "ROLE_ADMIN") return <Navigate to="/"/>
+  if(infosUsuario.cargo !== "Admin") return <Navigate to="/"/>
 
   return (
     <>

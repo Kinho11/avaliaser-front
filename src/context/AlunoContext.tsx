@@ -22,7 +22,7 @@ export const AlunoProvider = ({ children }: IChildren) => {
        }).then((response) => { 
         console.log(response.data)
         const usuarioLogado = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
-        const cargoSplitado = usuarioLogado.cargo.split("_")[1].toLowerCase();
+        const cargoSplitado = usuarioLogado.cargo.split(" ")[0].toLowerCase();
         navigate(`/dashboard/${cargoSplitado}`);
         toast.success("Aluno cadastrado com sucesso!", toastConfig); 
       })

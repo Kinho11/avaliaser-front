@@ -75,7 +75,7 @@ export const Login = () => {
     }
   };
 
-  const cargoSplitado = infosUsuario?.cargo?.split("_")[1].toLowerCase();
+  const cargoSplitado = infosUsuario?.cargo?.split(" ")[0].toLowerCase();
   if(tokenAuth) return <Navigate to={`/dashboard/${cargoSplitado}`} />
 
   return (
@@ -135,11 +135,11 @@ export const Login = () => {
               </FormControl>
 
               <Button id="botao-logar" size="medium" type="submit" endIcon={<LoginOutlined />} sx={{ width: "30%", backgroundColor: "#1e62fe" }} variant="contained">Entrar</Button>
-              
             </Stack>
             <Typography variant="body1" onClick={handleOpen} sx={{ marginTop: "20px", textDecoration: "underline", color: "#1e62fe", cursor: "pointer", fontWeight: "600", transition: "0.3s", display: "inline-block", "&:hover": { opacity: "0.6", transition: "0.3s" } }}>Redefinir senha</Typography>
           </Box>
 
+          {/* Modal Redefinir Senha */}
           <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-titulo" aria-describedby="modal-modal-description" sx={{ backdropFilter: "blur(10px)" }}>
             <Box sx={style} component="form" onSubmit={(e) => {
               e.preventDefault();

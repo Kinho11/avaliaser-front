@@ -39,7 +39,6 @@ export const AdminProvider = ({ children }: IChildren) =>{
       await API.put(`/administrador/atualizar-usuario/${id}`, dadosEditados);
       navigate("/dashboard/admin")
       toast.success("Colaborador editado com sucesso!", toastConfig);
-
       if(imagem){
         await API.put(`/administrador/upload-imagem/${id}`, imagem, { 
           headers: { Authorization: localStorage.getItem("token") }
@@ -71,7 +70,7 @@ export const AdminProvider = ({ children }: IChildren) =>{
     try {
       nProgress.start();
       API.defaults.headers.common["Authorization"] = token;
-      const { data } = await API.get(`/administrador/listar-usuarios?paginaQueEuQuero=0&tamanhoDeRegistrosPorPagina=1000`)
+      const { data } = await API.get(`/administrador/listar-usuarios?page=0&size=1000`)
       setColaborador(data.elementos)
     } catch (error) {
       toast.error("Houve algum erro", toastConfig);
