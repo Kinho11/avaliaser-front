@@ -39,6 +39,7 @@ function AppRoutes() {
               <Route path="*" element={<NotFound />} />
               {/* Redefinir senha com token e email */}
               <Route path="/redefinir-senha" element={<RedefinirSenha />} />
+              <Route path="/intermediaria" element={<Intermediaria/>}/>
 
               <Route element={<RotaPrivada />}>
                 {/* Rotas admin */}
@@ -60,7 +61,6 @@ function AppRoutes() {
 
                 {/* Trocar senha logado */}
                 <Route path="/alterar-senha" element={<AlterarSenha />} />
-
                 <Route path="/recuperar-senha" element={<Intermediaria />} />
               </Route>
             </Routes>
