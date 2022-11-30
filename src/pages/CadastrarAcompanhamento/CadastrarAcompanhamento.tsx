@@ -1,7 +1,7 @@
 import { Box, Typography, Stack, FormControl, TextField } from "@mui/material"
 import React from "react"
 import { Header } from "../../components/Header/Header"
-import logo from "../../assets/dbc-logo.png";
+import logo from "../../assets/dbc-logo.webp";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CadastrarAcompanhamentoSchema } from "../../utils/schemas";

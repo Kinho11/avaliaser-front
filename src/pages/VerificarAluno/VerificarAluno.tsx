@@ -4,7 +4,7 @@ import { Header } from "../../components/Header/Header";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 
 
-import logo from "../../assets/dbc-logo.png";
+import logo from "../../assets/dbc-logo.webp";
 import { useState } from "react";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

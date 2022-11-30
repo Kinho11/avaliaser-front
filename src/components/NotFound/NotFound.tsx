@@ -1,7 +1,7 @@
 import { Box, Button } from "@mui/material"
 import { useNavigate } from "react-router-dom";
 
-import logo from "../../assets/logo-branco.png";
+import logo from "../../assets/logo-branco.webp";
 
 export const NotFound = () => {
   const navigate = useNavigate();

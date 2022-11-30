@@ -6,8 +6,8 @@ import { userSchema } from "../../utils/schemas";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../utils/toast";
 
-import backgroundLogin from "../../assets/bg-login.png";
-import logo from "../../assets/dbc-logo.png";
+import backgroundLogin from "../../assets/bg-login.webp";
+import logo from "../../assets/dbc-logo.webp";
 
 import { Box, Button, Typography, Stack, InputLabel, OutlinedInput, InputAdornment, IconButton, FormControl, Modal } from "@mui/material";
 import { LoginOutlined, Visibility, VisibilityOff, Email, ForwardToInbox } from "@mui/icons-material";

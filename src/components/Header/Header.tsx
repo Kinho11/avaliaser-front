@@ -4,7 +4,7 @@ import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Avatar, Button, Too
 import {  AssignmentInd, LockReset, ExitToApp, AddBox, Chat, PersonAdd } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import logo from "../../assets/dbc-logo.png";
+import logo from "../../assets/dbc-logo.webp";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
