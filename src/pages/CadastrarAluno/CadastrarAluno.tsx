@@ -86,6 +86,8 @@ export const CadastrarAluno = () => {
               </Select>
               {errors.stack && <Typography id="erro-selectAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.stack.message}</Typography>}
             </FormControl>
+            <Typography variant="body1" sx={{fontWeight:"700", display: "inline-block", marginTop: "10px", paddingBottom: 0, marginBottom: 0, color: "#ff9800"}} >*Imagens são opcionais</Typography>
+            <Typography variant="body1" sx={{fontWeight:"700", display: "inline-block", paddingTop: 0, marginTop: 0, color: "#ff9800"}} >*Só são aceitas imagens com extensão .jpg</Typography>
           </Stack>
           <Stack component="div" spacing={2} sx={{ width: {
             xs:"100%",
@@ -101,7 +103,7 @@ export const CadastrarAluno = () => {
               <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir Foto</Typography>
             </Button>
 
-            <Box sx={{display:"flex",width:"100%",height:"110%", justifyContent:"end",marginTop:"40px!important"}}>
+            <Box sx={{display:"flex",width:"100%",maxHeight:"100%", justifyContent:"end",marginTop:"40px!important"}}>
               <Button color="success" type="submit" variant="contained" sx={{textTransform: "capitalize", width:{
                 xs:"15ch",
                 md:"15ch"

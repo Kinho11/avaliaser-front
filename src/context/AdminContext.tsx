@@ -35,10 +35,12 @@ export const AdminProvider = ({ children }: IChildren) =>{
   const editarColaborador = async (dadosEditados: IColaboradorEditado, id: number, imagem: FileList | undefined) => {
     try {
       nProgress.start();
-      API.defaults.headers.common["Authorization"] = token;
-      await API.put(`/administrador/atualizar-usuario/${id}`, dadosEditados);
-      navigate("/dashboard/admin")
-      toast.success("Colaborador editado com sucesso!", toastConfig);
+      await API.put(`/administrador/atualizar-usuario/${id}`, dadosEditados, {
+        headers: { Authorization: localStorage.getItem("token") }
+      }).then((response) => {
+        navigate("/dashboard/admin")
+        toast.success("Colaborador editado com sucesso!", toastConfig);
+      });
       if(imagem){
         await API.put(`/administrador/upload-imagem/${id}`, imagem, { 
           headers: { Authorization: localStorage.getItem("token") }
@@ -57,7 +59,7 @@ export const AdminProvider = ({ children }: IChildren) =>{
     try {
       nProgress.start();
       API.defaults.headers.common["Authorization"] = token;
-      await API.put(`/administrador/upload-imagem/${idColaboradorCadastrado}?idUsuario=${idColaboradorCadastrado}`, imagem)
+      await API.put(`/administrador/upload-imagem/${idColaboradorCadastrado}`, imagem)
       toast.success("Foto enviada com sucesso", toastConfig);
     } catch (error) {
       toast.error("Foto não enviada", toastConfig)
