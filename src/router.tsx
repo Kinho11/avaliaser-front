@@ -21,6 +21,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
 import { AvaliarAcompanhamento } from "./pages/AvaliarAcompanhamento/AvaliarAcompanhamento";
+import { CadastrarFeedback } from "./pages/CadastrarFeedback/CadastrarFeedback";
 
 function AppRoutes() {
   return (
@@ -50,6 +51,7 @@ function AppRoutes() {
                 {/* Rotas Instrutor */}
                 <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
                 <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
+                <Route path="/cadastrar-feedback" element={<CadastrarFeedback/>}/>
 
                 {/* Trocar senha logado */}
                 <Route path="/alterar-senha" element={<AlterarSenha />} />

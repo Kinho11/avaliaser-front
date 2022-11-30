@@ -178,7 +178,7 @@ export const Header = () => {
                   <Typography onClick={() => navigate("/cadastrar-aluno")} textAlign="center">Cadastrar aluno</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Cadastrar feedback</Typography>
+                  <Typography onClick={()=>{navigate("/cadastrar-feedback")}} textAlign="center">Cadastrar feedback</Typography>
                 </MenuItem>
               </Menu>
             </Box>
@@ -193,7 +193,7 @@ export const Header = () => {
 
               <Button variant="outlined" id="cadastrar-aluno-instrutor" onClick={() => navigate("/cadastrar-aluno")} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<PersonAdd />}>Cadastrar aluno</Button>
 
-              <Button variant="outlined" id="cadastrar-feedback-instrutor" onClick={handleCloseNavMenu} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<Chat />}>Cadastrar feedback</Button>
+              <Button variant="outlined" id="cadastrar-feedback-instrutor" onClick={() => { handleCloseUserMenu(); navigate("/cadastrar-feedback")}} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<Chat />}>Cadastrar feedback</Button>
             </Box>
 
             <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}>
