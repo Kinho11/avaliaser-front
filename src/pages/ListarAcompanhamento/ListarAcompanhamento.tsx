@@ -113,7 +113,10 @@ export const ListarAcompanhamento = () => {
                       {acompanhamentos.idAcompanhamento}
                     </StyledTableCell>
                     <StyledTableCell id="titulo" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{acompanhamentos.titulo}</StyledTableCell>  
-                    <StyledTableCell id="dataInicio" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.dataInicio}</StyledTableCell>
+                    <StyledTableCell id="dataInicio" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.dataInicio.replace(
+                        /(\d{4})-(\d{2})-(\d{2})/,
+                        "$3/$2/$1"
+                      )}</StyledTableCell>
                     <StyledTableCell id="descricao" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.descricao}</StyledTableCell>
                     <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
                     onClick={()=>{navigate("/avaliar-acompanhamneto",{state: acompanhamentos})}}
