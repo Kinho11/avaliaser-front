@@ -2,23 +2,20 @@ import { Header } from "../../components/Header/Header";
 
 import { Box, FormControl, TextField, Stack, Typography, InputLabel, MenuItem, Select, Avatar, Button } from "@mui/material";
 
-import { useState, useEffect } from "react";
+import { useContext, useState } from "react";
 
 import { toast } from "react-toastify";
 import { toastConfig } from "../../utils/toast";
 
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import { alunoSchema} from "../../utils/schemas";
 import { useForm } from "react-hook-form";
-
-interface IAluno{
-  nomeCompletoAluno: string,
-  emailAluno: string,
-  selectAluno: string
-}
+import { ICadastroAluno } from "../../utils/interface";
+import { AlunoContext } from "../../context/AlunoContext";
 
 export const CadastrarAluno = () => {
+  const { criarAluno } = useContext(AlunoContext)
+
   const [selectedImage, setSelectedImage] = useState();
   const [verificarEmail, setVerificarEmail] = useState("");
 
@@ -28,27 +25,18 @@ export const CadastrarAluno = () => {
     }
   };
 
-  
-  const {register, handleSubmit, formState: { errors }} = useForm<IAluno>({
+  const {register, handleSubmit, formState: { errors }} = useForm<ICadastroAluno>({
     resolver: yupResolver(alunoSchema)
   });
 
-  const cadastroAluno = (data: IAluno) =>{
+  const cadastroAluno = (data: ICadastroAluno) => {
     const dominio = verificarEmail.split("@");
-    if(dominio[1] === "dbccompany.com.br") {
-      console.log(data);
-      console.log(selectedImage);
-      toast.success("Aluno cadastrado com sucesso!", toastConfig);
+    if(dominio[1] === "dbccompany.com.br"){
+      criarAluno(data);
     } else {
       toast.error("Por favor digite um email válido. Ex: fulano@dbccompany.com.br", toastConfig);
     }
   };
-
-  
-  useEffect(() => {
-    console.log(selectedImage);
-  }, [selectedImage]);
-
 
   return (
     <>
@@ -76,28 +64,28 @@ export const CadastrarAluno = () => {
               xs:"100%",
               md:"100%"
             } }}>
-              <TextField id="nomeCompletoAluno" label="Nome Completo" placeholder="Fulano da Silva" variant="filled" error={!!errors.nomeCompletoAluno}  {...register("nomeCompletoAluno")} focused />
-              {errors.nomeCompletoAluno && <Typography id="erro-nomeCompletoAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.nomeCompletoAluno.message}</Typography>}
+              <TextField id="nomeCompletoAluno" label="Nome Completo" placeholder="Fulano da Silva" variant="filled" error={!!errors.nome}  {...register("nome")} focused />
+              {errors.nome && <Typography id="erro-nomeCompletoAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.nome.message}</Typography>}
             </FormControl>
             <FormControl sx={{ width:  {
               xs:"100%",
               md:"100%"
             } }}>
-              <TextField id="emailAluno" label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" {...register("emailAluno")} onChange={(e) => setVerificarEmail(e.target.value)} focused />
-              {errors.emailAluno && <Typography id="erro-emailAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.emailAluno.message}</Typography>}
+              <TextField id="emailAluno" label="E-mail DBC" placeholder="fulano.silva@dbccompany.com.br" variant="filled" {...register("email")} onChange={(e) => setVerificarEmail(e.target.value)} focused />
+              {errors.email && <Typography id="erro-emailAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
             </FormControl>
             <FormControl variant="filled" sx={{ width:  {
               xs:"100%",
               md:"100%"
             } }}>
               <InputLabel id="selectAluno">Trilha do Aluno</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="selectAluno" error={!!errors.selectAluno}  {...register("selectAluno")}>
+              <Select labelId="demo-simple-select-filled-label" id="select-trilha" error={!!errors.stack}  {...register("stack")}>
                 <MenuItem value=""><em>Selecione a Trilha</em></MenuItem>
-                <MenuItem value="frontend">Front-End</MenuItem>
-                <MenuItem value="backend">Back-End</MenuItem>
-                <MenuItem value="qa">Quality Assurance</MenuItem>
+                <MenuItem value="FRONTEND">Front-End</MenuItem>
+                <MenuItem value="BACKEND">Back-End</MenuItem>
+                <MenuItem value="QA">Quality Assurance</MenuItem>
               </Select>
-              {errors.selectAluno && <Typography id="erro-selectAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.selectAluno.message}</Typography>}
+              {errors.stack && <Typography id="erro-selectAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.stack.message}</Typography>}
             </FormControl>
           </Stack>
           <Stack component="div" spacing={2} sx={{ width: {

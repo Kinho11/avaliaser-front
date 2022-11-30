@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-import { IAuth, IChildren, IUsuario, IUsuarioLogado } from "../utils/interface";
+import { IAuth, IChildren, ISenhas, IUsuario, IUsuarioLogado } from "../utils/interface";
 
 import nProgress from 'nprogress';
 import { toast } from "react-toastify";
@@ -46,6 +46,22 @@ export const AuthProvider = ({ children }: IChildren) => {
     setTokenAuth('');
   };
 
+  const trocarSenhaLogado = async (senhas: ISenhas) => {
+    try {
+      nProgress.start();
+      await API.put("/auth/alterar-senha-usuario-logado", senhas, { 
+        headers: { Authorization: localStorage.getItem("token") }
+       }).then((response) => {
+        console.log(response.data)
+        toast.success("Senha atualizada com sucesso.", toastConfig)
+      })
+    } catch (error) {
+      toast.error("Houve um erro", toastConfig)
+    } finally {
+      nProgress.done();
+    }
+  }
+
   const redefinirSenha = async (email: string) => {
     try {
       nProgress.start()
@@ -62,7 +78,7 @@ export const AuthProvider = ({ children }: IChildren) => {
   }
 
   return (
-    <AuthContext.Provider value={{ tokenAuth, usuarioLogin, usuarioLogado, redefinirSenha, usuarioLogout }}>
+    <AuthContext.Provider value={{ tokenAuth, usuarioLogin, usuarioLogado, redefinirSenha, usuarioLogout, trocarSenhaLogado }}>
       {children}
     </AuthContext.Provider>
   );

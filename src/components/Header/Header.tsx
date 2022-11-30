@@ -69,7 +69,7 @@ export const Header = () => {
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => { handleCloseUserMenu(); navigate("/alterar-senha"); }}>
                   <ListItemIcon>
                     <LockReset fontSize="medium" />
                   </ListItemIcon>
@@ -110,7 +110,7 @@ export const Header = () => {
                   <Typography onClick={() => navigate("/cadastrar-aluno")} textAlign="center">Cadastrar aluno</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Cadastrar acompanhamento</Typography>
+                  <Typography onClick={() => navigate("/cadastrar-acompanhamento")}  textAlign="center">Cadastrar acompanhamento</Typography>
                 </MenuItem>
               </Menu>
             </Box>
@@ -125,7 +125,7 @@ export const Header = () => {
 
               <Button variant="outlined" id="cadastrar-aluno-gestor" onClick={() => navigate("/cadastrar-aluno")} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<PersonAdd />}>Cadastrar aluno</Button>
 
-              <Button variant="outlined" id="cadastrar-acompanhamento-gestor" onClick={handleCloseNavMenu} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<AddBox />}>Cadastrar acompanhamento</Button>
+              <Button variant="outlined" id="cadastrar-acompanhamento-gestor"  onClick={() => { handleCloseUserMenu(); navigate("/cadastrar-acompanhamento"); }} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<AddBox />}>Cadastrar acompanhamento</Button>
             </Box>
             <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}>
               <Typography id="boas-vindas-gestor" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {primeiroNome}!</Typography>
@@ -135,14 +135,14 @@ export const Header = () => {
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => { handleCloseUserMenu(); navigate("/alterar-senha"); }}>
                   <ListItemIcon>
                     <LockReset fontSize="medium" />
                   </ListItemIcon>
                   <Typography textAlign="center">Trocar senha</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem  onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => { handleCloseUserMenu(); usuarioLogout(); }}>
                   <ListItemIcon>
                     <ExitToApp fontSize="medium" />
                   </ListItemIcon>
@@ -176,7 +176,7 @@ export const Header = () => {
                   <Typography onClick={() => navigate("/cadastrar-aluno")} textAlign="center">Cadastrar aluno</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Cadastrar feedback</Typography>
+                  <Typography onClick={()=>{navigate("/cadastrar-feedback")}} textAlign="center">Cadastrar feedback</Typography>
                 </MenuItem>
               </Menu>
             </Box>
@@ -191,7 +191,7 @@ export const Header = () => {
 
               <Button variant="outlined" id="cadastrar-aluno-instrutor" onClick={() => navigate("/cadastrar-aluno")} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<PersonAdd />}>Cadastrar aluno</Button>
 
-              <Button variant="outlined" id="cadastrar-feedback-instrutor" onClick={handleCloseNavMenu} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<Chat />}>Cadastrar feedback</Button>
+              <Button variant="outlined" id="cadastrar-feedback-instrutor" onClick={() => { handleCloseUserMenu(); navigate("/cadastrar-feedback")}} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<Chat />}>Cadastrar feedback</Button>
             </Box>
 
             <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}>
@@ -202,14 +202,14 @@ export const Header = () => {
                 </IconButton>
               </Tooltip>
               <Menu sx={{ mt: "45px" }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{ vertical: "top", horizontal: "right" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "right" }} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => { handleCloseUserMenu(); navigate("/alterar-senha"); }}>
                   <ListItemIcon>
                     <LockReset fontSize="medium" />
                   </ListItemIcon>
                   <Typography textAlign="center">Trocar senha</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem  onClick={handleCloseUserMenu}>
+                <MenuItem onClick={() => { handleCloseUserMenu(); usuarioLogout(); }}>
                   <ListItemIcon>
                     <ExitToApp fontSize="medium" />
                   </ListItemIcon>

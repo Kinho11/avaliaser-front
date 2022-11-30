@@ -4,6 +4,7 @@ import { Header } from "../../components/Header/Header";
 import { TableCell, tableCellClasses, TableRow, Typography, Box, Paper, TableContainer, Table, TableBody, Button, TablePagination,styled } from "@mui/material";
 
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
+import { useNavigate } from "react-router-dom";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -67,7 +68,7 @@ const data =[
 export const DashboardGestor = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
+  const navigate = useNavigate()
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -85,7 +86,7 @@ export const DashboardGestor = () => {
         <Typography  sx={{textAlign: "center", fontSize: {
           xs:30,
           md:44
-        },marginTop:"50px",fontWeight:"700",color:"white"}} variant="h3">Dashboard Acompanhamentos</Typography>
+        },marginTop:"50px",fontWeight:"700",color:"white"}} variant="h3">Dashboard Alunos</Typography>
         <Paper sx={{ width: {
           xs:"95%",
           md:"65%"
@@ -113,7 +114,9 @@ export const DashboardGestor = () => {
                     </StyledTableCell>
                     <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.dataInicial}</StyledTableCell>  
                     <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{data.descricao}</StyledTableCell>
-                    <StyledTableCell id="cargo" sx={{textAlign:"center"}}  ><Button id="botao-editar-admin" title="Avaliar acompanhamento"><AssignmentTurnedInIcon/></Button></StyledTableCell>
+                    <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
+                    onClick={()=>{navigate("/avaliar-acompanhamneto",{state: data})}}
+                    title="Avaliar acompanhamento"><AssignmentTurnedInIcon/></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
