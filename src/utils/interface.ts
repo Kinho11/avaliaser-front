@@ -14,6 +14,7 @@ export interface IAuth {
   redefinirSenha: (email: string) => Promise<void>,
   usuarioLogout: () => void,
   trocarSenhaLogado: (senhas: ISenhas) => Promise<void>,
+  recuperarSenha: (senha: string) => Promise<void>,
   tokenAuth: string | null,
   usuarioLogado: any | undefined
 }

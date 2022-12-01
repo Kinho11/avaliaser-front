@@ -31,7 +31,7 @@ export const editarColaboradorSchema = yup.object().shape({
 });
 
 export const redefinirSenhaSchema = yup.object().shape({
-  novaSenha: yup.string().required("Por favor, digite sua nova senha").min(3,"A nova senha deve conter no mínimo 3 caracteres"),
+  novaSenha: yup.string().required("Por favor, digite sua nova senha").min(8,"A nova senha deve conter no mínimo 8 caracteres"),
   confirmarNovaSenha: yup.string().required("Por favor, confirme sua nova senha.").oneOf([yup.ref("novaSenha")],"As senhas devem corresponder!")
 });
 

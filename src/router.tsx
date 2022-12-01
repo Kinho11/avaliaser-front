@@ -14,6 +14,9 @@ import { VerificarAluno } from "./pages/VerificarAluno/VerificarAluno";
 import { AvaliarAcompanhamento } from "./pages/AvaliarAcompanhamento/AvaliarAcompanhamento";
 import { CadastrarFeedback } from "./pages/CadastrarFeedback/CadastrarFeedback";
 import { ListarAcompanhamento } from "./pages/ListarAcompanhamento/ListarAcompanhamento";
+import { EditarAcompanhamento } from "./pages/EditarAcompanhamento/EditarAcompanhamento";
+import { EditarFeedback } from "./pages/EditarFeedback/EditarFeedback";
+import { EditarUsuario } from "./pages/EditarUsuario/EditarUsuario";
 
 import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
 import { Intermediaria } from "./components/Intermediaria/Intermediaria";
@@ -28,9 +31,6 @@ import { AdminProvider } from "./context/AdminContext";
 import { AlunoProvider } from "./context/AlunoContext";
 import { GestorProvider } from "./context/GestorContext";
 import { ListarFeedback } from "./pages/ListarFeedback/ListarFeedback";
-import { EditarAcompanhamento } from "./pages/EditarAcompanhamento/EditarAcompanhamento";
-import { EditarFeedback } from "./pages/EditarFeedback/EditarFeedback";
-import { EditarUsuario } from "./pages/EditarUsuario/EditarUsuario";
 
 function AppRoutes() {
   return (
@@ -42,11 +42,11 @@ function AppRoutes() {
           <AlunoProvider>
           <GestorProvider>
             <Routes>
-              <Route path="/" element={<Login />} />
+              <Route index element={<Login />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/recuperar-senha" element={<Intermediaria />} />
               {/* Redefinir senha com token e email */}
               <Route path="/redefinir-senha" element={<RedefinirSenha />} />
-              <Route path="/intermediaria" element={<Intermediaria/>}/>
 
               <Route element={<RotaPrivada />}>
                 {/* Rotas admin */}
@@ -72,8 +72,7 @@ function AppRoutes() {
 
                 {/* Trocar senha logado */}
                 <Route path="/alterar-senha" element={<AlterarSenha />} />
-                <Route path="/recuperar-senha" element={<Intermediaria />} />
-                <Route path="/editar-usuario" element={<EditarUsuario/>}/>
+                <Route path="/editar-usuario" element={<EditarUsuario />}/>
               </Route>
             </Routes>
           </GestorProvider>
