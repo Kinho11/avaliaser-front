@@ -103,7 +103,7 @@ export const Login = () => {
                 md: "70%"
               } }} variant="outlined">
                 <InputLabel htmlFor="email"  error={!!errors.email}>Email</InputLabel>
-                <OutlinedInput id="email" type="email" error={!!errors.email} {...register("email")}  placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
+                <OutlinedInput id="email" type="email" error={!!errors.email} {...register("email")} placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
                   <InputAdornment position="end">
                     <IconButton edge="end" sx={{ cursor: "initial", ":hover": {background: "transparent"} }}>
                       <Email />

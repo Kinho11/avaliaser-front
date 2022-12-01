@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-import { IAuth, IChildren, ISenhas, IUsuario, IUsuarioLogado } from "../utils/interface";
+import { IAuth, IChildren, IEditarNome, ISenhas, IUsuario, IUsuarioLogado } from "../utils/interface";
 
 import nProgress from 'nprogress';
 import { toast } from "react-toastify";
@@ -52,7 +52,6 @@ export const AuthProvider = ({ children }: IChildren) => {
       await API.put("/auth/alterar-senha-usuario-logado", senhas, { 
         headers: { Authorization: localStorage.getItem("token") }
        }).then((response) => {
-        console.log(response.data)
         toast.success("Senha atualizada com sucesso.", toastConfig)
         navigate(`/`);
       })
@@ -84,9 +83,9 @@ export const AuthProvider = ({ children }: IChildren) => {
       await API.put(`/auth/alterar-senha-usuario-recuperacao?senha=${senha}`, senha, {
         headers: { Authorization: localStorage.getItem("recuperarSenha") }
       }).then((response) => { 
+        localStorage.removeItem("recuperarSenha");
         toast.success("Senha atualizada com sucesso!", toastConfig);
         navigate('/')
-        localStorage.removeItem("recuperarSenha");
       })
     } catch (error) {
       toast.error("Não foi identificado permissão para realizar esta recuperação.", toastConfig);
@@ -95,8 +94,26 @@ export const AuthProvider = ({ children }: IChildren) => {
     }
   }
 
+  const editarPerfil = async (nome: IEditarNome) => {
+    try {
+      nProgress.start()
+      await API.put('/auth/atualizar-usuario-logado', nome, {
+        headers: { Authorization: localStorage.getItem("token") }
+      }).then((response) => {
+        localStorage.removeItem("infoUsuario");
+        localStorage.setItem("infoUsuario", JSON.stringify(response.data));
+        toast.success("Nome foi editado com sucesso!", toastConfig);
+        navigate('/')
+      })
+    } catch (error) {
+      toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);
+    } finally {
+      nProgress.done()
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ tokenAuth, usuarioLogin, usuarioLogado, redefinirSenha, usuarioLogout, trocarSenhaLogado, recuperarSenha }}>
+    <AuthContext.Provider value={{ tokenAuth, usuarioLogin, usuarioLogado, redefinirSenha, usuarioLogout, trocarSenhaLogado, recuperarSenha, editarPerfil }}>
       {children}
     </AuthContext.Provider>
   );
