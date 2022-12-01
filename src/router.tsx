@@ -27,6 +27,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import { AlunoProvider } from "./context/AlunoContext";
 import { GestorProvider } from "./context/GestorContext";
+import { ListarFeedback } from "./pages/ListarFeedback/ListarFeedback";
 
 function AppRoutes() {
   return (
@@ -62,6 +63,7 @@ function AppRoutes() {
                 <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
                 <Route path="/cadastrar-feedback" element={<CadastrarFeedback/>}/>
                 <Route path="/verificar-aluno" element={<VerificarAluno />} />
+                <Route path="/lista-feedback" element={<ListarFeedback/>}/>
 
                 {/* Trocar senha logado */}
                 <Route path="/alterar-senha" element={<AlterarSenha />} />
