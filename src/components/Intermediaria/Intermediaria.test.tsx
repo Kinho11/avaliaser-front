@@ -6,8 +6,8 @@ import { Intermediaria } from "./Intermediaria";
 test("Verifica se existe o container na página", () => {
   render(<Router><Intermediaria /></Router>);
 
-  const teste = screen.getByRole('main');
-  expect(teste).toBeInTheDocument();
+  const container = screen.getByRole('main');
+  expect(container).toBeInTheDocument();
 })
 
 test("Verifica se existe o logo DBC na página", () => {

@@ -77,7 +77,7 @@ export const CadastrarAluno = () => {
               md:"100%"
             } }}>
               <InputLabel id="selectAluno">Trilha do Aluno</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" value="initial" id="select-trilha" error={!!errors.stack}  {...register("stack")}>
+              <Select labelId="demo-simple-select-filled-label" defaultValue="initial" id="select-trilha" error={!!errors.stack}  {...register("stack")}>
                 <MenuItem value="initial" disabled><em>Selecione a Trilha</em></MenuItem>
                 <MenuItem value="FRONTEND">Front-End</MenuItem>
                 <MenuItem value="BACKEND">Back-End</MenuItem>

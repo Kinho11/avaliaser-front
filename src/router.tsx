@@ -54,7 +54,7 @@ function AppRoutes() {
                 <Route path="/dashboard/gestor" element={<DashboardGestor />} />
                 <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
                 <Route path="/cadastrar-acompanhamento" element={<CadastrarAcompanhamento/>}/>
-                <Route path="/avaliar-acompanhamneto" element={<AvaliarAcompanhamento/>} />
+                <Route path="/avaliar-acompanhamento" element={<AvaliarAcompanhamento/>} />
                 <Route path="/lista-acompanhamento" element={<ListarAcompanhamento/>}/>
 
                 {/* Rotas Instrutor */}

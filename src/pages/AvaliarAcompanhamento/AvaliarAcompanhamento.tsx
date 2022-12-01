@@ -17,6 +17,8 @@ interface IAvaliarAcompanhamento{
 
 export const AvaliarAcompanhamento = () => {
   const { state } = useLocation();
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+  const primeiroNome = infosUsuario.nome.split(" ")[0];
 
   const {register,handleSubmit, formState:{errors}} = useForm<IAvaliarAcompanhamento>({
     resolver: yupResolver(AvaliarAcompanhamentoSchema)
@@ -26,7 +28,6 @@ export const AvaliarAcompanhamento = () => {
     console.log(data)
   }
 
-  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   if(infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
 
   return (
@@ -63,17 +64,15 @@ export const AvaliarAcompanhamento = () => {
               md:"100%"
             } }}>
               <InputLabel id="acompanhamento">Acompanhamento</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="acompanhamento" error={!!errors.acompanhamento} {...register("acompanhamento")} value="AcompanhamentoUm">
-                <MenuItem value="AcompanhamentoUm">Acompanhamento 1</MenuItem>
-                <MenuItem value="AcompanhamentoDois">Acompanhamento 2</MenuItem>
-                <MenuItem value="AcompanhamentoTres">Acompanhamento 3</MenuItem>
+              <Select labelId="demo-simple-select-filled-label" id="acompanhamento" error={!!errors.acompanhamento} {...register("acompanhamento")} value="titulo">
+                <MenuItem value="titulo">{state.titulo}</MenuItem>
               </Select>
               {errors.acompanhamento && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.acompanhamento.message}</Typography>}
             </FormControl>
             
             <FormControl variant="filled">
 
-              <FormLabel sx={{color:"#1D58F9",fontWeight:"500",marginBottom:"10px"}} id="demo-controlled-radio-buttons-group">Selecionar uma trilha</FormLabel>
+              <FormLabel sx={{color:"#1D58F9",fontWeight:"500",marginBottom:"10px"}} id="demo-controlled-radio-buttons-group">Filtrar alunos por trilha</FormLabel>
 
               <Box sx={{display:"flex",gap:3}}>
                 <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
@@ -119,10 +118,8 @@ export const AvaliarAcompanhamento = () => {
               md:"100%"
             } }}>
               <InputLabel id="responsavel">Responsavel</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="responsavel" error={!!errors.responsavel} {...register("responsavel")} value="matheus">
-                <MenuItem value="matheus">Matheus</MenuItem>
-                <MenuItem value="noah">Noah</MenuItem>
-                <MenuItem value="gaby">Gaby</MenuItem>
+              <Select labelId="demo-simple-select-filled-label" id="responsavel" error={!!errors.responsavel} {...register("responsavel")} value="responsavel">
+                <MenuItem value="responsavel">{primeiroNome}</MenuItem>
               </Select>
               {errors.responsavel && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.responsavel.message}</Typography>}
             </FormControl>
@@ -131,8 +128,9 @@ export const AvaliarAcompanhamento = () => {
               xs:"100%",
               md:"100%"
             } }}>
-              <InputLabel id="tipo">Tipo</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" value="positivo" id="tipo" error={!!errors.tipo} {...register("tipo")}>
+              <InputLabel id="status">Status</InputLabel>
+              <Select labelId="demo-simple-select-filled-label" defaultValue="initial" id="status" error={!!errors.tipo} {...register("tipo")}>
+                <MenuItem value="initial" disabled><em>Selecione a Trilha</em></MenuItem>
                 <MenuItem value="positivo">Positivo</MenuItem>
                 <MenuItem value="atencao">Atencao</MenuItem>
               </Select>
@@ -155,7 +153,6 @@ export const AvaliarAcompanhamento = () => {
             <TextField
               id="descricao"
               error={!!errors.descricao}
-              defaultValue={state.descricao}
               label="Digite uma descrição"
               placeholder="Digite uma descrição"
               multiline

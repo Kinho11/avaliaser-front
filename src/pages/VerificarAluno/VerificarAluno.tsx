@@ -81,7 +81,7 @@ export const VerificarAluno = () => {
   };
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
-  if(infosUsuario.cargo !== "Instrutor") return <Navigate to="/"/>
+  if(infosUsuario.cargo !== "Instrutor" && infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
   
   return (
     <>

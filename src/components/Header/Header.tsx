@@ -108,6 +108,9 @@ export const Header = () => {
                   <Typography onClick={() => navigate("/dashboard/gestor")} textAlign="center">Dashboard</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography onClick={() => navigate("/lista-acompanhamento")} textAlign="center">Lista acompanhamentos</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-aluno")} textAlign="center">Cadastrar aluno</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
@@ -122,7 +125,9 @@ export const Header = () => {
             </Box>
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, gap: 2 }}>
-              <Button variant="outlined" id="dashboard-gestor" onClick={() => navigate("/dashboard/gestor")} sx={{ my: 2, display: "block", textTransform: "capitalize" }}>Dashboard</Button>
+              <Button variant="outlined" id="dashboard-gestor" onClick={() => navigate("/dashboard/gestor")} sx={{ my: 2, display: "block", textTransform: "capitalize" }}>Dashboard Alunos</Button>
+
+              <Button variant="outlined" id="lista-acompanhamentos"  onClick={() => { handleCloseUserMenu(); navigate("/lista-acompanhamento"); }} sx={{ my: 2, textTransform: "capitalize" }}>Lista Acompanhamentos</Button>
 
               <Button variant="outlined" id="cadastrar-aluno-gestor" onClick={() => navigate("/cadastrar-aluno")} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<PersonAdd />}>Cadastrar aluno</Button>
 
