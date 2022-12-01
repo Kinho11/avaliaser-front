@@ -2,6 +2,7 @@ import { Box, Typography, Stack,Button, Paper, styled, Table, TableBody, TableCe
 import { Navigate, useLocation, useNavigate } from "react-router-dom"
 import { Header } from "../../components/Header/Header";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
+import EditIcon from "@mui/icons-material/Edit";
 
 import logo from "../../assets/dbc-logo.webp";
 import { useContext, useEffect, useState } from "react";
@@ -220,8 +221,8 @@ export const VerificarAluno = () => {
                       )}</StyledTableCell>
                     <StyledTableCell id="descricao" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.descricao}</StyledTableCell>
                     <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
-                    onClick={()=>{navigate("/avaliar-acompanhamneto",{state: acompanhamentos})}}
-                    title="Avaliar acompanhamento"><AssignmentTurnedInIcon/></Button></StyledTableCell>
+                    onClick={()=>{navigate("/editar-acompanhamento",{state: acompanhamentos})}}
+                    title="Avaliar acompanhamento"><EditIcon/></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>

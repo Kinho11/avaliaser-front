@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { Navigate, useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header/Header"
 import { AlunoContext } from "../../context/AlunoContext";
+import EditIcon from "@mui/icons-material/Edit";
 
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -84,7 +85,7 @@ export const ListarFeedback = () => {
                     <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.nome}</StyledTableCell> 
                     <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{data.stack}</StyledTableCell>
                     <StyledTableCell id="cargo" sx={{textAlign:"center"}}>
-                      <Button id="botao-avaliar-acompanhamento" onClick={() => { navigate("/avaliar-acompanhamneto", {state: data}) }} title="Avaliar acompanhamento"><AssignmentTurnedInIcon/>
+                      <Button id="botao-avaliar-acompanhamento" onClick={() => { navigate("/editar-feedback", {state: data}) }} title="Avaliar acompanhamento"><EditIcon/>
                     </Button>
                     <Button id="botao-deletar-gestor" title="Deletar" onClick={() => deletarAluno(data.idAluno)}><DeleteForeverIcon /></Button>
                     </StyledTableCell>

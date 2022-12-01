@@ -7,8 +7,8 @@ import { AlunoContext } from "../../context/AlunoContext";
 import { ListarAlunos } from "../../components/ListarAlunos/ListarAlunos";
 
 export const DashboardGestor = () => {
-  const { getAlunos, alunos, deletarAluno } = useContext(AlunoContext);
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+  const { getAlunos, alunos, deletarAluno } = useContext(AlunoContext);
 
   useEffect(() => { getAlunos(); }, [])
 

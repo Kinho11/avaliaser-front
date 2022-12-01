@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
 
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Avatar, Button, Tooltip, MenuItem, Divider, ListItemIcon } from "@mui/material";
-import {  AssignmentInd, LockReset, ExitToApp, AddBox, Chat, PersonAdd } from "@mui/icons-material";
+import {  AssignmentInd, LockReset, ExitToApp, AddBox, Chat, PersonAdd,PersonPin } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
-
 import logo from "../../assets/dbc-logo.webp";
 
 import { useNavigate } from "react-router-dom";
@@ -77,6 +76,13 @@ export const Header = () => {
                   <Typography textAlign="center">Trocar senha</Typography>
                 </MenuItem>
                 <Divider />
+                <MenuItem onClick={() => { handleCloseUserMenu(); navigate("/editar-usuario"); }}>
+                  <ListItemIcon>
+                    <PersonPin fontSize="medium" />
+                  </ListItemIcon>
+                  <Typography textAlign="center">Editar</Typography>
+                </MenuItem>
+                <Divider />
                 <MenuItem onClick={() => { handleCloseUserMenu(); usuarioLogout(); }}>
                   <ListItemIcon>
                     <ExitToApp fontSize="medium" />
@@ -148,6 +154,13 @@ export const Header = () => {
                   <Typography textAlign="center">Trocar senha</Typography>
                 </MenuItem>
                 <Divider />
+                <MenuItem onClick={() => { handleCloseUserMenu(); navigate("/editar-usuario"); }}>
+                  <ListItemIcon>
+                    <PersonPin fontSize="medium" />
+                  </ListItemIcon>
+                  <Typography textAlign="center">Editar</Typography>
+                </MenuItem>
+                <Divider />
                 <MenuItem onClick={() => { handleCloseUserMenu(); usuarioLogout(); }}>
                   <ListItemIcon>
                     <ExitToApp fontSize="medium" />
@@ -179,6 +192,9 @@ export const Header = () => {
                   <Typography onClick={() => navigate("/dashboard/instrutor")} textAlign="center">Dashboard</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography onClick={() => navigate("/lista-feedback")} textAlign="center">Lista feedback</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-aluno")} textAlign="center">Cadastrar aluno</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
@@ -194,6 +210,8 @@ export const Header = () => {
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, gap: 2 }}>
               <Button variant="outlined" id="dashboard-instrutor" onClick={() => navigate("/dashboard/instrutor")} sx={{ my: 2, display: "block", textTransform: "capitalize" }}>Dashboard</Button>
+
+              <Button variant="outlined" id="dashboard-instrutor" onClick={() => navigate("/lista-feedback")} sx={{ my: 2, display: "block", textTransform: "capitalize" }}>Lista feedback</Button>
 
               <Button variant="outlined" id="cadastrar-aluno-instrutor" onClick={() => navigate("/cadastrar-aluno")} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<PersonAdd />}>Cadastrar aluno</Button>
 
@@ -213,6 +231,13 @@ export const Header = () => {
                     <LockReset fontSize="medium" />
                   </ListItemIcon>
                   <Typography textAlign="center">Trocar senha</Typography>
+                </MenuItem>
+                <Divider />
+                <MenuItem onClick={() => { handleCloseUserMenu(); navigate("/editar-usuario"); }}>
+                  <ListItemIcon>
+                    <PersonPin fontSize="medium" />
+                  </ListItemIcon>
+                  <Typography textAlign="center">Editar</Typography>
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={() => { handleCloseUserMenu(); usuarioLogout(); }}>
