@@ -28,8 +28,13 @@ export const CadastrarAluno = () => {
     resolver: yupResolver(alunoSchema)
   });
 
+  const imagemAPI = new FormData();
+  if(selectedImage) {
+    imagemAPI.append("file", selectedImage)
+  }
+
   const cadastroAluno = (data: ICadastroAluno) => {
-    criarAluno(data);
+    criarAluno(data, imagemAPI);
   };
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");

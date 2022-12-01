@@ -35,7 +35,7 @@ export interface IAdmin{
 export interface IAluno {
   getAlunos: () => Promise<void>,
   deletarAluno: (id: number) => Promise<void>,
-  criarAluno: (infosAluno: ICadastroAluno) => Promise<void>,
+  criarAluno: (infosAluno: ICadastroAluno, imagem: FormData) => Promise<void>,
   alunos: IAlunosCadastrados[]
 }
 

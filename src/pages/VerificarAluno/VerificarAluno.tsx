@@ -1,10 +1,9 @@
-import { Box, Typography, Stack,Button, Paper, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TablePagination, TableRow } from "@mui/material";
+import { Box, Typography, Stack,Button, Paper, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TablePagination, TableRow, Avatar } from "@mui/material";
 import { Navigate, useLocation, useNavigate } from "react-router-dom"
 import { Header } from "../../components/Header/Header";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import EditIcon from "@mui/icons-material/Edit";
 
-import logo from "../../assets/dbc-logo.webp";
 import { useContext, useEffect, useState } from "react";
 import { GestorContext } from "../../context/GestorContext";
 
@@ -56,7 +55,6 @@ const data =[
 
 export const VerificarAluno = () => {
   const { state } = useLocation();
-  console.log(state)
 
   const { acompanhamento, pegarAcompanhamento } = useContext(GestorContext);
 
@@ -73,7 +71,6 @@ export const VerificarAluno = () => {
   };
 
   useEffect(() => { pegarAcompanhamento() }, [])
-
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   if(infosUsuario.cargo !== "Instrutor" && infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
@@ -114,10 +111,7 @@ export const VerificarAluno = () => {
             },flexDirection:{
               xs:"column",
               md:"row"
-            },alignItems:"center",justifyContent:"space-between",width:"100%",marginBottom:{
-              xs:"25px",
-              md:"35px"
-            }}}>
+            },alignItems:"center",justifyContent:"space-between",width:"100%", marginTop: "-10px"}}>
               <Box sx={{display:"flex",flexWrap:"wrap",width:{
                 xs:"100%",
                 md:"80%"
@@ -126,9 +120,8 @@ export const VerificarAluno = () => {
                 <Typography sx={{whiteSpace:"nowrap"}}>Turma: <span style={{fontWeight:700}}>{state.stack}</span></Typography>
                 <Typography sx={{whiteSpace:"nowrap"}}>Email: <span style={{fontWeight:700}}>{state.email}</span></Typography>
               </Box>
-              <img src={logo} style={{borderRadius:"50px",margin:"0 auto"}} alt="" width={100} />
+              <Avatar alt="Foto API" src={`data:image/jpeg;base64,${state.foto}`} sx={{ width: 50, height: 50 }} />
             </Box>
-
 
             <Paper sx={{ width: {
               xs:"95%",
