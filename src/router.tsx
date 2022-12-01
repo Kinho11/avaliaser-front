@@ -31,7 +31,8 @@ import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import { AlunoProvider } from "./context/AlunoContext";
 import { GestorProvider } from "./context/GestorContext";
-import { ListarFeedback } from "./pages/ListarFeedback/ListarFeedback";
+import { EditarAcompanhamento } from "./pages/EditarAcompanhamento/EditarAcompanhamento";
+import { InstrutorProvider } from "./context/InstrutorContext";
 
 function AppRoutes() {
   return (
@@ -43,40 +44,43 @@ function AppRoutes() {
           <AlunoProvider>
           <GestorProvider>
             <InstrutorProvider>
-              <Routes>
-                <Route index element={<Login />} />
-                <Route path="*" element={<NotFound />} />
-                <Route path="/recuperar-senha" element={<Intermediaria />} />
-                {/* Redefinir senha com token e email */}
-                <Route path="/redefinir-senha" element={<RedefinirSenha />} />
 
-                <Route element={<RotaPrivada />}>
-                  {/* Rotas admin */}
-                  <Route path="/dashboard/admin" element={<DashboardAdmin />} />
-                  <Route path="/cadastrar-colaborador" element={<CadastrarColaborador />} />
-                  <Route path="/editar-colaborador" element={<EditarColaborador />} />
+                <Routes>
+                  <Route index element={<Login />} />
+                  <Route path="*" element={<NotFound />} />
+                  <Route path="/recuperar-senha" element={<Intermediaria />} />
+                  {/* Redefinir senha com token e email */}
+                  <Route path="/redefinir-senha" element={<RedefinirSenha />} />
 
-                {/* Rotas Gestor */}
-                <Route path="/dashboard/gestor" element={<DashboardGestor />} />
-                <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
-                <Route path="/cadastrar-acompanhamento" element={<CadastrarAcompanhamento/>}/>
-                <Route path="/avaliar-acompanhamento" element={<AvaliarAcompanhamento/>} />
-                <Route path="/lista-acompanhamento" element={<ListarAcompanhamento/>}/>
-                <Route path="/editar-acompanhamento" element={<EditarAcompanhamento/>}/>
+                  <Route element={<RotaPrivada />}>
+                    {/* Rotas admin */}
+                    <Route path="/dashboard/admin" element={<DashboardAdmin />} />
+                    <Route path="/cadastrar-colaborador" element={<CadastrarColaborador />} />
+                    <Route path="/editar-colaborador" element={<EditarColaborador />} />
 
-                {/* Rotas Instrutor */}
-                <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
-                <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
-                <Route path="/cadastrar-feedback" element={<CadastrarFeedback/>}/>
-                <Route path="/verificar-aluno" element={<VerificarAluno />} />
-                <Route path="/lista-feedback" element={<ListarFeedback/>}/>
-                <Route path="/editar-feedback" element={<EditarFeedback/>}/>
+                  {/* Rotas Gestor */}
+                  <Route path="/dashboard/gestor" element={<DashboardGestor />} />
+                  <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
+                  <Route path="/cadastrar-acompanhamento" element={<CadastrarAcompanhamento/>}/>
+                  <Route path="/avaliar-acompanhamento" element={<AvaliarAcompanhamento/>} />
+                  <Route path="/lista-acompanhamento" element={<ListarAcompanhamento/>}/>
+                  <Route path="/editar-acompanhamento" element={<EditarAcompanhamento/>}/>
+                  <Route path="/editar-avaliacao" element={<EditarAvaliacao/>}/>
 
-                {/* Trocar senha logado */}
-                <Route path="/alterar-senha" element={<AlterarSenha />} />
-                <Route path="/editar-usuario" element={<EditarUsuario />}/>
-              </Route>
-            </Routes>
+                  {/* Rotas Instrutor */}
+                  <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
+                  <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
+                  <Route path="/cadastrar-feedback" element={<CadastrarFeedback/>}/>
+                  <Route path="/verificar-aluno" element={<VerificarAluno />} />
+                  <Route path="/lista-feedback" element={<ListarFeedback/>}/>
+                  <Route path="/editar-feedback" element={<EditarFeedback/>}/>
+
+                  {/* Trocar senha logado */}
+                  <Route path="/alterar-senha" element={<AlterarSenha />} />
+                  <Route path="/editar-usuario" element={<EditarUsuario />}/>
+                </Route>
+              </Routes>
+            </InstrutorProvider>
           </GestorProvider>
           </AlunoProvider>
           </AdminProvider>
