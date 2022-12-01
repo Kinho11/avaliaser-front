@@ -14,9 +14,10 @@ import { VerificarAluno } from "./pages/VerificarAluno/VerificarAluno";
 import { AvaliarAcompanhamento } from "./pages/AvaliarAcompanhamento/AvaliarAcompanhamento";
 import { CadastrarFeedback } from "./pages/CadastrarFeedback/CadastrarFeedback";
 import { ListarAcompanhamento } from "./pages/ListarAcompanhamento/ListarAcompanhamento";
-import { EditarAcompanhamento } from "./pages/EditarAcompanhamento/EditarAcompanhamento";
+import { EditarAvaliacao } from "./pages/EditarAvaliacao/EditarAvaliacao";
 import { EditarFeedback } from "./pages/EditarFeedback/EditarFeedback";
 import { EditarUsuario } from "./pages/EditarUsuario/EditarUsuario";
+import { ListarFeedback } from "./pages/ListarFeedback/ListarFeedback";
 
 import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
 import { Intermediaria } from "./components/Intermediaria/Intermediaria";
@@ -30,7 +31,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import { AlunoProvider } from "./context/AlunoContext";
 import { GestorProvider } from "./context/GestorContext";
-import { ListarFeedback } from "./pages/ListarFeedback/ListarFeedback";
+import { EditarAcompanhamento } from "./pages/EditarAcompanhamento/EditarAcompanhamento";
 
 function AppRoutes() {
   return (
@@ -57,22 +58,23 @@ function AppRoutes() {
                 {/* Rotas Gestor */}
                 <Route path="/dashboard/gestor" element={<DashboardGestor />} />
                 <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
-                <Route path="/cadastrar-acompanhamento" element={<CadastrarAcompanhamento/>}/>
-                <Route path="/avaliar-acompanhamento" element={<AvaliarAcompanhamento/>} />
-                <Route path="/lista-acompanhamento" element={<ListarAcompanhamento/>}/>
-                <Route path="/editar-acompanhamento" element={<EditarAcompanhamento/>}/>
+                <Route path="/cadastrar-acompanhamento" element={<CadastrarAcompanhamento />} />
+                <Route path="/avaliar-acompanhamento" element={<AvaliarAcompanhamento />} />
+                <Route path="/lista-acompanhamento" element={<ListarAcompanhamento />} />
+                <Route path="/editar-acompanhamento" element={<EditarAcompanhamento />} />
+                <Route path="/editar-avaliacao" element={<EditarAvaliacao />} />
 
                 {/* Rotas Instrutor */}
                 <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
                 <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
-                <Route path="/cadastrar-feedback" element={<CadastrarFeedback/>}/>
+                <Route path="/cadastrar-feedback" element={<CadastrarFeedback />} />
                 <Route path="/verificar-aluno" element={<VerificarAluno />} />
-                <Route path="/lista-feedback" element={<ListarFeedback/>}/>
-                <Route path="/editar-feedback" element={<EditarFeedback/>}/>
+                <Route path="/lista-feedback" element={<ListarFeedback />} />
+                <Route path="/editar-feedback" element={<EditarFeedback />} />
 
-                {/* Trocar senha logado */}
+                {/* Trocar senha logado e editar usuario */}
                 <Route path="/alterar-senha" element={<AlterarSenha />} />
-                <Route path="/editar-usuario" element={<EditarUsuario />}/>
+                <Route path="/editar-usuario" element={<EditarUsuario />} />
               </Route>
             </Routes>
           </GestorProvider>

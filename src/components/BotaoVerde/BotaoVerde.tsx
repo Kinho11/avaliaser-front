@@ -14,7 +14,6 @@ export const BotaoVerde: React.FC<ITexto>= ({texto}) => {
           md:"15ch"
         }}}>{texto}</Button>
       </Box>
-    
     </>
   )
 }

@@ -138,6 +138,8 @@ export const Header = () => {
               <Button variant="outlined" id="cadastrar-aluno-gestor" onClick={() => navigate("/cadastrar-aluno")} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<PersonAdd />}>Cadastrar aluno</Button>
 
               <Button variant="outlined" id="cadastrar-acompanhamento-gestor"  onClick={() => { handleCloseUserMenu(); navigate("/cadastrar-acompanhamento"); }} sx={{ my: 2, textTransform: "capitalize" }} endIcon={<AddBox />}>Cadastrar acompanhamento</Button>
+
+              <Button variant="outlined" id="avaliar-acompanhamento-gestor" onClick={() => { handleCloseUserMenu(); navigate("/avaliar-acompanhamento"); }} sx={{ my: 2, textTransform: "capitalize" }}>Avaliar Acompanhamento</Button>
             </Box>
             <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center", gap: 2 }}>
               <Typography id="boas-vindas-gestor" sx={{ minWidth: 100, fontWeight: 600, color: "#090F27", textDecoration: "underline", display: { xs: "none", md: "flex" } }}>Seja bem-vindo(a) {primeiroNome}!</Typography>

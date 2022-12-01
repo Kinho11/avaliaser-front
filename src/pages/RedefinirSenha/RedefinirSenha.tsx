@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import backgroundRedefinriSenha from "../../assets/bg-redefinir-senha.webp";
+import backgroundRedefinriSenha from "../../assets/bg-redefinir-senha.png";
 
 import { Box, Button, Typography, Stack, InputLabel, OutlinedInput, InputAdornment, IconButton, FormControl  } from "@mui/material";
 import { LoginOutlined, Visibility, VisibilityOff,EnhancedEncryption } from "@mui/icons-material";
@@ -39,14 +39,14 @@ export const RedefinirSenha = () => {
     <>
       <Box id="container-global" component="section" sx={{ textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
 
-        <Box id="box-esquerda" sx={{ backgroundImage: `url(${backgroundRedefinriSenha})`, width: "40%", height: "100%", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", display:{
+        <Box id="box-esquerda" sx={{ backgroundImage: `url(${backgroundRedefinriSenha})`, width: "45%", height: "100%", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", display:{
           xs:"none",
           md:"block"
         } }}></Box>
 
         <Box id="box-direita" sx={{ width: {
           xs:"100%",
-          md:"60%"
+          md:"55%"
         }, height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap",backgroundColor:"#f8f8ff" }}>
 
           <Box id="box-login" component="form" onSubmit={handleSubmit(redefinirSenha)} sx={{ backgroundColor: "#fff", width: {

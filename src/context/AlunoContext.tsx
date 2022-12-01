@@ -72,6 +72,8 @@ export const AlunoProvider = ({ children }: IChildren) => {
     }
   }
 
+
+
   return (
     <AlunoContext.Provider value={{ criarAluno, getAlunos, alunos, deletarAluno }}>
       {children}

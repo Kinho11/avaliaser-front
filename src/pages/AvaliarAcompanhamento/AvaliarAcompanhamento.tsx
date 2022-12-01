@@ -5,7 +5,8 @@ import { useForm } from "react-hook-form";
 import { Navigate, useLocation } from "react-router-dom";
 import { Header } from "../../components/Header/Header"
 import { AlunoContext } from "../../context/AlunoContext";
-import { AvaliarAcompanhamentoSchema } from "../../utils/schemas";
+import { GestorContext } from "../../context/GestorContext";
+import { CriarAvaliacaoSchema } from "../../utils/schemas";
 
 const itemHeigth = 48;
 const itemPaddingTop = 8;
@@ -18,28 +19,25 @@ const MenuProps = {
   },
 };
 
-interface IAvaliarAcompanhamento{
-  acompanhamento: string,
-  trilha: string,
-  aluno: string,
-  responsavel: string,
-  tipo:string,
-  descricao:string,
-  data: string
+interface IAvaliarAcompanhamento {
+  idAcompanhamento: string,
+  idAluno: string,
+  tipo: string,
+  descricao: string,
+  dataCriacao: string
 }
 
 export const AvaliarAcompanhamento = () => {
-  const { state } = useLocation();
+  const { getAlunos, alunos } = useContext(AlunoContext);
+  const { pegarAcompanhamento, acompanhamento } = useContext(GestorContext)
 
-  const { getAlunos, alunos, } = useContext(AlunoContext);
-
-  useEffect(() => { getAlunos(); }, [])
+  useEffect(() => { getAlunos(); pegarAcompanhamento() }, [])
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   const primeiroNome = infosUsuario.nome.split(" ")[0];
 
   const {register,handleSubmit, formState:{errors}} = useForm<IAvaliarAcompanhamento>({
-    resolver: yupResolver(AvaliarAcompanhamentoSchema)
+    resolver: yupResolver(CriarAvaliacaoSchema)
   })
 
   const avaliarAcompanhamento = (data: IAvaliarAcompanhamento) => {
@@ -81,11 +79,14 @@ export const AvaliarAcompanhamento = () => {
               xs:"100%",
               md:"100%"
             } }}>
-              <InputLabel id="acompanhamento">Acompanhamento</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="acompanhamento" error={!!errors.acompanhamento} {...register("acompanhamento")} value="titulo">
-                <MenuItem value="titulo">{state.titulo}</MenuItem>
+              <InputLabel id="acompanhamento">Titulo do Acompanhamento</InputLabel>
+              <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" id="acompanhamento" error={!!errors.idAcompanhamento} {...register("idAcompanhamento")} defaultValue="initial-acompanhamento">
+                <MenuItem value="initial-acompanhamento" disabled><em>Selecione o Acompanhamento</em></MenuItem>  
+                {acompanhamento.map((acompanhamentos)=> (
+                  <MenuItem key={acompanhamentos.idAcompanhamento} value={acompanhamentos.idAcompanhamento}>{acompanhamentos.titulo}</MenuItem>
+                ))}
               </Select>
-              {errors.acompanhamento && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.acompanhamento.message}</Typography>}
+              {errors.idAcompanhamento && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.idAcompanhamento.message}</Typography>}
             </FormControl>
             
             <FormControl variant="filled">
@@ -95,27 +96,26 @@ export const AvaliarAcompanhamento = () => {
               <Box sx={{display:"flex",gap:3}}>
                 <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                   <Stack spacing={2} direction="row">
-                    <input type="radio" value="QA" id="qa" {...register("trilha")} />
+                    <input type="radio" value="QA" id="qa" />
                     <Typography sx={{fontWeight:"700"}}>QA</Typography>
                   </Stack>
                 </Box>
 
                 <Box sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                   <Stack spacing={2} direction="row">
-                    <input type="radio" value="backend" id="backend" {...register("trilha")} />
+                    <input type="radio" value="backend" id="backend" />
                     <Typography sx={{fontWeight:"700"}}>Back</Typography>
                   </Stack>
                 </Box>
 
                 <Box sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                   <Stack spacing={2} direction="row">
-                    <input type="radio" value="frontend" id="frontend" {...register("trilha")} />
+                    <input type="radio" value="frontend" id="frontend" />
                     <Typography sx={{fontWeight:"700"}}>Front</Typography>
                   </Stack>
                 </Box>
                 
               </Box>
-              {errors.trilha && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.trilha.message}</Typography>}
             </FormControl>
 
             <FormControl variant="filled" sx={{ width:  {
@@ -123,25 +123,21 @@ export const AvaliarAcompanhamento = () => {
               md:"100%"
             }}}>
               <InputLabel id="aluno">Aluno</InputLabel>
-                <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial" id="aluno" error={!!errors.aluno} {...register("aluno")}>
+                <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial-aluno" id="aluno" error={!!errors.idAluno} {...register("idAluno")}>
+                  <MenuItem value="initial-aluno" disabled><em>Selecione o Aluno</em></MenuItem> 
                   {alunos.map((aluno)=>(
-                    <MenuItem key={aluno.idAluno} value={aluno.nome}>{aluno.nome}</MenuItem>
-
+                    <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem>
                   ))}
                 </Select>
 
-              {errors.aluno && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.aluno.message}</Typography>}
+              {errors.idAluno && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.idAluno.message}</Typography>}
             </FormControl>
 
-            <FormControl variant="filled" sx={{ width:  {
-              xs:"100%",
-              md:"100%"
-            } }}>
+            <FormControl variant="filled" sx={{ width: { xs:"100%", md:"100%" } }}>
               <InputLabel id="responsavel">Responsavel</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="responsavel" error={!!errors.responsavel} {...register("responsavel")} value="responsavel">
-                <MenuItem value="responsavel">{primeiroNome}</MenuItem>
+              <Select labelId="demo-simple-select-filled-label" id="responsavel" value="responsavel">
+                <MenuItem value="responsavel">{infosUsuario.nome}</MenuItem>
               </Select>
-              {errors.responsavel && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.responsavel.message}</Typography>}
             </FormControl>
 
             <FormControl variant="filled" sx={{ width:  {
@@ -188,17 +184,16 @@ export const AvaliarAcompanhamento = () => {
             } }}>
               <TextField
                 id="data"
-                error={!!errors.data}
+                error={!!errors.dataCriacao}
                 label="Data inicial"
-                defaultValue={state.dataInicial}
                 type="date"
                 sx={{ width: "100%" }}
                 InputLabelProps={{
                   shrink: true,
                 }}
-                {...register("data")}
+                {...register("dataCriacao")}
               />
-              {errors.data && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.data.message}</Typography>}
+              {errors.dataCriacao && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.dataCriacao.message}</Typography>}
             </FormControl>
 
             <Button  type="submit" sx={{textTransform: "capitalize",width:{

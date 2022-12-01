@@ -182,7 +182,7 @@ export const VerificarAluno = () => {
               xs:"95%",
               md:"100%"
             }, borderRadius: "10px", boxShadow: "10px 10px 10px #a6b0d4cf"  }}>
-              <Typography sx={{fontWeight:700,color:"#1565C0",fontSize:"22px"}}>Acompanhamentos:</Typography>
+              <Typography sx={{fontWeight:700,color:"#1565C0",fontSize:"22px"}}>Avaliações:</Typography>
               <TableContainer sx={{ maxHeight:{
                 xs:150,
                 md:200
@@ -214,8 +214,8 @@ export const VerificarAluno = () => {
                       )}</StyledTableCell>
                     <StyledTableCell id="descricao" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.descricao}</StyledTableCell>
                     <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
-                    onClick={()=>{navigate("/editar-acompanhamento",{state: acompanhamentos})}}
-                    title="Avaliar acompanhamento"><EditIcon/></Button></StyledTableCell>
+                    onClick={()=>{navigate("/editar-avaliacao",{state: acompanhamentos})}}
+                    title="Editar Avaliação"><EditIcon/></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
