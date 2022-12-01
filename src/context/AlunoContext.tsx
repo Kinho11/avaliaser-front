@@ -14,18 +14,30 @@ export const AlunoProvider = ({ children }: IChildren) => {
   const navigate = useNavigate()
   const [alunos, setAlunos] = useState<IAlunosCadastrados[]>([]);
 
-  const criarAluno = async (infosAluno: ICadastroAluno) => {
+  const criarAluno = async (infosAluno: ICadastroAluno, imagem: FormData) => {
     try {
       nProgress.start();
       await API.post(`/aluno/cadastrar-aluno?stack=${infosAluno.stack}`, infosAluno, { 
         headers: { Authorization: localStorage.getItem("token") }
-       }).then((response) => { 
-        console.log(response.data)
+       }).then((response) => {
+        localStorage.setItem("idAlunoCadastrado", response.data.idAluno)
         const usuarioLogado = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
         const cargoSplitado = usuarioLogado.cargo.split(" ")[0].toLowerCase();
         navigate(`/dashboard/${cargoSplitado}`);
         toast.success("Aluno cadastrado com sucesso!", toastConfig); 
       })
+
+      if(imagem){
+        const id = localStorage.getItem("idAlunoCadastrado")
+        await API.put(`/aluno/upload-imagem/${id}`, imagem, { 
+          headers: { Authorization: localStorage.getItem("token"), 'Content-Type': 'multipart/form-data' },
+         }).then((response) => {
+          localStorage.removeItem("idAlunoCadastrado")
+          toast.success("Foto enviada com sucesso", toastConfig);
+        }).catch((error) => {
+          toast.error("Foto não enviada", toastConfig)
+        })  
+      }
     } catch (error) {
       toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);
     } finally{
@@ -38,7 +50,7 @@ export const AlunoProvider = ({ children }: IChildren) => {
       nProgress.start();
       await API.get('/aluno/listar-alunos?page=0&size=1000', { 
         headers: { Authorization: localStorage.getItem("token") }
-       }).then((response) => { setAlunos(response.data.elementos) })
+       }).then((response) => { setAlunos(response.data.elementos); })
     } catch (error) {
       toast.error("Houve algum erro", toastConfig);
     } finally{

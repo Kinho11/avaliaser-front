@@ -33,7 +33,6 @@ export const GestorProvider = ({children} : IChildren) =>{
       API.defaults.headers.common["Authorization"] = token;
       const {data} =await API.get("/acompanhamento/listar-acompanhamento?page=0&size=10")
       setAcompanhamento(data.elementos)
-      toast.success("Busca realizada com sucesso!", toastConfig);
     } catch (error) {
       toast.error("Você não possui credenciais para acessar essas informações.", toastConfig);
     } finally {
