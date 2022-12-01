@@ -42,6 +42,7 @@ export interface IAluno {
 
 export interface IGestor{
   criarAcompanhamento: (acompanhamento: ICriarAcompanhamento) => Promise<void>,
+  editAcompanhamento: (dadosEditados: IEditarAcompanhamento, id: number) => Promise<void>,
   pegarAcompanhamento: () => Promise<void>
   acompanhamento: ICriarAcompanhamento[]
   criarAvaliacao: (avalicao: ICriarAvaliacao) => void
@@ -115,6 +116,11 @@ export interface ICriarAcompanhamento{
   titulo: string,
   descricao: string,
   dataInicio: string
+}
+
+export interface IEditarAcompanhamento {
+  titulo: string,
+  descricao: string
 }
 
 export interface ICadastrarFeedback{
