@@ -15,8 +15,13 @@ export interface IAuth {
   usuarioLogout: () => void,
   trocarSenhaLogado: (senhas: ISenhas) => Promise<void>,
   recuperarSenha: (senha: string) => Promise<void>,
+  editarPerfil: (nome: IEditarNome) => Promise<void>,
   tokenAuth: string | null,
   usuarioLogado: any | undefined
+}
+
+export interface IEditarNome {
+  nome: string
 }
 
 export interface IAdmin{
