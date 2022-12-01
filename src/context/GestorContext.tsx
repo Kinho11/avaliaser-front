@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { API } from "../utils/api";
-import { ICriarAcompanhamento, IChildren, IGestor, ICriarAvaliacao } from "../utils/interface";
+import { ICriarAcompanhamento, IChildren, IGestor, ICriarAvaliacao, IEditarAcompanhamento } from "../utils/interface";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { toastConfig } from "../utils/toast";
@@ -27,12 +27,27 @@ export const GestorProvider = ({children} : IChildren) =>{
     }
   }
 
-  const pegarAcompanhamento = async() =>{
+  const pegarAcompanhamento = async () => {
     try {
       nProgress.start()
       API.defaults.headers.common["Authorization"] = token;
       const {data} =await API.get("/acompanhamento/listar-acompanhamento?page=0&size=10")
       setAcompanhamento(data.elementos)
+    } catch (error) {
+      toast.error("Você não possui credenciais para acessar essas informações.", toastConfig);
+    } finally {
+      nProgress.done()
+    }
+  }
+
+  const editAcompanhamento = async (dadosEditados: IEditarAcompanhamento, id: number) => {
+    try {
+      nProgress.start()
+      await API.put(`/acompanhamento/editar-acompanhamento/${id}`, dadosEditados, {
+        headers: { Authorization: localStorage.getItem("token") }
+      }).then((response) => {
+        toast.success("Acompanhamento editado com sucesso!", toastConfig);
+      })
     } catch (error) {
       toast.error("Você não possui credenciais para acessar essas informações.", toastConfig);
     } finally {
@@ -55,7 +70,7 @@ export const GestorProvider = ({children} : IChildren) =>{
   }
 
   return (
-    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento,criarAvaliacao }}>
+    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento, criarAvaliacao, editAcompanhamento }}>
       {children}
     </GestorContext.Provider>
   );

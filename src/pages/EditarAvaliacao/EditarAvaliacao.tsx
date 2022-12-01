@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Typography, Stack, FormControl, InputLabel, Select, MenuItem, FormLabel, TextField } from "@mui/material"
-import { useContext, useEffect } from "react"
+import { Box, Typography, Stack, FormControl, InputLabel, Select, MenuItem, FormLabel, TextField, Button } from "@mui/material"
+import { useContext, useEffect, useState } from "react"
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -30,18 +30,35 @@ interface IEditarAvaliacao {
 }
 
 export const EditarAvaliacao = () => {
+  const {state} = useLocation()
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+
   const { getAlunos, alunos } = useContext(AlunoContext);
   const { pegarAcompanhamento, acompanhamento } = useContext(GestorContext)
 
+  const [filtroQA, setFiltroQA] = useState<boolean>(false);
+  const [filtroFront, setFiltroFront] = useState<boolean>(false);
+  const [filtroBack, setFiltroBack] = useState<boolean>(false);
+
+  const filtradoQA = alunos.filter((aluno) => { if(aluno.stack === "QA") return aluno })
+  const filtradoFront = alunos.filter((aluno) => { if(aluno.stack === "FRONTEND") return aluno })
+  const filtradoBack = alunos.filter((aluno) => { if(aluno.stack === "BACKEND") return aluno })
+
   useEffect(() => { getAlunos(); pegarAcompanhamento() }, [])
-
-  const {state} = useLocation()
-
-  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
 
   const { register, handleSubmit } = useForm<IEditarAvaliacao>({
     resolver: yupResolver(EditarAvaliacaoSchema)
   })
+
+  const resetFiltros = () => {
+    setFiltroBack(false)
+    setFiltroFront(false)
+    setFiltroQA(false)
+
+    // document.getElementById("qa").checked = false;
+    // document.getElementById("frontend").checked = false;
+    // document.getElementById("backend").checked = false;
+  }
 
   const editarAvaliacao = (data: IEditarAvaliacao) => {
     if(data.idAcompanhamento === "initial-acompanhamento" || data.idAluno === "inital-aluno" || data.status === "initial-status") {
@@ -95,29 +112,42 @@ export const EditarAvaliacao = () => {
             <FormControl variant="filled">
               <FormLabel sx={{color:"#1D58F9",fontWeight:"500",marginBottom:"10px"}} id="demo-controlled-radio-buttons-group">Filtrar alunos por stack:</FormLabel>
 
-              <Box sx={{display:"flex",gap:3}}>
+              <Box sx={{display:"flex", alignItems: "center", gap:3}}>
 
                 <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                   <Stack spacing={2} direction="row">
-                    <input type="radio" value="QA" id="qa" />
+                    <input type="radio" value="QA" id="qa" name="stack" onClick={(e) => { 
+                      setFiltroQA(true)
+                      setFiltroBack(false)
+                      setFiltroFront(false)
+                    }} />
                     <Typography sx={{fontWeight:"700"}}>QA</Typography>
                   </Stack>
                 </Box>
 
                 <Box sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                   <Stack spacing={2} direction="row">
-                    <input type="radio" value="backend" id="backend" />
+                    <input type="radio" value="BACKEND" id="backend" name="stack" onClick={() => { 
+                      setFiltroBack(true) 
+                      setFiltroFront(false)
+                      setFiltroQA(false)
+                    }} />
                     <Typography sx={{fontWeight:"700"}}>Back</Typography>
                   </Stack>
                 </Box>
 
                 <Box sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                   <Stack spacing={2} direction="row">
-                    <input type="radio" value="frontend" id="frontend" />
+                    <input type="radio" value="FRONTEND" id="frontend" name="stack" onClick={() => { 
+                      setFiltroFront(true) 
+                      setFiltroQA(false)
+                      setFiltroBack(false)
+                    }} />
                     <Typography sx={{fontWeight:"700"}}>Front</Typography>
                   </Stack>
                 </Box>
-              
+                  
+                <Button type="button" size="small" variant="contained" onClick={resetFiltros}>Limpar filtros</Button>
               </Box>
             </FormControl>
 
@@ -125,9 +155,11 @@ export const EditarAvaliacao = () => {
               <InputLabel id="aluno">Aluno</InputLabel>
               <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial-aluno" id="aluno" {...register("idAluno")}>
                 <MenuItem value="initial-aluno" disabled><em>Selecione o Aluno</em></MenuItem>
-                {alunos.map((aluno)=> (
-                  <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem>
-                ))}
+                {filtroQA ? filtradoQA.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : filtroFront ? filtradoFront.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : filtroBack ? filtradoBack.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : alunos.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> ))
+                }
               </Select>
             </FormControl>
 
