@@ -1,11 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Typography, Stack, FormControl, TextField, FormLabel, Button, InputLabel, MenuItem, Select } from "@mui/material";
-import { useContext, useEffect } from "react";
+import { Box, Typography, Stack, FormControl, InputLabel, Select, MenuItem, FormLabel, TextField, Button } from "@mui/material"
+import React, { useContext, useEffect } from "react"
 import { useForm } from "react-hook-form";
-import { Navigate, useLocation } from "react-router-dom";
-import { Header } from "../../components/Header/Header"
+import { useLocation } from "react-router-dom";
+import { Header } from "../../components/Header/Header";
 import { AlunoContext } from "../../context/AlunoContext";
-import { AvaliarAcompanhamentoSchema } from "../../utils/schemas";
+import { EditarAcompanhamentoSchema } from "../../utils/schemas";
 
 const itemHeigth = 48;
 const itemPaddingTop = 8;
@@ -18,7 +18,7 @@ const MenuProps = {
   },
 };
 
-interface IAvaliarAcompanhamento{
+interface IEditarAcompanhamento{
   acompanhamento: string,
   trilha: string,
   aluno: string,
@@ -28,25 +28,25 @@ interface IAvaliarAcompanhamento{
   data: string
 }
 
-export const AvaliarAcompanhamento = () => {
-  const { state } = useLocation();
 
+export const EditarAcompanhamento = () => {
   const { getAlunos, alunos, } = useContext(AlunoContext);
-
   useEffect(() => { getAlunos(); }, [])
+
+  const {state} = useLocation()
+  console.log(state)
+  
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   const primeiroNome = infosUsuario.nome.split(" ")[0];
 
-  const {register,handleSubmit, formState:{errors}} = useForm<IAvaliarAcompanhamento>({
-    resolver: yupResolver(AvaliarAcompanhamentoSchema)
+  const {register,handleSubmit, formState:{errors}} = useForm<IEditarAcompanhamento>({
+    resolver: yupResolver(EditarAcompanhamentoSchema)
   })
 
-  const avaliarAcompanhamento = (data: IAvaliarAcompanhamento) => {
+  const editarAcompanhamento = (data: IEditarAcompanhamento) => {
     console.log(data)
   }
-
-  if(infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
 
   return (
     <>
@@ -59,8 +59,8 @@ export const AvaliarAcompanhamento = () => {
         }, fontWeight:"700",color:"white", marginTop:{
           xs:"150px",
           md:"0"
-        }}} variant="h3">Avaliar acompanhamento</Typography>
-        <Box component="form" onSubmit={handleSubmit(avaliarAcompanhamento)} sx={{ display: {
+        }}} variant="h3">Editar acompanhamento</Typography>
+        <Box component="form" onSubmit={handleSubmit(editarAcompanhamento)} sx={{ display: {
           xs:"block",
           md:"flex"
         }, justifyContent: "space-between", backgroundColor: "#fff", width: {
@@ -82,10 +82,10 @@ export const AvaliarAcompanhamento = () => {
               md:"100%"
             } }}>
               <InputLabel id="acompanhamento">Acompanhamento</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="acompanhamento" error={!!errors.acompanhamento} {...register("acompanhamento")} value="titulo">
+              <Select labelId="demo-simple-select-filled-label" id="acompanhamento" value="titulo" {...register("acompanhamento")}>
                 <MenuItem value="titulo">{state.titulo}</MenuItem>
               </Select>
-              {errors.acompanhamento && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.acompanhamento.message}</Typography>}
+
             </FormControl>
             
             <FormControl variant="filled">
@@ -115,7 +115,7 @@ export const AvaliarAcompanhamento = () => {
                 </Box>
                 
               </Box>
-              {errors.trilha && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.trilha.message}</Typography>}
+
             </FormControl>
 
             <FormControl variant="filled" sx={{ width:  {
@@ -123,14 +123,12 @@ export const AvaliarAcompanhamento = () => {
               md:"100%"
             }}}>
               <InputLabel id="aluno">Aluno</InputLabel>
-                <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial" id="aluno" error={!!errors.aluno} {...register("aluno")}>
+                <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial" id="aluno" {...register("aluno")} >
                   {alunos.map((aluno)=>(
                     <MenuItem key={aluno.idAluno} value={aluno.nome}>{aluno.nome}</MenuItem>
 
                   ))}
                 </Select>
-
-              {errors.aluno && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.aluno.message}</Typography>}
             </FormControl>
 
             <FormControl variant="filled" sx={{ width:  {
@@ -138,10 +136,10 @@ export const AvaliarAcompanhamento = () => {
               md:"100%"
             } }}>
               <InputLabel id="responsavel">Responsavel</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" id="responsavel" error={!!errors.responsavel} {...register("responsavel")} value="responsavel">
+              <Select labelId="demo-simple-select-filled-label" id="responsavel"  value="responsavel" {...register("responsavel")}>
                 <MenuItem value="responsavel">{primeiroNome}</MenuItem>
               </Select>
-              {errors.responsavel && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.responsavel.message}</Typography>}
+
             </FormControl>
 
             <FormControl variant="filled" sx={{ width:  {
@@ -149,12 +147,12 @@ export const AvaliarAcompanhamento = () => {
               md:"100%"
             } }}>
               <InputLabel id="status">Status</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" defaultValue="initial" id="status" error={!!errors.tipo} {...register("tipo")}>
+              <Select labelId="demo-simple-select-filled-label" defaultValue="initial" id="status" {...register("tipo")}>
                 <MenuItem value="initial" disabled><em>Selecione a Trilha</em></MenuItem>
                 <MenuItem value="positivo">Positivo</MenuItem>
                 <MenuItem value="atencao">Atencao</MenuItem>
               </Select>
-              {errors.tipo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.tipo.message}</Typography>}
+
             </FormControl>
 
           </Stack>
@@ -172,14 +170,14 @@ export const AvaliarAcompanhamento = () => {
             } }}>
             <TextField
               id="descricao"
-              error={!!errors.descricao}
+              defaultValue={state.descricao}
+              {...register("descricao")}
               label="Digite uma descrição"
               placeholder="Digite uma descrição"
               multiline
               variant="filled"
-              {...register("descricao")}
             />
-            {errors.descricao && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.descricao.message}</Typography>}
+
             </FormControl>
 
             <FormControl sx={{ width:  {
@@ -188,17 +186,16 @@ export const AvaliarAcompanhamento = () => {
             } }}>
               <TextField
                 id="data"
-                error={!!errors.data}
+                defaultValue={state.dataInicio}
+                {...register("data")}
                 label="Data inicial"
-                defaultValue={state.dataInicial}
                 type="date"
                 sx={{ width: "100%" }}
                 InputLabelProps={{
                   shrink: true,
                 }}
-                {...register("data")}
               />
-              {errors.data && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.data.message}</Typography>}
+
             </FormControl>
 
             <Button  type="submit" sx={{textTransform: "capitalize",width:{
@@ -214,3 +211,4 @@ export const AvaliarAcompanhamento = () => {
     </>
   )
 }
+

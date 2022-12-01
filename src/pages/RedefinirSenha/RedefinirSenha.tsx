@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,6 +10,7 @@ import { LoginOutlined, Visibility, VisibilityOff,EnhancedEncryption } from "@mu
 
 import { ILogin } from "../../utils/interface";
 import { redefinirSenhaSchema } from "../../utils/schemas";
+import { AuthContext } from "../../context/AuthContext";
 
 interface INovaSenha{
   novaSenha: string,
@@ -17,6 +18,8 @@ interface INovaSenha{
 }
 
 export const RedefinirSenha = () => {
+  const { recuperarSenha } = useContext(AuthContext)
+
   const [values, setValues] = useState<ILogin>({ password: "", showPassword: false });
 
   const handleChange = (prop: keyof ILogin) => (event: React.ChangeEvent<HTMLInputElement>) => setValues({ ...values, [prop]: event.target.value });
@@ -27,7 +30,10 @@ export const RedefinirSenha = () => {
     resolver: yupResolver(redefinirSenhaSchema)
   });
 
-  const redefinirSenha = (data: INovaSenha) => console.log(data);
+  const redefinirSenha = (data: INovaSenha) => {
+    const senha = data.confirmarNovaSenha
+    recuperarSenha(senha)
+  }
 
   return (
     <>

@@ -2,9 +2,11 @@ import { Box, Typography, Stack,Button, Paper, styled, Table, TableBody, TableCe
 import { Navigate, useLocation, useNavigate } from "react-router-dom"
 import { Header } from "../../components/Header/Header";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
+import EditIcon from "@mui/icons-material/Edit";
 
 import logo from "../../assets/dbc-logo.webp";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { GestorContext } from "../../context/GestorContext";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -28,7 +30,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 interface Column {
-  id: "codigo" | "dataInicial" | "descricao" | "acoes";
+  id: "codigo" | "titulo" | "dataInicial" | "descricao" | "acoes";
   label: string;
   minWidth?: number;
   align?: "right";
@@ -37,22 +39,10 @@ interface Column {
 
 const columns: Column[] = [
   { id: "codigo", label: "Codigo", minWidth: 5 },
+  { id: "titulo", label: "Titulo", minWidth: 5 },
   { id: "dataInicial", label: "Data inicial", minWidth: 5 },
-  {
-    id: "descricao",
-    label: "Descrição",
-    minWidth: 5,
-    align: "right",
-    format: (value: number) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "acoes",
-    label: "Ações",
-    minWidth: 5,
-    align: "right",
-    format: (value: number) => value.toLocaleString("en-US"),
-  }
-
+  { id: "descricao", label: "Descrição", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
+  { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") }
 ];
 
 const data =[
@@ -68,6 +58,8 @@ export const VerificarAluno = () => {
   const { state } = useLocation();
   console.log(state)
 
+  const { acompanhamento, pegarAcompanhamento } = useContext(GestorContext);
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const navigate = useNavigate()
@@ -80,8 +72,11 @@ export const VerificarAluno = () => {
     setPage(0);
   };
 
+  useEffect(() => { pegarAcompanhamento() }, [])
+
+
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
-  if(infosUsuario.cargo !== "Instrutor") return <Navigate to="/"/>
+  if(infosUsuario.cargo !== "Instrutor" && infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
   
   return (
     <>
@@ -164,6 +159,9 @@ export const VerificarAluno = () => {
                         <StyledTableCell  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">
                           {data.codigo}
                         </StyledTableCell>
+                        <StyledTableCell  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">
+                          {data.codigo}
+                        </StyledTableCell>
                         <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.dataInicial}</StyledTableCell>  
                         <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{data.descricao}</StyledTableCell>
                         <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
@@ -211,19 +209,23 @@ export const VerificarAluno = () => {
                     </TableRow>
                   </thead>
                   <TableBody>
-                    {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
-                      <StyledTableRow  key={data.codigo}>
-                        <StyledTableCell  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">
-                          {data.codigo}
-                        </StyledTableCell>
-                        <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{data.dataInicial}</StyledTableCell>  
-                        <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{data.descricao}</StyledTableCell>
-                        <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
-                        onClick={()=>{navigate("/avaliar-acompanhamneto",{state: data})}}
-                        title="Avaliar acompanhamento"><AssignmentTurnedInIcon/></Button></StyledTableCell>
-                      </StyledTableRow>
-                    ))}
-                  </TableBody>
+                {acompanhamento.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((acompanhamentos) => (
+                  <StyledTableRow  key={acompanhamentos.idAcompanhamento}>
+                    <StyledTableCell  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">
+                      {acompanhamentos.idAcompanhamento}
+                    </StyledTableCell>
+                    <StyledTableCell id="titulo" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{acompanhamentos.titulo}</StyledTableCell>  
+                    <StyledTableCell id="dataInicio" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.dataInicio.replace(
+                        /(\d{4})-(\d{2})-(\d{2})/,
+                        "$3/$2/$1"
+                      )}</StyledTableCell>
+                    <StyledTableCell id="descricao" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.descricao}</StyledTableCell>
+                    <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
+                    onClick={()=>{navigate("/editar-acompanhamento",{state: acompanhamentos})}}
+                    title="Avaliar acompanhamento"><EditIcon/></Button></StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
                 </Table>
               </TableContainer>
               {/* Paginação */}

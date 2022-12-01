@@ -32,7 +32,7 @@ export const AdminProvider = ({ children }: IChildren) =>{
           localStorage.removeItem("idCadastrado")
         }).catch((error) => {
           toast.error("Foto não enviada", toastConfig)
-        })
+        })    
       }
     } catch (error) {
       toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);

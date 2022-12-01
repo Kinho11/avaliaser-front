@@ -52,6 +52,7 @@ export const Login = () => {
   const onSubmit = (data: IUsuario) => {
     usuarioLogin(data);
   }
+
   // Funções Modal
   const [open, setOpen] = useState(false);
   const [inputEmailModal, setInputEmailModal] = useState("");

@@ -14,6 +14,9 @@ import { VerificarAluno } from "./pages/VerificarAluno/VerificarAluno";
 import { AvaliarAcompanhamento } from "./pages/AvaliarAcompanhamento/AvaliarAcompanhamento";
 import { CadastrarFeedback } from "./pages/CadastrarFeedback/CadastrarFeedback";
 import { ListarAcompanhamento } from "./pages/ListarAcompanhamento/ListarAcompanhamento";
+import { EditarAcompanhamento } from "./pages/EditarAcompanhamento/EditarAcompanhamento";
+import { EditarFeedback } from "./pages/EditarFeedback/EditarFeedback";
+import { EditarUsuario } from "./pages/EditarUsuario/EditarUsuario";
 
 import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
 import { Intermediaria } from "./components/Intermediaria/Intermediaria";
@@ -27,6 +30,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { AdminProvider } from "./context/AdminContext";
 import { AlunoProvider } from "./context/AlunoContext";
 import { GestorProvider } from "./context/GestorContext";
+import { ListarFeedback } from "./pages/ListarFeedback/ListarFeedback";
 
 function AppRoutes() {
   return (
@@ -38,11 +42,11 @@ function AppRoutes() {
           <AlunoProvider>
           <GestorProvider>
             <Routes>
-              <Route path="/" element={<Login />} />
+              <Route index element={<Login />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/recuperar-senha" element={<Intermediaria />} />
               {/* Redefinir senha com token e email */}
               <Route path="/redefinir-senha" element={<RedefinirSenha />} />
-              <Route path="/intermediaria" element={<Intermediaria/>}/>
 
               <Route element={<RotaPrivada />}>
                 {/* Rotas admin */}
@@ -54,18 +58,21 @@ function AppRoutes() {
                 <Route path="/dashboard/gestor" element={<DashboardGestor />} />
                 <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
                 <Route path="/cadastrar-acompanhamento" element={<CadastrarAcompanhamento/>}/>
-                <Route path="/avaliar-acompanhamneto" element={<AvaliarAcompanhamento/>} />
+                <Route path="/avaliar-acompanhamento" element={<AvaliarAcompanhamento/>} />
                 <Route path="/lista-acompanhamento" element={<ListarAcompanhamento/>}/>
+                <Route path="/editar-acompanhamento" element={<EditarAcompanhamento/>}/>
 
                 {/* Rotas Instrutor */}
                 <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />
                 <Route path="/cadastrar-aluno" element={<CadastrarAluno />} />
                 <Route path="/cadastrar-feedback" element={<CadastrarFeedback/>}/>
                 <Route path="/verificar-aluno" element={<VerificarAluno />} />
+                <Route path="/lista-feedback" element={<ListarFeedback/>}/>
+                <Route path="/editar-feedback" element={<EditarFeedback/>}/>
 
                 {/* Trocar senha logado */}
                 <Route path="/alterar-senha" element={<AlterarSenha />} />
-                <Route path="/recuperar-senha" element={<Intermediaria />} />
+                <Route path="/editar-usuario" element={<EditarUsuario />}/>
               </Route>
             </Routes>
           </GestorProvider>

@@ -6,8 +6,8 @@ import { NotFound } from "./NotFound";
 test("Verifica se existe o botão voltar para a página inicial", () => {
   render(<Router><NotFound /></Router>);
 
-  const teste = screen.getByRole('button', { name: "Voltar para tela inicial" });
-  expect(teste).toBeInTheDocument();
+  const botaoTelaInicial = screen.getByRole('button', { name: "Voltar para tela inicial" });
+  expect(botaoTelaInicial).toBeInTheDocument();
 })
 
 test("Verifica se existe o logo DBC na página", () => {

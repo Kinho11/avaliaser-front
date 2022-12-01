@@ -78,8 +78,25 @@ export const AuthProvider = ({ children }: IChildren) => {
     }
   }
 
+  const recuperarSenha = async (senha: string) => {
+    try {
+      nProgress.start()
+      await API.put(`/auth/alterar-senha-usuario-recuperacao?senha=${senha}`, senha, {
+        headers: { Authorization: localStorage.getItem("recuperarSenha") }
+      }).then((response) => { 
+        toast.success("Senha atualizada com sucesso!", toastConfig);
+        navigate('/')
+        localStorage.removeItem("recuperarSenha");
+      })
+    } catch (error) {
+      toast.error("Não foi identificado permissão para realizar esta recuperação.", toastConfig);
+    } finally {
+      nProgress.done()
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ tokenAuth, usuarioLogin, usuarioLogado, redefinirSenha, usuarioLogout, trocarSenhaLogado }}>
+    <AuthContext.Provider value={{ tokenAuth, usuarioLogin, usuarioLogado, redefinirSenha, usuarioLogout, trocarSenhaLogado, recuperarSenha }}>
       {children}
     </AuthContext.Provider>
   );

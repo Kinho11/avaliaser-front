@@ -94,7 +94,7 @@ export const ListarAcompanhamento = () => {
                       )}</StyledTableCell>
                     <StyledTableCell id="descricao" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.descricao}</StyledTableCell>
                     <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
-                    onClick={()=>{navigate("/avaliar-acompanhamneto",{state: acompanhamentos})}}
+                    onClick={()=>{navigate("/avaliar-acompanhamento",{state: acompanhamentos})}}
                     title="Avaliar acompanhamento"><AssignmentTurnedInIcon/></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}

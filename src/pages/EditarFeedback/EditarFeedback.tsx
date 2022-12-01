@@ -1,14 +1,15 @@
-import { Box, Typography, Stack, FormControl, TextField, FormLabel, InputLabel, MenuItem, Select } from '@mui/material'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { Box, Stack, FormControl, FormLabel, Typography, InputLabel, Select, MenuItem, TextField } from '@mui/material'
+import React, { useContext, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { BotaoAzul } from '../../components/BotaoAzul/BotaoAzul'
 import { Header } from '../../components/Header/Header'
+import { Titulo } from '../../components/Titulo/Titulo'
+import { EditarFeedbackSchema } from '../../utils/schemas'
 import logo from "../../assets/dbc-logo.webp";
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { CadastrarFeedbackSchema } from '../../utils/schemas';
-import { Navigate } from 'react-router-dom';
-import { BotaoAzul } from '../../components/BotaoAzul/BotaoAzul';
-import { Titulo } from '../../components/Titulo/Titulo';
-import { useContext, useEffect } from 'react';
-import { AlunoContext } from '../../context/AlunoContext';
+import { AlunoContext } from '../../context/AlunoContext'
+import { useLocation } from 'react-router-dom'
+
 
 const itemHeigth = 48;
 const itemPaddingTop = 8;
@@ -21,37 +22,39 @@ const MenuProps = {
   },
 };
 
-
-interface ICadastrarFeedback {
+interface IEditarFeedback {
   trilha: string,
   aluno: string,
   descricao: string,
   tipo: string
 }
 
-export const CadastrarFeedback = () => {
-  const {register, handleSubmit, formState:{errors}} = useForm<ICadastrarFeedback>({
-    resolver: yupResolver(CadastrarFeedbackSchema)
-  })
+export const EditarFeedback = () => {
+
+  const {state} = useLocation()
+  console.log(state)
 
   const { getAlunos, alunos, } = useContext(AlunoContext);
   useEffect(() => { getAlunos(); }, [])
+
+  const {register, handleSubmit, formState:{errors}} = useForm<IEditarFeedback>({
+    resolver: yupResolver(EditarFeedbackSchema)
+  })
   
-  const cadastrarFeedback = (data:ICadastrarFeedback ) => {
+
+  const editarFeedback = (data: IEditarFeedback ) => {
     console.log(data)
   }
-  
-  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
-  if(infosUsuario.cargo !== "Instrutor") return <Navigate to="/"/>
-  
+
+
   return (
     <>
       <Header/>
 
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Titulo texto="Cadastrar feedback"/>
+        <Titulo texto="Editar feedback"/>
 
-        <Box component="form" onSubmit={handleSubmit(cadastrarFeedback)} sx={{ display: {
+        <Box component="form" onSubmit={handleSubmit(editarFeedback)} sx={{ display: {
           xs:"flex",
           md:"flex"
         },flexDirection:"column",alignItems:"center",backgroundColor: "#fff", width: {
@@ -97,7 +100,7 @@ export const CadastrarFeedback = () => {
               </Box>
               
             </Box>
-            {errors.trilha && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.trilha.message}</Typography>}
+
             </FormControl>
 
             <FormControl variant="filled" sx={{ width:  {
@@ -111,7 +114,7 @@ export const CadastrarFeedback = () => {
 
                   ))}
                 </Select>
-              {errors.aluno && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.aluno.message}</Typography>}
+
             </FormControl>
 
             <FormControl sx={{ width: {
@@ -120,6 +123,7 @@ export const CadastrarFeedback = () => {
             } }}>
             <TextField
               id="descricao"
+              defaultValue={state.descricao}
               {...register("descricao")}
               error={!!errors.descricao}
               label="Digite uma descrição"
@@ -127,7 +131,7 @@ export const CadastrarFeedback = () => {
               multiline
               variant="filled"
             />
-            {errors.descricao && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.descricao.message}</Typography>}
+
             </FormControl>
 
             <FormControl variant="filled" sx={{ width:  {
@@ -139,7 +143,7 @@ export const CadastrarFeedback = () => {
                 <MenuItem value="positivo">Positivo</MenuItem>
                 <MenuItem value="atencao">Atencao</MenuItem>
               </Select>
-              {errors.tipo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.tipo.message}</Typography>}
+
             </FormControl>
 
           </Stack>
@@ -147,7 +151,6 @@ export const CadastrarFeedback = () => {
           <BotaoAzul texto="Enviar"/>
         </Box>
       </Box>
-    
     
     </>
   )

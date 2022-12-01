@@ -31,7 +31,7 @@ export const editarColaboradorSchema = yup.object().shape({
 });
 
 export const redefinirSenhaSchema = yup.object().shape({
-  novaSenha: yup.string().required("Por favor, digite sua nova senha").min(3,"A nova senha deve conter no mínimo 3 caracteres"),
+  novaSenha: yup.string().required("Por favor, digite sua nova senha").min(8,"A nova senha deve conter no mínimo 8 caracteres"),
   confirmarNovaSenha: yup.string().required("Por favor, confirme sua nova senha.").oneOf([yup.ref("novaSenha")],"As senhas devem corresponder!")
 });
 
@@ -58,7 +58,24 @@ export const AvaliarAcompanhamentoSchema = yup.object().shape({
   data: yup.string().required("Por favor, escolha uma data inicial")
 })
 
+export const EditarAcompanhamentoSchema = yup.object().shape({
+  acompanhamento: yup.string().required("Por favor, selecione um acompanhamento"),
+  trilha: yup.string().required("Por favor, selecione umas das trilhas").nullable(),
+  aluno:  yup.string().required("Por favor, selecione uns dos alunos"),
+  responsavel: yup.string().required("Por favor, selecione uns dos responsáveis"),
+  tipo: yup.string().required("Por favor, selecione uns dos tipos"),
+  descricao: yup.string().required("Por favor, digite alguma coisa na descrição"),
+  data: yup.string().required("Por favor, escolha uma data inicial")
+})
+
 export const CadastrarFeedbackSchema = yup.object().shape({
+  trilha: yup.string().required("Por favor, selecione umas das trilhas").nullable(),
+  aluno:  yup.string().required("Por favor, selecione uns dos alunos"),
+  descricao: yup.string().required("Por favor, digite alguma coisa na descrição"),
+  tipo: yup.string().required("Por favor, selecione uns dos tipos")
+})
+
+export const EditarFeedbackSchema = yup.object().shape({
   trilha: yup.string().required("Por favor, selecione umas das trilhas").nullable(),
   aluno:  yup.string().required("Por favor, selecione uns dos alunos"),
   descricao: yup.string().required("Por favor, digite alguma coisa na descrição"),
