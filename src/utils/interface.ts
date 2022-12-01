@@ -43,6 +43,15 @@ export interface IGestor{
   criarAcompanhamento: (acompanhamento: ICriarAcompanhamento) => Promise<void>,
   pegarAcompanhamento: () => Promise<void>
   acompanhamento: ICriarAcompanhamento[]
+  criarAvaliacao: (avalicao: ICriarAvaliacao) => void
+}
+
+export interface IInstrutor{
+  cadastrarFeedback: (feedbacks: ICadastrarFeedback) => Promise<void>,
+  pegarFeedback: () => Promise<void>,
+  feedback: ICadastrarFeedback[]
+  editarFeedback: (id: number, dadosEditados: IEditarFeedback) => Promise<void>
+
 }
 
 export interface ICadastroAluno {
@@ -105,4 +114,26 @@ export interface ICriarAcompanhamento{
   titulo: string,
   descricao: string,
   dataInicio: string
+}
+
+export interface ICadastrarFeedback{
+  idFeedback:number,
+  idUsuario: number,
+  idAluno: number,
+  descricao: string,
+  tipo: string
+}
+
+export interface IEditarFeedback{
+  idAluno: number,
+  descricao: string,
+  tipo: string
+}
+
+export interface ICriarAvaliacao{
+  idAcompanhamento: number,
+  idAluno: number,
+  descricao: string,
+  tipo: string,
+  dataCriacao: string
 }

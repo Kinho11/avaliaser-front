@@ -9,6 +9,7 @@ import { BotaoAzul } from '../../components/BotaoAzul/BotaoAzul';
 import { Titulo } from '../../components/Titulo/Titulo';
 import { useContext, useEffect } from 'react';
 import { AlunoContext } from '../../context/AlunoContext';
+import { InstrutorContext } from '../../context/InstrutorContext';
 
 const itemHeigth = 48;
 const itemPaddingTop = 8;
@@ -23,13 +24,16 @@ const MenuProps = {
 
 
 interface ICadastrarFeedback {
-  trilha: string,
-  aluno: string,
+  idAluno: string,
   descricao: string,
   tipo: string
 }
 
 export const CadastrarFeedback = () => {
+
+  const { cadastrarFeedback } = useContext(InstrutorContext);
+
+
   const {register, handleSubmit, formState:{errors}} = useForm<ICadastrarFeedback>({
     resolver: yupResolver(CadastrarFeedbackSchema)
   })
@@ -37,8 +41,10 @@ export const CadastrarFeedback = () => {
   const { getAlunos, alunos, } = useContext(AlunoContext);
   useEffect(() => { getAlunos(); }, [])
   
-  const cadastrarFeedback = (data:ICadastrarFeedback ) => {
-    console.log(data)
+  const cadastrarFeedbacks = (data:ICadastrarFeedback ) => {
+    const feedback = {idAluno: parseInt(data.idAluno),descricao: data.descricao, tipo: data.tipo}
+    console.log(feedback)
+
   }
   
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
@@ -51,7 +57,7 @@ export const CadastrarFeedback = () => {
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
         <Titulo texto="Cadastrar feedback"/>
 
-        <Box component="form" onSubmit={handleSubmit(cadastrarFeedback)} sx={{ display: {
+        <Box component="form" onSubmit={handleSubmit(cadastrarFeedbacks)} sx={{ display: {
           xs:"flex",
           md:"flex"
         },flexDirection:"column",alignItems:"center",backgroundColor: "#fff", width: {
@@ -77,27 +83,26 @@ export const CadastrarFeedback = () => {
             <Box sx={{display:"flex",gap:3}}>
               <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                 <Stack spacing={2} direction="row">
-                  <input type="radio" value="QA" id="qa" {...register("trilha")} />
+                  <input type="radio" value="QA" id="qa" />
                   <Typography sx={{fontWeight:"700"}}>QA</Typography>
                 </Stack>
               </Box>
 
               <Box sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                 <Stack spacing={2} direction="row">
-                  <input type="radio" value="backend" id="backend" {...register("trilha")} />
+                  <input type="radio" value="backend" id="backend" />
                   <Typography sx={{fontWeight:"700"}}>Back</Typography>
                 </Stack>
               </Box>
 
               <Box sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                 <Stack spacing={2} direction="row">
-                  <input type="radio" value="frontend" id="frontend" {...register("trilha")}/>
+                  <input type="radio" value="frontend" id="frontend"/>
                   <Typography sx={{fontWeight:"700"}}>Front</Typography>
                 </Stack>
               </Box>
               
             </Box>
-            {errors.trilha && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.trilha.message}</Typography>}
             </FormControl>
 
             <FormControl variant="filled" sx={{ width:  {
@@ -105,13 +110,13 @@ export const CadastrarFeedback = () => {
               md:"100%"
             } }}>
               <InputLabel id="aluno">Selecione aluno</InputLabel>
-              <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial" id="aluno" {...register("aluno")} >
+              <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" id="idAluno" {...register("idAluno")} >
                   {alunos.map((aluno)=>(
-                    <MenuItem key={aluno.idAluno} value={aluno.nome}>{aluno.nome}</MenuItem>
+                    <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem>
 
                   ))}
                 </Select>
-              {errors.aluno && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.aluno.message}</Typography>}
+              {errors.idAluno && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.idAluno.message}</Typography>}
             </FormControl>
 
             <FormControl sx={{ width: {
@@ -135,9 +140,9 @@ export const CadastrarFeedback = () => {
               md:"100%"
             } }}>
               <InputLabel id="tipo">Tipo</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" value="positivo" id="tipo" error={!!errors.tipo} {...register("tipo")} >
-                <MenuItem value="positivo">Positivo</MenuItem>
-                <MenuItem value="atencao">Atencao</MenuItem>
+              <Select labelId="demo-simple-select-filled-label" id="tipo" error={!!errors.tipo} {...register("tipo")} >
+                <MenuItem value="POSITIVO">Positivo</MenuItem>
+                <MenuItem value="ATENCAO">Atencao</MenuItem>
               </Select>
               {errors.tipo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.tipo.message}</Typography>}
             </FormControl>

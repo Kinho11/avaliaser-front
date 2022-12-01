@@ -73,8 +73,7 @@ export const EditarAcompanhamentoSchema = yup.object().shape({
 })
 
 export const CadastrarFeedbackSchema = yup.object().shape({
-  trilha: yup.string().required("Por favor, selecione umas das trilhas").nullable(),
-  aluno:  yup.string().required("Por favor, selecione uns dos alunos"),
+  idAluno:  yup.string().required("Por favor, selecione uns dos alunos"),
   descricao: yup.string().required("Por favor, digite alguma coisa na descrição"),
   tipo: yup.string().required("Por favor, selecione uns dos tipos")
 })

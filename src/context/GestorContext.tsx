@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { API } from "../utils/api";
-import { ICriarAcompanhamento, IChildren, IGestor } from "../utils/interface";
+import { ICriarAcompanhamento, IChildren, IGestor, ICriarAvaliacao } from "../utils/interface";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { toastConfig } from "../utils/toast";
@@ -40,8 +40,22 @@ export const GestorProvider = ({children} : IChildren) =>{
     }
   }
 
+  const criarAvaliacao = async (avalicao: ICriarAvaliacao) => {
+    try {
+      nProgress.start()
+      API.defaults.headers.common["Authorization"] = token;
+      await API.post("/avaliacao-acompanhamento/cadastrar-avaliacao",avalicao)
+      navigate("/dashboard/gestor")
+      toast.success("Avaliação cadastrado com sucesso!", toastConfig);
+    } catch (error) {
+      toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);
+    } finally{
+      nProgress.done()
+    }
+  }
+
   return (
-    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento }}>
+    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento,criarAvaliacao }}>
       {children}
     </GestorContext.Provider>
   );
