@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { toastConfig } from "../utils/toast";
 
 import { API } from "../utils/api";
-import { IAluno, IAlunosCadastrados, ICadastroAluno, IChildren } from "../utils/interface";
+import { IAluno, IAlunosCadastrados, ICadastroAluno, IChildren, IEditarAluno } from "../utils/interface";
 import { useNavigate } from "react-router-dom";
 
 export const AlunoContext = createContext({} as IAluno);
@@ -72,10 +72,27 @@ export const AlunoProvider = ({ children }: IChildren) => {
     }
   }
 
+  const editarAluno = async (dadosEditados: IEditarAluno, id: number) => {
+    try {
+      nProgress.start()
+      await API.put(`/aluno/atualizar-aluno/${id}?stack=${dadosEditados.stack}`,dadosEditados,{
+        headers: { Authorization: localStorage.getItem("token") }
+      }).then((res)=>{
+        toast.success("Aluno editado com sucesso!!", toastConfig);
+        navigate("/dashboard/gestor")
+
+      })
+    } catch (error) {
+      toast.error("Campo nulo, ou preenchido de forma incorreta, ou com id inválido, tente de novo.", toastConfig);
+    } finally {
+      nProgress.done()
+    }
+  }
+
 
 
   return (
-    <AlunoContext.Provider value={{ criarAluno, getAlunos, alunos, deletarAluno }}>
+    <AlunoContext.Provider value={{ criarAluno, getAlunos, alunos, deletarAluno,editarAluno }}>
       {children}
     </AlunoContext.Provider>
   );

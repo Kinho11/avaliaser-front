@@ -43,7 +43,7 @@ export const CadastrarFeedback = () => {
   
   const cadastrarFeedbacks = (data:ICadastrarFeedback ) => {
     const feedback = {idAluno: parseInt(data.idAluno),descricao: data.descricao, tipo: data.tipo}
-    console.log(feedback)
+    cadastrarFeedback(feedback)
 
   }
   

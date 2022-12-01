@@ -1,8 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { CompressOutlined } from "@mui/icons-material";
 import { Box, Typography, Stack, FormControl, TextField, FormLabel, Button, InputLabel, MenuItem, Select } from "@mui/material";
 import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { Header } from "../../components/Header/Header"
 import { AlunoContext } from "../../context/AlunoContext";
 import { GestorContext } from "../../context/GestorContext";
@@ -29,19 +30,19 @@ interface IAvaliarAcompanhamento {
 
 export const AvaliarAcompanhamento = () => {
   const { getAlunos, alunos } = useContext(AlunoContext);
-  const { pegarAcompanhamento, acompanhamento } = useContext(GestorContext)
+  const { pegarAcompanhamento, acompanhamento,criarAvaliacao } = useContext(GestorContext)
 
   useEffect(() => { getAlunos(); pegarAcompanhamento() }, [])
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
-  const primeiroNome = infosUsuario.nome.split(" ")[0];
 
   const {register,handleSubmit, formState:{errors}} = useForm<IAvaliarAcompanhamento>({
     resolver: yupResolver(CriarAvaliacaoSchema)
   })
 
   const avaliarAcompanhamento = (data: IAvaliarAcompanhamento) => {
-    console.log(data)
+    const avaliacao = {idAcompanhamento: parseInt(data.idAcompanhamento),idAluno: parseInt(data.idAluno), tipo: data.tipo, descricao: data.descricao, dataCriacao: data.dataCriacao}
+    criarAvaliacao(avaliacao)
   }
 
   if(infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
@@ -147,8 +148,8 @@ export const AvaliarAcompanhamento = () => {
               <InputLabel id="status">Status</InputLabel>
               <Select labelId="demo-simple-select-filled-label" defaultValue="initial" id="status" error={!!errors.tipo} {...register("tipo")}>
                 <MenuItem value="initial" disabled><em>Selecione a Trilha</em></MenuItem>
-                <MenuItem value="positivo">Positivo</MenuItem>
-                <MenuItem value="atencao">Atencao</MenuItem>
+                <MenuItem value="POSITIVO">Positivo</MenuItem>
+                <MenuItem value="ATENCAO">Atenção</MenuItem>
               </Select>
               {errors.tipo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.tipo.message}</Typography>}
             </FormControl>

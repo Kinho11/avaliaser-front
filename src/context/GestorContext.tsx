@@ -18,7 +18,7 @@ export const GestorProvider = ({children} : IChildren) =>{
       nProgress.start()
       API.defaults.headers.common["Authorization"] = token;
       await API.post("/acompanhamento/cadastrar-acompanhamento",acompanhamento)
-      navigate("/dashboard/gestor")
+      navigate("/lista-acompanhamento")
       toast.success("Acompanhamento cadastrado com sucesso!", toastConfig);
     } catch (error) {
       toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);

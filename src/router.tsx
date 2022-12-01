@@ -33,6 +33,7 @@ import { AlunoProvider } from "./context/AlunoContext";
 import { GestorProvider } from "./context/GestorContext";
 import { EditarAcompanhamento } from "./pages/EditarAcompanhamento/EditarAcompanhamento";
 import { InstrutorProvider } from "./context/InstrutorContext";
+import { EditarAluno } from "./pages/EditarAluno/EditarAluno";
 
 function AppRoutes() {
   return (
@@ -65,7 +66,8 @@ function AppRoutes() {
                   <Route path="/avaliar-acompanhamento" element={<AvaliarAcompanhamento/>} />
                   <Route path="/lista-acompanhamento" element={<ListarAcompanhamento/>}/>
                   <Route path="/editar-acompanhamento" element={<EditarAcompanhamento/>}/>
-                  <Route path="/editar-avaliacao" element={<EditarAvaliacao/>}/>
+                  <Route path="/editar-avaliacao" element=  {<EditarAvaliacao/>}/>
+                  <Route path="/editar-aluno" element={<EditarAluno/>}/>
 
                   {/* Rotas Instrutor */}
                   <Route path="/dashboard/instrutor" element={<DashboardInstrutor />} />

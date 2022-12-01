@@ -37,6 +37,7 @@ export interface IAluno {
   deletarAluno: (id: number) => Promise<void>,
   criarAluno: (infosAluno: ICadastroAluno, imagem: FormData) => Promise<void>,
   alunos: IAlunosCadastrados[]
+  editarAluno: (dadosEditados: IEditarAluno, id: number) => Promise<void>
 }
 
 export interface IGestor{
@@ -47,7 +48,7 @@ export interface IGestor{
 }
 
 export interface IInstrutor{
-  cadastrarFeedback: (feedbacks: ICadastrarFeedback) => Promise<void>,
+  cadastrarFeedback: (feedbacks: object) => Promise<void>,
   pegarFeedback: () => Promise<void>,
   feedback: ICadastrarFeedback[]
   editarFeedback: (id: number, dadosEditados: IEditarFeedback) => Promise<void>
@@ -117,7 +118,8 @@ export interface ICriarAcompanhamento{
 }
 
 export interface ICadastrarFeedback{
-  idFeedback:number,
+  idFeedBack:number,
+  usuarioDTO: any,
   idUsuario: number,
   idAluno: number,
   descricao: string,
@@ -128,6 +130,13 @@ export interface IEditarFeedback{
   idAluno: number,
   descricao: string,
   tipo: string
+}
+
+export interface IEditarAluno{
+  idAluno: number,
+  stack:string,
+  nome: string,
+  email: string
 }
 
 export interface ICriarAvaliacao{

@@ -9,6 +9,7 @@ import { EditarFeedbackSchema } from '../../utils/schemas'
 import logo from "../../assets/dbc-logo.webp";
 import { AlunoContext } from '../../context/AlunoContext'
 import { useLocation } from 'react-router-dom'
+import { InstrutorContext } from '../../context/InstrutorContext'
 
 
 const itemHeigth = 48;
@@ -23,7 +24,6 @@ const MenuProps = {
 };
 
 interface IEditarFeedback {
-  trilha: string,
   aluno: string,
   descricao: string,
   tipo: string
@@ -31,8 +31,10 @@ interface IEditarFeedback {
 
 export const EditarFeedback = () => {
 
+  const { editarFeedback } = useContext(InstrutorContext);
+
   const {state} = useLocation()
-  console.log(state)
+  // console.log(state)
 
   const { getAlunos, alunos, } = useContext(AlunoContext);
   useEffect(() => { getAlunos(); }, [])
@@ -42,7 +44,7 @@ export const EditarFeedback = () => {
   })
   
 
-  const editarFeedback = (data: IEditarFeedback ) => {
+  const editarFeedbacks = (data: IEditarFeedback ) => {
     console.log(data)
   }
 
@@ -54,7 +56,7 @@ export const EditarFeedback = () => {
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
         <Titulo texto="Editar feedback"/>
 
-        <Box component="form" onSubmit={handleSubmit(editarFeedback)} sx={{ display: {
+        <Box component="form" onSubmit={handleSubmit(editarFeedbacks)} sx={{ display: {
           xs:"flex",
           md:"flex"
         },flexDirection:"column",alignItems:"center",backgroundColor: "#fff", width: {
@@ -80,21 +82,21 @@ export const EditarFeedback = () => {
             <Box sx={{display:"flex",gap:3}}>
               <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                 <Stack spacing={2} direction="row">
-                  <input type="radio" value="QA" id="qa" {...register("trilha")} />
+                  <input type="radio" value="QA" id="qa" />
                   <Typography sx={{fontWeight:"700"}}>QA</Typography>
                 </Stack>
               </Box>
 
               <Box sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                 <Stack spacing={2} direction="row">
-                  <input type="radio" value="backend" id="backend" {...register("trilha")} />
+                  <input type="radio" value="backend" id="backend" />
                   <Typography sx={{fontWeight:"700"}}>Back</Typography>
                 </Stack>
               </Box>
 
               <Box sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                 <Stack spacing={2} direction="row">
-                  <input type="radio" value="frontend" id="frontend" {...register("trilha")}/>
+                  <input type="radio" value="frontend" id="frontend"/>
                   <Typography sx={{fontWeight:"700"}}>Front</Typography>
                 </Stack>
               </Box>
@@ -110,7 +112,7 @@ export const EditarFeedback = () => {
               <InputLabel id="aluno">Selecione aluno</InputLabel>
               <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial" id="aluno" {...register("aluno")} >
                   {alunos.map((aluno)=>(
-                    <MenuItem key={aluno.idAluno} value={aluno.nome}>{aluno.nome}</MenuItem>
+                    <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem>
 
                   ))}
                 </Select>

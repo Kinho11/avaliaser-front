@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
 
 import { Paper, TableContainer, Table, TableRow, TableCell, TableBody, Button, TablePagination, tableCellClasses, Box, Typography, styled } from "@mui/material";
 
@@ -66,6 +67,7 @@ export const ListarAlunos = ({ alunos, deletarAluno }: any) => {
                     <StyledTableCell onClick={() => navigate("/verificar-aluno", { state: data })} id="nome" sx={{ textAlign: "center", fontWeight: "600", fontSize: "1rem" }}>{data.nome}</StyledTableCell>
                     <StyledTableCell onClick={() => navigate("/verificar-aluno", { state: data })} id="stack" sx={{ textAlign: "center", fontWeight: "600", fontSize: "1rem" }}>{data.stack}</StyledTableCell>
                     <StyledTableCell id="acoes" sx={{textAlign:"center"}}>
+                    <Button id="botao-deletar-instrutor" title="Deletar" onClick={() => navigate("/editar-aluno",{state: data})}><EditIcon /></Button>
                       <Button id="botao-deletar-instrutor" title="Deletar" onClick={() => deletarAluno(data.idAluno)}><DeleteForeverIcon /></Button>
                     </StyledTableCell>
                   </StyledTableRow>

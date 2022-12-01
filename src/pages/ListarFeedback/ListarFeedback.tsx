@@ -78,9 +78,9 @@ export const ListarFeedback = () => {
               </thead>
               <TableBody>
                 {feedback.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
-                  <StyledTableRow key={data.idFeedback}>
-                    <StyledTableCell sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">{data.idFeedback}</StyledTableCell>
-                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.descricao}</StyledTableCell> 
+                  <StyledTableRow key={data.idFeedBack}>
+                    <StyledTableCell sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">{data.idFeedBack}</StyledTableCell>
+                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.usuarioDTO?.nome}</StyledTableCell> 
                     <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.tipo}</StyledTableCell> 
                     <StyledTableCell id="cargo" sx={{textAlign:"center"}}>
                       <Button id="botao-avaliar-acompanhamento" onClick={() => { navigate("/editar-feedback", {state: data}) }} title="Avaliar acompanhamento"><EditIcon/>

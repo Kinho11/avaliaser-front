@@ -14,12 +14,12 @@ export const InstrutorProvider = ({children}: IChildren) => {
 
   const [feedback,setFeedback] = useState<ICadastrarFeedback[]>([])
 
-  const cadastrarFeedback = async (feedbacks: ICadastrarFeedback) =>{
+  const cadastrarFeedback = async (feedbacks: object) =>{
     try {
       nProgress.start()
       API.defaults.headers.common["Authorization"] = token;
       await API.post("/feedback/cadastrar-feedback",feedbacks)
-      navigate("/dashboard/instrutor")
+      navigate("/lista-feedback")
       toast.success("Acompanhamento cadastrado com sucesso!", toastConfig);
     } catch (error) {
       toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);
@@ -34,6 +34,7 @@ export const InstrutorProvider = ({children}: IChildren) => {
       API.defaults.headers.common["Authorization"] = token;
       const {data} =await API.get("/feedback/listar-feedback?page=0&size=10")
       setFeedback(data.elementos)
+      console.log(data.elementos.alunoDTO)
     } catch (error) {
       toast.error("Você não possui credenciais para acessar essas informações.", toastConfig);
     } finally {
