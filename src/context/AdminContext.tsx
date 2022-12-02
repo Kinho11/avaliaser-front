@@ -76,7 +76,7 @@ export const AdminProvider = ({ children }: IChildren) =>{
     }
   }
 
-  const deletarColaborador = async (id: number) => {
+  const deletarColaborador = async (id: number | undefined) => {
     try {
       nProgress.start();
       API.defaults.headers.common["Authorization"] = token;

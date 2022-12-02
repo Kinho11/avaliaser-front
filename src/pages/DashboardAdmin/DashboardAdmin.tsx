@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { Paper, TableContainer, Table,TableBody, TablePagination, Button, styled, Typography, Box, TableCell, tableCellClasses, TableRow } from "@mui/material";
+import { Paper, TableContainer, Table,TableBody, TablePagination, Button, styled, Typography, Box, TableCell, tableCellClasses, TableRow, Modal } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
@@ -35,6 +35,20 @@ const columns: Column[] = [
   { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") }
 ];
 
+const style = {
+  position: "absolute" as const,
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "none",
+  borderRadius: "5px",
+  textAlign: "center",
+  boxShadow: 24,
+  p: 4,
+};
+
 export const DashboardAdmin = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(0);
@@ -49,6 +63,12 @@ export const DashboardAdmin = () => {
     setPage(0);
   };
 
+  // Funções Modal
+  const [idDelete, setIdDelete] = useState<number | undefined>();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   useEffect(() => { pegarColaborador() }, [])
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
@@ -58,7 +78,7 @@ export const DashboardAdmin = () => {
     <>
       <Header />
       
-      <Box sx={{height:"calc(100vh - 200px)",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center", gap:5}}>
+      <Box sx={{height:"calc(100vh - 200px)",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center", gap:5, position: "relative"}}>
         <Typography id="titulo-body" sx={{textAlign: "center", marginTop:"50px",fontWeight:"700",fontSize: { xs:30, md:44 },color:"white"}} variant="h3">Dashboard Colaboradores</Typography>
         <Paper sx={{ width: { xs:"95%", md:"60%"}, borderRadius: "10px", boxShadow: "10px 10px 10px #2f407ccf" }}>
 
@@ -81,16 +101,27 @@ export const DashboardAdmin = () => {
                     <StyledTableCell id="cargo" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.cargo}</StyledTableCell>
                     <StyledTableCell id="acoes" sx={{textAlign:"center"}}>
                       <Button id={`botao-editar-admin-${data.idUsuario}`} title="Editar" onClick={() => { navigate("/editar-colaborador", { state: data }) }}><EditIcon/></Button>
-                      <Button id={`botao-deletar-admin-${data.idUsuario}`} title="Deletar" onClick={() => deletarColaborador(data.idUsuario)}><DeleteForeverIcon /></Button>
+                      <Button id={`botao-deletar-admin-${data.idUsuario}`} onClick={() => { handleOpen(); setIdDelete(data.idUsuario) }} title="Deletar"><DeleteForeverIcon /></Button>
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
-            </Table>
+            </Table> 
           </TableContainer>
 
           {/* Paginação */}
           <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={colaborador.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
+
+          {/* Modal Confirmar Delete */}
+          <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-titulo" aria-describedby="modal-modal-description" sx={{ backdropFilter: "blur(10px)" }}>
+            <Box sx={style}> 
+              <Typography id="modal-modal-titulo" variant="h6" component="h2" color="error">Você realmente deseja excluir?</Typography>
+              <Box sx={{ display: "flex", gap: 2, alignItems: "center", justifyContent: "center" }}>
+                <Button id="botao-confirmar-modal" onClick={() => { deletarColaborador(idDelete); handleClose(); }} size="medium" color="success" type="submit" sx={{ mt: 2 }} variant="contained">Confirmar</Button>
+                <Button id="botao-fechar-modal" onClick={handleClose} size="medium" type="submit" sx={{ mt: 2 }} variant="contained">Fechar</Button>
+              </Box>
+            </Box>
+          </Modal>
         </Paper>
       </Box>
     </>

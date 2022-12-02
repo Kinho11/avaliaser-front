@@ -58,7 +58,7 @@ export const AlunoProvider = ({ children }: IChildren) => {
     }
   }
 
-  const deletarAluno = async (id: number) => {
+  const deletarAluno = async (id: number | undefined) => {
     try {
       nProgress.start();
       API.defaults.headers.common["Authorization"] = localStorage.getItem("token");

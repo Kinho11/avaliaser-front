@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 
-import { Paper, TableContainer, Table, TableRow, TableCell, TableBody, Button, TablePagination, tableCellClasses, Box, Typography, styled } from "@mui/material";
+import { Paper, TableContainer, Table, TableRow, TableCell, TableBody, Button, TablePagination, tableCellClasses, Box, Typography, Modal, styled } from "@mui/material";
 
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import React from "react";
@@ -32,11 +32,31 @@ const columns: Column[] = [
   { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") }
 ];
 
+const style = {
+  position: "absolute" as const,
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "none",
+  borderRadius: "5px",
+  textAlign: "center",
+  boxShadow: 24,
+  p: 4,
+};
+
 export const ListarAlunos = ({ alunos, deletarAluno }: any) => {
   const navigate = useNavigate();
   
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  // Funções Modal
+  const [idDelete, setIdDelete] = useState<number | undefined>();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   
   const handleChangePage = (event: unknown, newPage: number) => { setPage(newPage); };
   
@@ -69,7 +89,7 @@ export const ListarAlunos = ({ alunos, deletarAluno }: any) => {
                     <StyledTableCell onClick={() => navigate("/verificar-aluno", { state: data })} id="stack" sx={{ textAlign: "center", fontWeight: "600", fontSize: "1rem" }}>{data.stack}</StyledTableCell>
                     <StyledTableCell id="acoes" sx={{textAlign:"center"}}>
                       <Button id={`botao-editar-${data.idAluno}`} title="Deletar" onClick={() => navigate("/editar-aluno",{state: data})}><EditIcon /></Button>
-                      <Button id={`botao-deletar-${data.idAluno}`} title="Deletar" onClick={() => deletarAluno(data.idAluno)}><DeleteForeverIcon /></Button>
+                      <Button id={`botao-deletar-${data.idAluno}`} title="Deletar" onClick={() => { handleOpen(); setIdDelete(data.idAluno) }}><DeleteForeverIcon /></Button>
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
@@ -79,6 +99,17 @@ export const ListarAlunos = ({ alunos, deletarAluno }: any) => {
 
           {/* Paginação */}
           <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={alunos.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
+
+          {/* Modal Confirmar Delete */}
+          <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-titulo" aria-describedby="modal-modal-description" sx={{ backdropFilter: "blur(10px)" }}>
+            <Box sx={style}> 
+              <Typography id="modal-modal-titulo" variant="h6" component="h2" color="error">Você realmente deseja excluir?</Typography>
+              <Box sx={{ display: "flex", gap: 2, alignItems: "center", justifyContent: "center" }}>
+                <Button id="botao-confirmar-modal" onClick={() => { deletarAluno(idDelete); handleClose(); }} size="medium" color="success" type="submit" sx={{ mt: 2 }} variant="contained">Confirmar</Button>
+                <Button id="botao-fechar-modal" onClick={handleClose} size="medium" type="submit" sx={{ mt: 2 }} variant="contained">Fechar</Button>
+              </Box>
+            </Box>
+          </Modal>
         </Paper>
       </Box>
     </>

@@ -26,7 +26,7 @@ export interface IAuth {
 
 export interface IAdmin {
   criarColaborador: (userColaborador: IUserColaborador, imagem: FormData) => Promise<void>,
-  deletarColaborador: (id: number) => Promise<void>,
+  deletarColaborador: (id: number | undefined) => Promise<void>,
   pegarColaborador: () => Promise<void>,
   editarColaborador: (dadosEditados: IColaboradorEditado, id: number, imagem: FormData) => Promise<void>,
   colaborador: IPegarColaborador[]
@@ -34,7 +34,7 @@ export interface IAdmin {
 
 export interface IAluno {
   getAlunos: () => Promise<void>,
-  deletarAluno: (id: number) => Promise<void>,
+  deletarAluno: (id: number | undefined) => Promise<void>,
   criarAluno: (infosAluno: ICadastroAluno, imagem: FormData) => Promise<void>,
   alunos: IAlunosCadastrados[],
   editarAluno: (dadosEditados: IEditarAluno, id: number, imagem: FormData) => Promise<void>
