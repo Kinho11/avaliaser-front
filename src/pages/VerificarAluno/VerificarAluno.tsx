@@ -19,7 +19,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 interface ColumnFeedback {
-  id: "codigo" | "descricao" | "status" | "responsavel";
+  id: "codigo" | "descricao" | "status" | "responsavel" | "acoes";
   label: string;
   minWidth?: number;
   align?: "right";
@@ -31,6 +31,7 @@ const columnsFeedback: ColumnFeedback[] = [
   { id: "descricao", label: "Descrição", minWidth: 5 },
   { id: "status", label: "Status", minWidth: 5 },
   { id: "responsavel", label: "Responsável", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
+  { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US")}
 ];
 
 
@@ -111,7 +112,11 @@ export const VerificarAluno = () => {
                         <StyledTableCell sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">{feedback.idFeedBack}</StyledTableCell>
                         <StyledTableCell sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">{feedback.descricao}</StyledTableCell>
                         <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{feedback.tipo}</StyledTableCell>  
-                        <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>Responsavel</StyledTableCell>
+                        <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{feedback.usuarioDTO.nome}</StyledTableCell>
+                        <StyledTableCell id="cargo" sx={{textAlign:"center"}}>
+                          <Button id="botao-avaliar-acompanhamento" onClick={() => { navigate("/editar-feedback", {state: feedback}) }} title="Avaliar acompanhamento"><EditIcon/>
+                        </Button>
+                        </StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
@@ -140,7 +145,7 @@ export const VerificarAluno = () => {
                         <StyledTableCell  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">{avaliacao.idAvaliacao}</StyledTableCell>
                         <StyledTableCell id="dataInicio" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{avaliacao.dataCriacao.replace(/(\d{4})-(\d{2})-(\d{2})/,"$3/$2/$1")}</StyledTableCell>
                         <StyledTableCell id="descricao" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{avaliacao.descricao}</StyledTableCell>  
-                        <StyledTableCell id="responsavel" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>Responsavel</StyledTableCell>
+                        <StyledTableCell id="responsavel" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{avaliacao.responsavel.nome}</StyledTableCell>
                         <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
                         onClick={()=>{navigate("/editar-avaliacao", {state: avaliacao })}}
                         title="Editar Avaliação"><EditIcon/></Button></StyledTableCell>

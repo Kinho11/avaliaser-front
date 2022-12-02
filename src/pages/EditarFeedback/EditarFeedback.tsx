@@ -10,6 +10,8 @@ import logo from "../../assets/dbc-logo.webp";
 import { AlunoContext } from '../../context/AlunoContext'
 import { Navigate, useLocation } from 'react-router-dom'
 import { InstrutorContext } from '../../context/InstrutorContext'
+import { toast } from 'react-toastify'
+import { toastConfig } from '../../utils/toast'
 
 
 const itemHeigth = 48;
@@ -56,8 +58,12 @@ export const EditarFeedback = () => {
   })
   
   const editarFeedbacks = (data: any ) => {
-    const editarfeedback = {idAluno: parseInt(data.idAluno), descricao: data.descricao, tipo: data.tipo}
-    editarFeedback(state.idFeedBack,editarfeedback)
+    if(data.idAluno === "initial-aluno"){
+      toast.error("Preencha todos os campos!", toastConfig)
+    } else {
+      const editarfeedback = {idAluno: parseInt(data.idAluno), descricao: data.descricao, tipo: data.tipo}
+      editarFeedback(state.idFeedBack,editarfeedback)
+    }
   }
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");

@@ -19,7 +19,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 interface Column {
-  id: "codigo" | "nome" | "status" | "acoes";
+  id: "codigo" | "nome" | "status";
   label: string;
   minWidth?: number;
   align?: "right";
@@ -30,13 +30,10 @@ const columns: Column[] = [
   { id: "codigo", label: "Código", minWidth: 5 },
   { id: "nome", label: "Nome", minWidth: 5 },
   { id: "status", label: "Status", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
-  { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") }
 ];
 
 export const ListarFeedback = () => {
   const { pegarFeedback, feedback} = useContext(InstrutorContext);
-
-  const navigate = useNavigate()
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -77,11 +74,6 @@ export const ListarFeedback = () => {
                     <StyledTableCell sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">{data.idFeedBack}</StyledTableCell>
                     <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.alunoDTO.nome}</StyledTableCell> 
                     <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.tipo}</StyledTableCell> 
-                    <StyledTableCell id="cargo" sx={{textAlign:"center"}}>
-                      <Button id="botao-avaliar-acompanhamento" onClick={() => { navigate("/editar-feedback", {state: data}) }} title="Avaliar acompanhamento"><EditIcon/>
-                    </Button>
-                    <Button id="botao-deletar-gestor" title="Deletar"><DeleteForeverIcon /></Button>
-                    </StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
