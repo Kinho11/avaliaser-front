@@ -47,6 +47,7 @@ export interface IGestor{
   pegarAcompanhamento: () => Promise<void>,
   getAvaliacaoPorID: (id: number) => Promise<void>,
   criarAvaliacao: (avalicao: ICriarAvaliacao) => void,
+  editarAvaliacao: (dadosEditados: IEditarAvaliacao, id: number) => Promise<void>,
   acompanhamento: ICriarAcompanhamento[],
   avaliacoesPorID: IAvaliacaoPorId[]
 }
@@ -58,6 +59,13 @@ export interface IInstrutor{
   editarFeedback: (id: number, dadosEditados: IEditarFeedback) => Promise<void>,
   feedback: ICadastrarFeedback[],
   feedbackPorID: IFeedbackPorId[]
+}
+
+export interface IEditarAvaliacao {
+  idAluno: number,
+  idAcompanhamento: number,
+  descricao: string,
+  status: string
 }
 
 export interface IAvaliacaoPorId {
