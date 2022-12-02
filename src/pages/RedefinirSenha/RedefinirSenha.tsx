@@ -91,7 +91,7 @@ export const RedefinirSenha = () => {
                 {errors.confirmarNovaSenha && <Typography id="erro-confirmar-nova-senha" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.confirmarNovaSenha.message}</Typography>}
               </FormControl>
 
-              <Button id="botao-redefinir-senha" size="medium" type="submit" endIcon={<LoginOutlined />} sx={{ width: "30%", backgroundColor: "#1e62fe" }} variant="contained">Entrar</Button>
+              <Button id="botao-redefinir-senha" size="medium" type="submit" endIcon={<LoginOutlined />} sx={{ width: "30%", backgroundColor: "#1e62fe" }} variant="contained">Redefinir</Button>
               
             </Stack>
           </Box>

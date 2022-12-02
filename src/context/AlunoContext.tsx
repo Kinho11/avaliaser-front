@@ -72,7 +72,7 @@ export const AlunoProvider = ({ children }: IChildren) => {
     }
   }
 
-  const editarAluno = async (dadosEditados: IEditarAluno, id: number) => {
+  const editarAluno = async (dadosEditados: IEditarAluno, id: number, imagem: FormData) => {
     try {
       nProgress.start()
       await API.put(`/aluno/atualizar-aluno/${id}?stack=${dadosEditados.stack}`,dadosEditados,{
@@ -80,8 +80,17 @@ export const AlunoProvider = ({ children }: IChildren) => {
       }).then((res)=>{
         toast.success("Aluno editado com sucesso!!", toastConfig);
         navigate("/dashboard/gestor")
-
       })
+
+      if(imagem){
+        await API.put(`/aluno/upload-imagem/${id}`, imagem, { 
+          headers: { Authorization: localStorage.getItem("token"), 'Content-Type': 'multipart/form-data' },
+         }).then((response) => {
+          toast.success("Foto enviada com sucesso", toastConfig);
+        }).catch((error) => {
+          toast.error("Foto não enviada", toastConfig)
+        })  
+      }
     } catch (error) {
       toast.error("Campo nulo, ou preenchido de forma incorreta, ou com id inválido, tente de novo.", toastConfig);
     } finally {
@@ -89,10 +98,8 @@ export const AlunoProvider = ({ children }: IChildren) => {
     }
   }
 
-
-
   return (
-    <AlunoContext.Provider value={{ criarAluno, getAlunos, alunos, deletarAluno,editarAluno }}>
+    <AlunoContext.Provider value={{ criarAluno, getAlunos, alunos, deletarAluno, editarAluno }}>
       {children}
     </AlunoContext.Provider>
   );

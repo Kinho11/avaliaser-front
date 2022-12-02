@@ -102,6 +102,7 @@ export const CadastrarAluno = () => {
           }}}>
             {selectedImage && <Avatar alt="Foto Enviada" src={URL.createObjectURL(selectedImage)} sx={{ width: 150, height: 150 }} />}
             {!selectedImage && <Avatar alt="Foto Padrao" sx={{ width: 150, height: 150 }} />}
+            
             <Button component="label" variant="contained">
               <input id="imagemAluno" type="file" hidden accept="image/jpeg" onChange={imageChange} />
               <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir Foto</Typography>

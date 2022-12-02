@@ -31,13 +31,12 @@ export const EditarColaborador = () => {
     resolver: yupResolver(editarColaboradorSchema)
   });
 
-
   const imagemAPI = new FormData();
   if(selectedImage) {
     imagemAPI.append("file", selectedImage)
   }
 
-  const cadastroColaborador = (data: IColaboradorEditado) => {
+  const editarColaboradores = (data: IColaboradorEditado) => {
     editarColaborador(data, state.idUsuario, imagemAPI);
   }
 
@@ -50,7 +49,7 @@ export const EditarColaborador = () => {
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
         <Titulo texto="Editar colaborador"/>
 
-        <Box component="form" onSubmit={handleSubmit(cadastroColaborador)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"50%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf"  }}>
+        <Box component="form" onSubmit={handleSubmit(editarColaboradores)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"50%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf"  }}>
 
           <Stack component="div" spacing={2} sx={{ width:{ xs:"100%", md:"50%" }, display: "flex", alignItems:{ xs:"start", md:"start" } }}>
 

@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { API } from "../utils/api";
-import { ICriarAcompanhamento, IChildren, IGestor, ICriarAvaliacao, IEditarAcompanhamento } from "../utils/interface";
+import { ICriarAcompanhamento, IChildren, IGestor, ICriarAvaliacao, IEditarAcompanhamento, IAvaliacaoPorId } from "../utils/interface";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { toastConfig } from "../utils/toast";
@@ -12,6 +12,7 @@ export const GestorProvider = ({children} : IChildren) =>{
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const [acompanhamento,setAcompanhamento] = useState<ICriarAcompanhamento[]>([])
+  const [avaliacoesPorID, setAvaliacoesPorID] = useState<IAvaliacaoPorId[]>([])
 
   const criarAcompanhamento = async (acompanhamento: ICriarAcompanhamento) =>{
     try {
@@ -31,7 +32,7 @@ export const GestorProvider = ({children} : IChildren) =>{
     try {
       nProgress.start()
       API.defaults.headers.common["Authorization"] = token;
-      const {data} =await API.get("/acompanhamento/listar-acompanhamento?page=0&size=10")
+      const {data} =await API.get("/acompanhamento/listar-acompanhamento?page=0&size=1000")
       setAcompanhamento(data.elementos)
     } catch (error) {
       toast.error("Você não possui credenciais para acessar essas informações.", toastConfig);
@@ -69,8 +70,21 @@ export const GestorProvider = ({children} : IChildren) =>{
     }
   }
 
+  const getAvaliacaoPorID = async (id: number) => {
+    try {
+      nProgress.start()
+      API.defaults.headers.common["Authorization"] = localStorage.getItem("token");
+      const { data } = await API.get(`/avaliacao-acompanhamento/${id}?page=0&size=1000`)
+      setAvaliacoesPorID(data.elementos)
+    } catch (error) {
+      toast.error("Houve um erro inesperado.", toastConfig);
+    } finally{
+      nProgress.done()
+    }
+  }
+
   return (
-    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento, criarAvaliacao, editAcompanhamento }}>
+    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento, criarAvaliacao, editAcompanhamento, getAvaliacaoPorID, avaliacoesPorID }}>
       {children}
     </GestorContext.Provider>
   );

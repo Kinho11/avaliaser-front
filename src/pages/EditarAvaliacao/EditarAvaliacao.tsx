@@ -54,10 +54,6 @@ export const EditarAvaliacao = () => {
     setFiltroBack(false)
     setFiltroFront(false)
     setFiltroQA(false)
-
-    // document.getElementById("qa").checked = false;
-    // document.getElementById("frontend").checked = false;
-    // document.getElementById("backend").checked = false;
   }
 
   const editarAvaliacao = (data: IEditarAvaliacao) => {
@@ -73,31 +69,11 @@ export const EditarAvaliacao = () => {
       <Header/>
 
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{
-          xs:"35px",
-          md:"40px"
-        }, fontWeight:"700",color:"white", marginTop:{
-          xs:"150px",
-          md:"0"
-        }}} variant="h3">Editar avaliação</Typography>
+        <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px" }, fontWeight:"700",color:"white", marginTop:{ xs:"150px", md:"0" }}} variant="h3">Editar avaliação</Typography>
 
-        <Box component="form" onSubmit={handleSubmit(editarAvaliacao)} sx={{ display: {
-          xs:"block",
-          md:"flex"
-        }, justifyContent: "space-between", backgroundColor: "#fff", width: {
-          xs:"90%",
-          md:"60%"
-        }, borderRadius: "10px", padding: {
-          xs: 5,
-          md: 5
-        }, boxShadow: "10px 10px 10px #2f407ccf",gap:8  }}>
-          <Stack component="div" spacing={3} sx={{ width:{
-            xs:"100%",
-            md:"50%"
-          }, display: "flex", alignItems:{
-            xs:"start",
-            md:"start"
-          } }}>
+        <Box component="form" onSubmit={handleSubmit(editarAvaliacao)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"60%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf", gap:8 }}>
+          <Stack component="div" spacing={3} sx={{ width:{ xs:"100%", md:"50%"
+          }, display: "flex", alignItems:{ xs:"start", md:"start" } }}>
             
             <FormControl variant="filled" sx={{ width: { xs:"100%", md:"100%" }}}>
               <InputLabel id="acompanhamento">Titulo do Acompanhamento</InputLabel>
@@ -116,7 +92,7 @@ export const EditarAvaliacao = () => {
 
                 <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                   <Stack spacing={2} direction="row">
-                    <input type="radio" value="QA" id="qa" name="stack" onClick={(e) => { 
+                    <input type="radio" value="QA" id="qa" name="stack" onClick={() => { 
                       setFiltroQA(true)
                       setFiltroBack(false)
                       setFiltroFront(false)
@@ -132,7 +108,7 @@ export const EditarAvaliacao = () => {
                       setFiltroFront(false)
                       setFiltroQA(false)
                     }} />
-                    <Typography sx={{fontWeight:"700"}}>Back</Typography>
+                    <Typography sx={{fontWeight:"700"}}>Back-End</Typography>
                   </Stack>
                 </Box>
 
@@ -143,7 +119,7 @@ export const EditarAvaliacao = () => {
                       setFiltroQA(false)
                       setFiltroBack(false)
                     }} />
-                    <Typography sx={{fontWeight:"700"}}>Front</Typography>
+                    <Typography sx={{fontWeight:"700"}}>Front-End</Typography>
                   </Stack>
                 </Box>
                   
@@ -178,7 +154,6 @@ export const EditarAvaliacao = () => {
                 <MenuItem value="ATENCAO">Atenção</MenuItem>
               </Select>
             </FormControl>
-
           </Stack>
 
           <Stack component="div" spacing={4} sx={{ width: { xs:"100%", md:"50%" }, display: "flex", alignItems: "end",marginTop:{ xs:2, md:0 }}}>
@@ -187,7 +162,7 @@ export const EditarAvaliacao = () => {
             </FormControl>
 
             <FormControl sx={{ width: { xs:"100%", md:"100%" }}}>
-              <TextField id="data" value={state.dataInicio} label="Data inicial" type="date" sx={{ width: "100%" }} InputLabelProps={{ shrink: true }} />
+              <TextField id="data" value={state.dataCriacao} label="Data inicial" type="date" sx={{ width: "100%" }} InputLabelProps={{ shrink: true }} />
             </FormControl>
 
             <BotaoVerde texto="Editar" />

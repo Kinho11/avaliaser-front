@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {editarAlunoSchema } from '../../utils/schemas';
 import { AlunoContext } from '../../context/AlunoContext';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 interface IEditarAluno{
   idAluno: number,
@@ -15,8 +15,6 @@ interface IEditarAluno{
   nome: string,
   email: string
 }
-
-
 
 export const EditarAluno = () => {
   const {state} = useLocation()
@@ -40,11 +38,12 @@ export const EditarAluno = () => {
     imagemAPI.append("file", selectedImage)
   }
 
-  // console.log(state);
   const editarAlunos = (data: IEditarAluno) => {
-    editarAluno(data, state.idAluno)
+    editarAluno(data, state.idAluno, imagemAPI)
   };
 
+  const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
+  if(infosUsuario.cargo !== "Gestor de Pessoas" && infosUsuario.cargo !== "Instrutor") return <Navigate to="/"/>
 
   return (
     <>
@@ -105,6 +104,7 @@ export const EditarAluno = () => {
             md:0
           }}}>
             <Avatar alt="Foto Enviada" src={selectedImage ? URL.createObjectURL(selectedImage) : state.foto ? `data:image/jpeg;base64,${state.foto}` : ""} sx={{ width: 150, height: 150 }} />
+
             <Button component="label" variant="contained">
               <input id="imagemAluno" type="file" hidden accept="image/jpeg" onChange={imageChange} />
               <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir Foto</Typography>

@@ -1,13 +1,11 @@
-import { Box, Typography, Paper, TableContainer, Table, TableRow, TableCell, TableBody, Button, TablePagination, styled, tableCellClasses, FormControl, Stack } from "@mui/material"
+import { Box, Typography, Paper, TableContainer, Table, TableRow, TableCell, TableBody, Button, TablePagination, styled, tableCellClasses } from "@mui/material"
 import React, { useContext, useEffect, useState } from "react"
 import { Navigate, useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header/Header"
 import EditIcon from "@mui/icons-material/Edit";
 
-
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { InstrutorContext } from "../../context/InstrutorContext";
-
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: { backgroundColor: theme.palette.common.black, color: theme.palette.common.white },
@@ -29,7 +27,7 @@ interface Column {
 }
 
 const columns: Column[] = [
-  { id: "codigo", label: "Codigo", minWidth: 5 },
+  { id: "codigo", label: "Código", minWidth: 5 },
   { id: "nome", label: "Nome", minWidth: 5 },
   { id: "status", label: "Status", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
   { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") }
@@ -53,11 +51,8 @@ export const ListarFeedback = () => {
  
   useEffect(() => { pegarFeedback(); }, [])
 
-
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   if(infosUsuario.cargo !== "Instrutor") return <Navigate to="/"/>
-
-
 
   return (
     <>
@@ -94,41 +89,11 @@ export const ListarFeedback = () => {
           </TableContainer>
 
           {/* Paginação */}
-          <Box sx={{display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%",padding:"0 20px"}}>
-            <FormControl variant="filled">
-              <Box sx={{display:"flex",gap:3,flexDirection:{
-                xs:"column",
-                md:"row"
-              }}}>
-                <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
-                  <Stack spacing={2} direction="row">
-                    <input type="radio" value="QA" id="qa"/>
-                    <Typography sx={{fontWeight:"700"}}>QA</Typography>
-                  </Stack>
-                </Box>
-
-                <Box sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
-                  <Stack spacing={2} direction="row">
-                    <input type="radio" value="backend" id="backend"/>
-                    <Typography sx={{fontWeight:"700"}}>Back</Typography>
-                  </Stack>
-                </Box>
-
-                <Box sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
-                  <Stack spacing={2} direction="row">
-                    <input type="radio" value="frontend" id="frontend" />
-                    <Typography sx={{fontWeight:"700"}}>Front</Typography>
-                  </Stack>
-                </Box>
-              
-              </Box>
-              
-              </FormControl>
+          <Box sx={{display:"flex",alignItems:"center",justifyContent:"end",width:"100%",padding:"0 20px"}}>
             <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={feedback.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
           </Box>
         </Paper>
       </Box>
-    
     </>
   )
 }

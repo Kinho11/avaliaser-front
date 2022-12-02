@@ -3,7 +3,7 @@ import { createContext, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { API } from "../utils/api";
-import { ICadastrarFeedback, IChildren, IEditarFeedback, IInstrutor } from "../utils/interface";
+import { ICadastrarFeedback, IChildren, IEditarFeedback, IFeedbackPorId, IInstrutor } from "../utils/interface";
 import { toastConfig } from "../utils/toast";
 
 export const InstrutorContext = createContext({} as IInstrutor);
@@ -13,6 +13,7 @@ export const InstrutorProvider = ({children}: IChildren) => {
   const navigate = useNavigate()
 
   const [feedback,setFeedback] = useState<ICadastrarFeedback[]>([])
+  const [feedbackPorID, setFeedbackPorID] = useState<IFeedbackPorId[]>([])
 
   const cadastrarFeedback = async (feedbacks: object) =>{
     try {
@@ -32,9 +33,8 @@ export const InstrutorProvider = ({children}: IChildren) => {
     try {
       nProgress.start()
       API.defaults.headers.common["Authorization"] = token;
-      const {data} =await API.get("/feedback/listar-feedback?page=0&size=10")
+      const {data} =await API.get("/feedback/listar-feedback?page=0&size=1000")
       setFeedback(data.elementos)
-      console.log(data.elementos.alunoDTO)
     } catch (error) {
       toast.error("Você não possui credenciais para acessar essas informações.", toastConfig);
     } finally {
@@ -54,9 +54,22 @@ export const InstrutorProvider = ({children}: IChildren) => {
       nProgress.done()
     }
   }
+
+  const getFeedbackPorID = async (id: number) => {
+    try {
+      nProgress.start()
+      API.defaults.headers.common["Authorization"] = localStorage.getItem("token");
+      const { data } = await API.get(`/feedback/listar-feedback-por-id/${id}?page=0&size=1000`)
+      setFeedbackPorID(data.elementos)
+    } catch (error) {
+      toast.error("Houve um erro inesperado.", toastConfig);
+    } finally{
+      nProgress.done()
+    }
+  }
   
   return (
-    <InstrutorContext.Provider value={{ cadastrarFeedback, pegarFeedback, feedback,editarFeedback }}>
+    <InstrutorContext.Provider value={{ cadastrarFeedback, pegarFeedback, feedback, editarFeedback, getFeedbackPorID, feedbackPorID }}>
       {children}
     </InstrutorContext.Provider>
   );
