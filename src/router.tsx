@@ -38,7 +38,7 @@ import { EditarAluno } from "./pages/EditarAluno/EditarAluno";
 function AppRoutes() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <ToastContainer />
         <AuthProvider>
           <AdminProvider>
