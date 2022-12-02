@@ -80,7 +80,7 @@ export const ListarFeedback = () => {
                 {feedback.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
                   <StyledTableRow key={data.idFeedBack}>
                     <StyledTableCell sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">{data.idFeedBack}</StyledTableCell>
-                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.usuarioDTO?.nome}</StyledTableCell> 
+                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.alunoDTO.nome}</StyledTableCell> 
                     <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.tipo}</StyledTableCell> 
                     <StyledTableCell id="cargo" sx={{textAlign:"center"}}>
                       <Button id="botao-avaliar-acompanhamento" onClick={() => { navigate("/editar-feedback", {state: data}) }} title="Avaliar acompanhamento"><EditIcon/>
