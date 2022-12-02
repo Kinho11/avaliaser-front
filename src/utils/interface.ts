@@ -147,6 +147,7 @@ export interface IEditarAcompanhamento {
 export interface ICadastrarFeedback{
   idFeedBack:number,
   usuarioDTO: any,
+  alunoDTO: any,
   idUsuario: number,
   idAluno: number,
   descricao: string,
