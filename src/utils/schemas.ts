@@ -6,7 +6,7 @@ export const userSchema = yup.object().shape({
   email: yup
     .string()
     .required("Por favor, digite seu e-mail")
-    .email("Por favor, digite um e-mail válido").matches(regexEmail, "Só aceitamos email @dbccompany.com.br"),
+    .email("Por favor, digite um e-mail válido"),
   senha: yup
     .string()
     .required("Por favor, digite sua senha")
