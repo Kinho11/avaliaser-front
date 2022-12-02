@@ -18,8 +18,10 @@ export const Intermediaria = () => {
   }, [tokenRecuperarSenha])
 
   return (
-    <Box component="main" sx={{ height:"100vh",width:"100vw",display:"flex",alignItems:"center",justifyContent:"center" }}>
-      <img src={logo} width={300} alt="Logo DBC Branco" />
-    </Box>
+    <>
+      <Box component="main" sx={{ height:"100vh",width:"100vw",display:"flex",alignItems:"center",justifyContent:"center" }}>
+        <img src={logo} width={300} alt="Logo DBC Branco" />
+      </Box>
+    </>
   )
 }

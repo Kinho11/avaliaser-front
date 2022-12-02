@@ -1,16 +1,18 @@
+import { useContext, useState } from "react";
+
+import { Navigate } from "react-router-dom";
+
 import { Header } from "../../components/Header/Header";
+import { BotaoVerde } from "../../components/BotaoVerde/BotaoVerde";
+import { Titulo } from "../../components/Titulo/Titulo";
 
 import { Box, FormControl, TextField, Stack, Typography,  Avatar, Button,FormLabel } from "@mui/material";
-
-import { useContext, useState } from "react";
 
 import { colaboradorSchema} from "../../utils/schemas";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 import { AdminContext } from "../../context/AdminContext";
-import { Navigate } from "react-router-dom";
-import { BotaoVerde } from "../../components/BotaoVerde/BotaoVerde";
-import { Titulo } from "../../components/Titulo/Titulo";
 
 interface IColaborador{
   nome: string,
@@ -38,9 +40,7 @@ export const CadastrarColaborador = () => {
     imagemAPI.append("file", selectedImage)
   }
 
-  const cadastroColaborador = (data: IColaborador) => {
-    criarColaborador(data, imagemAPI);
-  };
+  const cadastroColaborador = (data: IColaborador) => { criarColaborador(data, imagemAPI); };
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   if(infosUsuario.cargo !== "Admin") return <Navigate to="/"/>

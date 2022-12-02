@@ -1,10 +1,11 @@
 import { useContext, useEffect } from "react";
-import { Header } from "../../components/Header/Header";
 
 import { Navigate } from "react-router-dom";
-import { AlunoContext } from "../../context/AlunoContext";
 
+import { Header } from "../../components/Header/Header";
 import { ListarAlunos } from "../../components/ListarAlunos/ListarAlunos";
+
+import { AlunoContext } from "../../context/AlunoContext";
 
 export const DashboardGestor = () => {
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");

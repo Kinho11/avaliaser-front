@@ -1,10 +1,11 @@
-import { Box, Typography, Paper, TableContainer, Table, TableRow, TableCell, TableBody, Button, TablePagination, styled, tableCellClasses } from "@mui/material"
 import React, { useContext, useEffect, useState } from "react"
-import { Navigate, useNavigate } from "react-router-dom";
-import { Header } from "../../components/Header/Header"
-import EditIcon from "@mui/icons-material/Edit";
 
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { Navigate } from "react-router-dom";
+
+import { Box, Typography, Paper, TableContainer, Table, TableRow, TableCell, TableBody, TablePagination, styled, tableCellClasses } from "@mui/material"
+
+import { Header } from "../../components/Header/Header"
+
 import { InstrutorContext } from "../../context/InstrutorContext";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -45,7 +46,6 @@ export const ListarFeedback = () => {
     setPage(0);
   };
 
- 
   useEffect(() => { pegarFeedback(); }, [])
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");

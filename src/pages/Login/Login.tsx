@@ -1,7 +1,11 @@
 import { useContext, useState } from "react";
+
+import { Navigate } from "react-router-dom";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userSchema } from "../../utils/schemas";
+import { ILogin, IUsuario } from "../../utils/interface";
 
 import { toast } from "react-toastify";
 import { toastConfig } from "../../utils/toast";
@@ -12,10 +16,7 @@ import logo from "../../assets/dbc-logo.webp";
 import { Box, Button, Typography, Stack, InputLabel, OutlinedInput, InputAdornment, IconButton, FormControl, Modal } from "@mui/material";
 import { LoginOutlined, Visibility, VisibilityOff, Email, ForwardToInbox } from "@mui/icons-material";
 
-import { ILogin, IUsuario } from "../../utils/interface";
-
 import { AuthContext } from "../../context/AuthContext";
-import { Navigate } from "react-router-dom";
 
 const style = {
   position: "absolute" as const,
@@ -49,9 +50,7 @@ export const Login = () => {
   });
 
   // Submit Formulario Login
-  const onSubmit = (data: IUsuario) => {
-    usuarioLogin(data);
-  }
+  const onSubmit = (data: IUsuario) => { usuarioLogin(data); }
 
   // Funções Modal
   const [open, setOpen] = useState(false);
@@ -76,32 +75,17 @@ export const Login = () => {
     <>
       <Box id="container-global" component="section" sx={{ textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
 
-        <Box id="box-esquerda" sx={{ backgroundImage: `url(${backgroundLogin})`, width: "40%", height: "100%", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", display:{
-          xs:"none",
-          md:"block"
-        } }}></Box>
+        <Box id="box-esquerda" sx={{ backgroundImage: `url(${backgroundLogin})`, width: "40%", height: "100%", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", display:{ xs:"none", md:"block" }}}></Box>
 
-        <Box id="box-direita" sx={{ width: {
-          xs:"100%",
-          md:"60%"
-        }, height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap",backgroundColor:"#f8f8ff" }}>
+        <Box id="box-direita" sx={{ width: { xs:"100%", md:"60%" }, height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap",backgroundColor:"#f8f8ff" }}>
 
-          <Box id="box-login" component={"form"} onSubmit={handleSubmit(onSubmit)} sx={{ backgroundColor: "#fff", width: {
-            xs:"90%",
-            md:"70%"
-          }, borderRadius: 3, padding: {
-            xs: 2,
-            md: 5
-          }, boxShadow: "0px 4px 14px rgba(0, 0, 0, 0.25)" }}>
-
+          <Box id="box-login" component={"form"} onSubmit={handleSubmit(onSubmit)} sx={{ backgroundColor: "#fff", width: { xs:"90%", md:"70%"
+          }, borderRadius: 3, padding: { xs: 2, md: 5 }, boxShadow: "0px 4px 14px rgba(0, 0, 0, 0.25)" }}>
             <Stack spacing={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <Typography id="titulo" variant='h3' sx={{ color: "#1e62fe", fontWeight: "700" }}>AvaliaSer</Typography>
               <Typography id="subtitulo" variant='body1' sx={{ color: "#090F27", fontWeight: "600" }}>Faça seu login!</Typography>
 
-              <FormControl sx={{ width: {
-                xs:"90%",
-                md: "70%"
-              } }} variant="outlined">
+              <FormControl sx={{ width: { xs:"90%", md: "70%" }}} variant="outlined">
                 <InputLabel htmlFor="email"  error={!!errors.email}>Email</InputLabel>
                 <OutlinedInput id="email" type="email" error={!!errors.email} {...register("email")} placeholder="fulano.silva@dbccompany.com.br" label="Email" endAdornment={
                   <InputAdornment position="end">
@@ -113,10 +97,7 @@ export const Login = () => {
                 {errors.email && <Typography id="erro-email" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.email.message}</Typography>}
               </FormControl>
 
-              <FormControl sx={{ width: {
-                xs:"90%",
-                md: "70%"
-              } }} variant="outlined">
+              <FormControl sx={{ width: { xs:"90%", md: "70%" }}} variant="outlined">
                 <InputLabel htmlFor="senha" >Senha</InputLabel>
                 <OutlinedInput id="senha" {...register("senha")} placeholder="Insira sua senha" type={values.showPassword ? "text" : "password"} label="Senha" value={values.password} onChange={handleChange("password")} endAdornment={
                   <InputAdornment position="end">
@@ -124,7 +105,7 @@ export const Login = () => {
                       {values.showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
-                }/>
+                } />
                 {errors.senha && <Typography id="erro-senha" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.senha.message}</Typography>}
               </FormControl>
 

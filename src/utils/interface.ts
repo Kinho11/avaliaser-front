@@ -1,4 +1,3 @@
-
 export interface ILogin {
   password: string,
   showPassword: boolean,
@@ -10,22 +9,22 @@ export interface IHeaderProps {
   avatar?: string
 }
 
+export interface IEditarNome {
+  nome: string
+}
+
 export interface IAuth {
   usuarioLogin: (infoUser: IUsuario) => Promise<void>,
   redefinirSenha: (email: string) => Promise<void>,
   usuarioLogout: () => void,
   trocarSenhaLogado: (senhas: ISenhas) => Promise<void>,
   recuperarSenha: (senha: string) => Promise<void>,
-  editarPerfil: (nome: IEditarNome) => Promise<void>,
+  editarPerfil: (nome: IEditarNome, imagem: FormData, id: number) => Promise<void>,
   tokenAuth: string | null,
   usuarioLogado: any | undefined
 }
 
-export interface IEditarNome {
-  nome: string
-}
-
-export interface IAdmin{
+export interface IAdmin {
   criarColaborador: (userColaborador: IUserColaborador, imagem: FormData) => Promise<void>,
   deletarColaborador: (id: number) => Promise<void>,
   pegarColaborador: () => Promise<void>,
@@ -41,7 +40,7 @@ export interface IAluno {
   editarAluno: (dadosEditados: IEditarAluno, id: number, imagem: FormData) => Promise<void>
 }
 
-export interface IGestor{
+export interface IGestor {
   criarAcompanhamento: (acompanhamento: ICriarAcompanhamento) => Promise<void>,
   editAcompanhamento: (dadosEditados: IEditarAcompanhamento, id: number) => Promise<void>,
   pegarAcompanhamento: () => Promise<void>,
@@ -52,7 +51,7 @@ export interface IGestor{
   avaliacoesPorID: IAvaliacaoPorId[]
 }
 
-export interface IInstrutor{
+export interface IInstrutor {
   cadastrarFeedback: (feedbacks: object) => Promise<void>,
   pegarFeedback: () => Promise<void>,
   getFeedbackPorID: (id: number) => Promise<void>,
@@ -126,14 +125,14 @@ export interface IColaboradorEditado {
   email: string
 }
 
-export interface IUserColaborador{
+export interface IUserColaborador {
   nome: string,
   email: string,
   cargo: string
 
 }
 
-export interface IPegarColaborador{
+export interface IPegarColaborador {
   idUsuario: number,
   nome: string,
   email: string,
@@ -141,7 +140,7 @@ export interface IPegarColaborador{
   cargo: string
 }
 
-export interface ICriarAcompanhamento{
+export interface ICriarAcompanhamento {
   idAcompanhamento: number,
   titulo: string,
   descricao: string,
@@ -153,7 +152,7 @@ export interface IEditarAcompanhamento {
   descricao: string
 }
 
-export interface ICadastrarFeedback{
+export interface ICadastrarFeedback {
   idFeedBack:number,
   usuarioDTO: any,
   alunoDTO: any,
@@ -163,20 +162,20 @@ export interface ICadastrarFeedback{
   tipo: string
 }
 
-export interface IEditarFeedback{
+export interface IEditarFeedback {
   idAluno: number,
   descricao: string,
   tipo: string
 }
 
-export interface IEditarAluno{
+export interface IEditarAluno {
   idAluno: number,
   stack:string,
   nome: string,
   email: string
 }
 
-export interface ICriarAvaliacao{
+export interface ICriarAvaliacao {
   idAcompanhamento: number,
   idAluno: number,
   descricao: string,

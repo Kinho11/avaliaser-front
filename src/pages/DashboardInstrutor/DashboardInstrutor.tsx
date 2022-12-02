@@ -1,8 +1,11 @@
 import { useContext, useEffect } from "react";
+
 import { Navigate } from "react-router-dom";
+
 import { Header } from "../../components/Header/Header";
-import { AlunoContext } from "../../context/AlunoContext";
 import { ListarAlunos } from "../../components/ListarAlunos/ListarAlunos";
+
+import { AlunoContext } from "../../context/AlunoContext";
 
 export const DashboardInstrutor = () => {
   const { getAlunos, alunos, deletarAluno } = useContext(AlunoContext);

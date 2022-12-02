@@ -1,24 +1,21 @@
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useEffect, useState } from "react";
+
+import { Navigate } from "react-router-dom";
 
 import { Box, Typography, Stack, FormControl, TextField, FormLabel, Button, InputLabel, MenuItem, Select } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Navigate } from "react-router-dom";
+import { CriarAvaliacaoSchema } from "../../utils/schemas";
+
 import { Header } from "../../components/Header/Header"
+
 import { AlunoContext } from "../../context/AlunoContext";
 import { GestorContext } from "../../context/GestorContext";
-import { CriarAvaliacaoSchema } from "../../utils/schemas";
 
 const itemHeigth = 48;
 const itemPaddingTop = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: itemHeigth * 4.5 + itemPaddingTop,
-      width: 250,
-    },
-  },
-};
+const MenuProps = { PaperProps: { style: { maxHeight: itemHeigth * 4.5 + itemPaddingTop, width: 250 }}};
 
 interface IAvaliarAcompanhamento {
   idAcompanhamento: string,
@@ -82,9 +79,7 @@ export const AvaliarAcompanhamento = () => {
             </FormControl>
             
             <FormControl variant="filled">
-
               <FormLabel sx={{color:"#1D58F9",fontWeight:"500",marginBottom:"10px"}} id="demo-controlled-radio-buttons-group">Filtrar alunos por trilha</FormLabel>
-
               <Box sx={{display:"flex", alignItems: "center", gap:3}}>
 
                 <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>

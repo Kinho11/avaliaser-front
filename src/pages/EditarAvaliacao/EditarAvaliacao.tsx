@@ -1,26 +1,25 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Typography, Stack, FormControl, InputLabel, Select, MenuItem, FormLabel, TextField, Button } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
+
+import { Navigate, useLocation } from "react-router-dom";
+
+import { Box, Typography, Stack, FormControl, InputLabel, Select, MenuItem, FormLabel, TextField, Button } from "@mui/material"
+
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { EditarAvaliacaoSchema } from "../../utils/schemas";
+
 import { toast } from "react-toastify";
+import { toastConfig } from "../../utils/toast";
+
 import { BotaoVerde } from "../../components/BotaoVerde/BotaoVerde";
 import { Header } from "../../components/Header/Header";
+
 import { AlunoContext } from "../../context/AlunoContext";
 import { GestorContext } from "../../context/GestorContext";
-import { EditarAvaliacaoSchema } from "../../utils/schemas";
-import { toastConfig } from "../../utils/toast";
 
 const itemHeigth = 48;
 const itemPaddingTop = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: itemHeigth * 4.5 + itemPaddingTop,
-      width: 250,
-    },
-  },
-};
+const MenuProps = { PaperProps: { style: { maxHeight: itemHeigth * 4.5 + itemPaddingTop, width: 250 }}};
 
 interface IEditarAvaliacao {
   idAluno: string,
@@ -28,7 +27,6 @@ interface IEditarAvaliacao {
   descricao: string,
   status: string
 }
-
 
 export const EditarAvaliacao = () => {
   const {state} = useLocation()
@@ -65,6 +63,8 @@ export const EditarAvaliacao = () => {
       editarAvaliacao(obj, state.idAvaliacao)
     }
   }
+
+  if(infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/" />
 
   return (
     <>

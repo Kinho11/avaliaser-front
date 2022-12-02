@@ -1,5 +1,4 @@
 import { Typography } from '@mui/material'
-import React from 'react'
 
 interface ITexto{
   texto: string

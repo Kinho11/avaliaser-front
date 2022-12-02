@@ -1,17 +1,22 @@
-import { Box, Typography, Stack, FormControl, TextField } from "@mui/material"
 import { useContext } from "react"
-import { Header } from "../../components/Header/Header"
-import logo from "../../assets/dbc-logo.webp";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+
 import { Navigate, useLocation } from "react-router-dom";
+
+import { Box, Typography, Stack, FormControl, TextField } from "@mui/material"
+
+import { Header } from "../../components/Header/Header"
 import { BotaoAzul } from "../../components/BotaoAzul/BotaoAzul";
 import { Titulo } from "../../components/Titulo/Titulo";
 
-import { GestorContext } from "../../context/GestorContext";
+import logo from "../../assets/dbc-logo.webp";
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { EditarAcompanhamentoSchema } from "../../utils/schemas";
+
 import { IEditarAcompanhamento } from "../../utils/interface";
+
+import { GestorContext } from "../../context/GestorContext";
 
 export const EditarAcompanhamento = () => {
   const { state } = useLocation();
@@ -21,9 +26,7 @@ export const EditarAcompanhamento = () => {
     resolver: yupResolver(EditarAcompanhamentoSchema)
   })
 
-  const handleEdit = (data: IEditarAcompanhamento) => {
-    editAcompanhamento(data, state.idAcompanhamento)
-  }
+  const handleEdit = (data: IEditarAcompanhamento) => { editAcompanhamento(data, state.idAcompanhamento) }
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   if(infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>

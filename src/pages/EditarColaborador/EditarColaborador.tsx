@@ -36,12 +36,10 @@ export const EditarColaborador = () => {
     imagemAPI.append("file", selectedImage)
   }
 
-  const editarColaboradores = (data: IColaboradorEditado) => {
-    editarColaborador(data, state.idUsuario, imagemAPI);
-  }
+  const editarColaboradores = (data: IColaboradorEditado) => { editarColaborador(data, state.idUsuario, imagemAPI); }
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
-  if(infosUsuario.cargo !== "Admin") return <Navigate to="/"/>
+  if(infosUsuario.cargo !== "Admin") return <Navigate to="/" />
 
   return (
     <>

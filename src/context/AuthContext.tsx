@@ -94,7 +94,7 @@ export const AuthProvider = ({ children }: IChildren) => {
     }
   }
 
-  const editarPerfil = async (nome: IEditarNome) => {
+  const editarPerfil = async (nome: IEditarNome, imagem: FormData, id: number) => {
     try {
       nProgress.start()
       await API.put('/auth/atualizar-usuario-logado', nome, {
@@ -105,6 +105,18 @@ export const AuthProvider = ({ children }: IChildren) => {
         toast.success("Nome foi editado com sucesso!", toastConfig);
         navigate('/')
       })
+
+      if(imagem){
+        await API.put(`/auth/upload-imagem-usuario-logado/${id}`, imagem, { 
+          headers: { Authorization: localStorage.getItem("token"), 'Content-Type': 'multipart/form-data' },
+         }).then((response) => {
+          localStorage.removeItem("infoUsuario");
+          localStorage.setItem("infoUsuario", JSON.stringify(response.data));
+          toast.success("Foto editada com sucesso", toastConfig);
+        }).catch((error) => {
+          toast.error("Foto não enviada", toastConfig)
+        })
+      }
     } catch (error) {
       toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);
     } finally {

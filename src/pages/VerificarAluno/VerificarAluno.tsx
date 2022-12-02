@@ -1,10 +1,12 @@
-import { Box, Typography, Stack,Button, Paper, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TablePagination, TableRow, Avatar } from "@mui/material";
-import { Navigate, useLocation, useNavigate } from "react-router-dom"
-import { Header } from "../../components/Header/Header";
+import { useContext, useEffect, useState } from "react";
 
+import { Navigate, useLocation, useNavigate } from "react-router-dom"
+
+import { Box, Typography, Stack,Button, Paper, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TablePagination, TableRow, Avatar } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
-import { useContext, useEffect, useState } from "react";
+import { Header } from "../../components/Header/Header";
+
 import { GestorContext } from "../../context/GestorContext";
 import { InstrutorContext } from "../../context/InstrutorContext";
 
@@ -33,7 +35,6 @@ const columnsFeedback: ColumnFeedback[] = [
   { id: "responsavel", label: "Responsável", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
   { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US")}
 ];
-
 
 interface Column {
   id: "codigo" | "dataCriacao" | "descricao" | "responsavel" | "acoes";

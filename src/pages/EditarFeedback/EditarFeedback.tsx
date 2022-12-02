@@ -1,29 +1,27 @@
-import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Stack, FormControl, FormLabel, Typography, InputLabel, Select, MenuItem, TextField, Button } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
+import { Navigate, useLocation } from 'react-router-dom'
+
+import { Box, Stack, FormControl, FormLabel, Typography, InputLabel, Select, MenuItem, TextField, Button } from '@mui/material'
+
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
+import { EditarFeedbackSchema } from '../../utils/schemas'
+
 import { BotaoAzul } from '../../components/BotaoAzul/BotaoAzul'
 import { Header } from '../../components/Header/Header'
 import { Titulo } from '../../components/Titulo/Titulo'
-import { EditarFeedbackSchema } from '../../utils/schemas'
+
 import logo from "../../assets/dbc-logo.webp";
+
 import { AlunoContext } from '../../context/AlunoContext'
-import { Navigate, useLocation } from 'react-router-dom'
 import { InstrutorContext } from '../../context/InstrutorContext'
+
 import { toast } from 'react-toastify'
 import { toastConfig } from '../../utils/toast'
 
-
 const itemHeigth = 48;
 const itemPaddingTop = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: itemHeigth * 4.5 + itemPaddingTop,
-      width: 250,
-    },
-  },
-};
+const MenuProps = { PaperProps: { style: { maxHeight: itemHeigth * 4.5 + itemPaddingTop, width: 250 }}};
 
 interface IEditarFeedback {
   idAluno: string,
@@ -35,7 +33,6 @@ export const EditarFeedback = () => {
   const { editarFeedback } = useContext(InstrutorContext);
   const { getAlunos, alunos } = useContext(AlunoContext);
   const {state} = useLocation()
-  // console.log(state)
 
   useEffect(() => { getAlunos(); }, [])
 
