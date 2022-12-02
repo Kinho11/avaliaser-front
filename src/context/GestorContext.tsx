@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { API } from "../utils/api";
-import { ICriarAcompanhamento, IChildren, IGestor, ICriarAvaliacao, IEditarAcompanhamento, IAvaliacaoPorId } from "../utils/interface";
+import { ICriarAcompanhamento, IChildren, IGestor, ICriarAvaliacao, IEditarAcompanhamento, IAvaliacaoPorId, IEditarAvaliacao } from "../utils/interface";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { toastConfig } from "../utils/toast";
@@ -70,6 +70,22 @@ export const GestorProvider = ({children} : IChildren) =>{
     }
   }
 
+  const editarAvaliacao = async (dadosEditados: IEditarAvaliacao, id: number) => {
+    try {
+      nProgress.start()
+      await API.put(`/avaliacao-acompanhamento/${id}`, dadosEditados, {
+        headers: { Authorization: localStorage.getItem("token") }
+      }).then((response) => {
+        toast.success("Avaliação editada com sucesso!", toastConfig);
+        navigate("/dashboard/gestor")
+      })
+    } catch (error) {
+      toast.error("Houve algum erro não esperado.", toastConfig);
+    } finally{
+      nProgress.done()
+    }
+  }
+
   const getAvaliacaoPorID = async (id: number) => {
     try {
       nProgress.start()
@@ -84,7 +100,7 @@ export const GestorProvider = ({children} : IChildren) =>{
   }
 
   return (
-    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento, criarAvaliacao, editAcompanhamento, getAvaliacaoPorID, avaliacoesPorID }}>
+    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento, criarAvaliacao, editAcompanhamento, getAvaliacaoPorID, avaliacoesPorID, editarAvaliacao }}>
       {children}
     </GestorContext.Provider>
   );

@@ -29,12 +29,13 @@ interface IEditarAvaliacao {
   status: string
 }
 
+
 export const EditarAvaliacao = () => {
   const {state} = useLocation()
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
 
   const { getAlunos, alunos } = useContext(AlunoContext);
-  const { pegarAcompanhamento, acompanhamento } = useContext(GestorContext)
+  const { pegarAcompanhamento, acompanhamento, editarAvaliacao } = useContext(GestorContext)
 
   const [filtroQA, setFiltroQA] = useState<boolean>(false);
   const [filtroFront, setFiltroFront] = useState<boolean>(false);
@@ -56,11 +57,12 @@ export const EditarAvaliacao = () => {
     setFiltroQA(false)
   }
 
-  const editarAvaliacao = (data: IEditarAvaliacao) => {
+  const editAvaliacao = (data: IEditarAvaliacao) => {
     if(data.idAcompanhamento === "initial-acompanhamento" || data.idAluno === "inital-aluno" || data.status === "initial-status") {
       toast.error("Preencha todos os campos!", toastConfig)
     } else {
-      console.log(data)
+      const obj = { descricao: data.descricao, idAcompanhamento: parseInt(data.idAcompanhamento), idAluno: parseInt(data.idAluno), status: data.status }
+      editarAvaliacao(obj, state.idAvaliacao)
     }
   }
 
@@ -71,7 +73,7 @@ export const EditarAvaliacao = () => {
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
         <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px" }, fontWeight:"700",color:"white", marginTop:{ xs:"150px", md:"0" }}} variant="h3">Editar avaliação</Typography>
 
-        <Box component="form" onSubmit={handleSubmit(editarAvaliacao)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"60%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf", gap:8 }}>
+        <Box component="form" onSubmit={handleSubmit(editAvaliacao)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"60%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf", gap:8 }}>
           <Stack component="div" spacing={3} sx={{ width:{ xs:"100%", md:"50%"
           }, display: "flex", alignItems:{ xs:"start", md:"start" } }}>
             
