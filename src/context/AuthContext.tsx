@@ -113,6 +113,7 @@ export const AuthProvider = ({ children }: IChildren) => {
           localStorage.removeItem("infoUsuario");
           localStorage.setItem("infoUsuario", JSON.stringify(response.data));
           toast.success("Foto editada com sucesso", toastConfig);
+          navigate('/')
         }).catch((error) => {
           toast.error("Foto não enviada", toastConfig)
         })
