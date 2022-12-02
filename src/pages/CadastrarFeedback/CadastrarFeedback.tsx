@@ -109,7 +109,7 @@ export const CadastrarFeedback = () => {
                   </Stack>
                 </Box>
                 
-                <Button type="button" size="small" variant="contained" onClick={resetFiltros}>Limpar filtros</Button>
+                <Button id="limpar-filtro" type="button" size="small" variant="contained" onClick={resetFiltros}>Limpar filtros</Button>
               </Box>
             </FormControl>
 
@@ -117,10 +117,10 @@ export const CadastrarFeedback = () => {
               <InputLabel id="aluno">Selecione aluno</InputLabel>
               <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial-aluno" id="idAluno" {...register("idAluno")}>
                 <MenuItem value="initial-aluno" disabled><em>Selecione o Aluno</em></MenuItem>
-                {filtroQA ? filtradoQA.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                : filtroFront ? filtradoFront.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                : filtroBack ? filtradoBack.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                : alunos.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> ))
+                {filtroQA ? filtradoQA.map((aluno) => ( <MenuItem id={`alunos-qa-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : filtroFront ? filtradoFront.map((aluno) => ( <MenuItem id={`alunos-front-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : filtroBack ? filtradoBack.map((aluno) => ( <MenuItem id={`alunos-back-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : alunos.map((aluno) => ( <MenuItem id={`alunos-geral-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> ))
                 }
               </Select>
               {errors.idAluno && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.idAluno.message}</Typography>}

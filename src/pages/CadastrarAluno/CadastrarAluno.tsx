@@ -63,14 +63,14 @@ export const CadastrarAluno = () => {
               <InputLabel id="selectAluno">Trilha do Aluno</InputLabel>
               <Select labelId="demo-simple-select-filled-label" defaultValue="initial" id="select-trilha" error={!!errors.stack}  {...register("stack")}>
                 <MenuItem value="initial" disabled><em>Selecione a Trilha</em></MenuItem>
-                <MenuItem value="FRONTEND">Front-End</MenuItem>
-                <MenuItem value="BACKEND">Back-End</MenuItem>
-                <MenuItem value="QA">Quality Assurance</MenuItem>
+                <MenuItem id="frontend" value="FRONTEND">Front-End</MenuItem>
+                <MenuItem id="backend" value="BACKEND">Back-End</MenuItem>
+                <MenuItem id="qa" value="QA">Quality Assurance</MenuItem>
               </Select>
               {errors.stack && <Typography id="erro-selectAluno" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.stack.message}</Typography>}
             </FormControl>
-            <Typography variant="body1" sx={{fontWeight:"700", display: "inline-block", marginTop: "10px", paddingBottom: 0, marginBottom: 0, color: "#ff9800"}} >*Imagens são opcionais</Typography>
-            <Typography variant="body1" sx={{fontWeight:"700", display: "inline-block", paddingTop: 0, marginTop: 0, color: "#ff9800"}} >*Só são aceitas imagens com extensão .jpg</Typography>
+            <Typography id="aviso-imagem" variant="body1" sx={{fontWeight:"700", display: "inline-block", marginTop: "10px", paddingBottom: 0, marginBottom: 0, color: "#ff9800"}} >*Imagens são opcionais</Typography>
+            <Typography id="aviso-extensao" variant="body1" sx={{fontWeight:"700", display: "inline-block", paddingTop: 0, marginTop: 0, color: "#ff9800"}} >*Só são aceitas imagens com extensão .jpg</Typography>
           </Stack>
           
           <Stack component="div" spacing={2} sx={{ width: { xs:"100%", md:"50%" }, display: "flex", alignItems: "center",marginTop:{ xs:2, md:0 }}}>

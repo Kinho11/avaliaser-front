@@ -60,7 +60,7 @@ export const ListarAcompanhamento = () => {
       <Header />
      
       <Box sx={{height:"calc(100vh - 200px)",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",gap:5}}>
-        <Typography  sx={{textAlign: "center", fontSize: { xs:30, md:44 },marginTop:"50px",fontWeight:"700",color:"white"}} variant="h3">Lista acompanhamento</Typography>
+        <Typography id="titulo-body" sx={{textAlign: "center", fontSize: { xs:30, md:44 },marginTop:"50px",fontWeight:"700",color:"white"}} variant="h3">Lista acompanhamento</Typography>
 
         <Paper sx={{ width: { xs:"95%", md:"65%" }, borderRadius: "10px", boxShadow: "10px 10px 10px #2f407ccf" }}>
           <TableContainer sx={{ maxHeight:430 }}>
@@ -76,10 +76,10 @@ export const ListarAcompanhamento = () => {
                 {acompanhamento.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((acompanhamentos) => (
                   <StyledTableRow  key={acompanhamentos.idAcompanhamento}>
                     <StyledTableCell  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row"> {acompanhamentos.idAcompanhamento}</StyledTableCell>
-                    <StyledTableCell id="titulo" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{acompanhamentos.titulo}</StyledTableCell>  
-                    <StyledTableCell id="dataInicio" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.dataInicio.replace(/(\d{4})-(\d{2})-(\d{2})/,"$3/$2/$1")}</StyledTableCell>
-                    <StyledTableCell id="descricao" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.descricao}</StyledTableCell>
-                    <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
+                    <StyledTableCell id={`titulo-${acompanhamentos.idAcompanhamento}`} sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} >{acompanhamentos.titulo}</StyledTableCell>  
+                    <StyledTableCell id={`dataInicio-${acompanhamentos.idAcompanhamento}`} sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.dataInicio.replace(/(\d{4})-(\d{2})-(\d{2})/,"$3/$2/$1")}</StyledTableCell>
+                    <StyledTableCell id={`descricao-${acompanhamentos.idAcompanhamento}`} sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.descricao}</StyledTableCell>
+                    <StyledTableCell id={`cargo-${acompanhamentos.idAcompanhamento}`} sx={{textAlign:"center"}}><Button id={`botao-avaliar-acompanhamento-${acompanhamentos.idAcompanhamento}`}
                     onClick={()=>{navigate("/editar-acompanhamento",{state: acompanhamentos})}}
                     title="Avaliar acompanhamento"><EditIcon /></Button></StyledTableCell>
                   </StyledTableRow>

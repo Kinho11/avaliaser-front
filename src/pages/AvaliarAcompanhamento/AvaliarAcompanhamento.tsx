@@ -62,7 +62,7 @@ export const AvaliarAcompanhamento = () => {
       <Header/>
 
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px"}, fontWeight:"700",color:"white", marginTop:{ xs:"150px", md:"0" }}} variant="h3">Avaliar acompanhamento</Typography>
+        <Typography id="titulo-body" sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px"}, fontWeight:"700",color:"white", marginTop:{ xs:"150px", md:"0" }}} variant="h3">Avaliar acompanhamento</Typography>
         <Box component="form" onSubmit={handleSubmit(avaliarAcompanhamento)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"60%" }, borderRadius: "10px", padding: { xs: 5, md: 5
         }, boxShadow: "10px 10px 10px #2f407ccf", gap: 8 }}>
 
@@ -72,7 +72,7 @@ export const AvaliarAcompanhamento = () => {
               <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" id="acompanhamento" error={!!errors.idAcompanhamento} {...register("idAcompanhamento")} defaultValue="initial-acompanhamento">
                 <MenuItem value="initial-acompanhamento" disabled><em>Selecione o Acompanhamento</em></MenuItem>  
                 {acompanhamento.map((acompanhamentos)=> (
-                  <MenuItem key={acompanhamentos.idAcompanhamento} value={acompanhamentos.idAcompanhamento}>{acompanhamentos.titulo}</MenuItem>
+                  <MenuItem id={`acompanhamento-${acompanhamentos.idAcompanhamento}`} key={acompanhamentos.idAcompanhamento} value={acompanhamentos.idAcompanhamento}>{acompanhamentos.titulo}</MenuItem>
                 ))}
               </Select>
               {errors.idAcompanhamento && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.idAcompanhamento.message}</Typography>}
@@ -115,18 +115,18 @@ export const AvaliarAcompanhamento = () => {
                   </Stack>
                 </Box>
                 
-                <Button type="button" size="small" variant="contained" onClick={resetFiltros}>Limpar filtros</Button>
+                <Button id="limpar-filtro" type="button" size="small" variant="contained" onClick={resetFiltros}>Limpar filtros</Button>
               </Box>
             </FormControl>
 
             <FormControl variant="filled" sx={{ width: { xs:"100%", md:"100%" }}}>
-              <InputLabel id="aluno">Aluno</InputLabel>
-                <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial-aluno" id="aluno" error={!!errors.idAluno} {...register("idAluno")}>
+              <InputLabel id="aluno-label">Aluno</InputLabel>
+                <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial-aluno" id="aluno-select" error={!!errors.idAluno} {...register("idAluno")}>
                   <MenuItem value="initial-aluno" disabled><em>Selecione o Aluno</em></MenuItem> 
-                  {filtroQA ? filtradoQA.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                  : filtroFront ? filtradoFront.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                  : filtroBack ? filtradoBack.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                  : alunos.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> ))
+                  {filtroQA ? filtradoQA.map((aluno) => ( <MenuItem id={`alunos-qa-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                  : filtroFront ? filtradoFront.map((aluno) => ( <MenuItem id={`alunos-front-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                  : filtroBack ? filtradoBack.map((aluno) => ( <MenuItem id={`alunos-back-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                  : alunos.map((aluno) => ( <MenuItem id={`alunos-geral-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> ))
                   }
                 </Select>
               {errors.idAluno && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.idAluno.message}</Typography>}
@@ -143,8 +143,8 @@ export const AvaliarAcompanhamento = () => {
               <InputLabel id="status">Status</InputLabel>
               <Select labelId="demo-simple-select-filled-label" defaultValue="initial" id="status" error={!!errors.tipo} {...register("tipo")}>
                 <MenuItem value="initial" disabled><em>Selecione a Trilha</em></MenuItem>
-                <MenuItem value="POSITIVO">Positivo</MenuItem>
-                <MenuItem value="ATENCAO">Atenção</MenuItem>
+                <MenuItem id="positivo" value="POSITIVO">Positivo</MenuItem>
+                <MenuItem id="atencao" value="ATENCAO">Atenção</MenuItem>
               </Select>
               {errors.tipo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.tipo.message}</Typography>}
             </FormControl>
@@ -163,7 +163,7 @@ export const AvaliarAcompanhamento = () => {
               {errors.dataCriacao && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.dataCriacao.message}</Typography>}
             </FormControl>
 
-            <Button type="submit" sx={{textTransform: "capitalize", width:{ xs:"20%", md:"150px" },marginTop:{ xs:"10px!important", md:"200px!important" }}} variant="contained">Avaliar</Button>
+            <Button id="botao-avaliar" type="submit" sx={{textTransform: "capitalize", width:{ xs:"20%", md:"150px" },marginTop:{ xs:"10px!important", md:"200px!important" }}} variant="contained">Avaliar</Button>
           </Stack>
         </Box>
       </Box>

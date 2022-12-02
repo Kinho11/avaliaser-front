@@ -116,7 +116,7 @@ export const EditarFeedback = () => {
                   </Stack>
                 </Box>
 
-                <Button type="button" size="small" variant="contained" onClick={resetFiltros}>Limpar filtros</Button>
+                <Button id="limpar-filtros" type="button" size="small" variant="contained" onClick={resetFiltros}>Limpar filtros</Button>
               </Box>
             </FormControl>
 
@@ -124,10 +124,10 @@ export const EditarFeedback = () => {
               <InputLabel id="aluno">Selecione aluno</InputLabel>
               <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label"  id="aluno" {...register("idAluno")} defaultValue="initial-aluno">
                 <MenuItem value="initial-aluno" disabled><em>Selecione o Aluno</em></MenuItem>
-                {filtroQA ? filtradoQA.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                : filtroFront ? filtradoFront.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                : filtroBack ? filtradoBack.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                : alunos.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> ))
+                {filtroQA ? filtradoQA.map((aluno) => ( <MenuItem id={`alunos-qa-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : filtroFront ? filtradoFront.map((aluno) => ( <MenuItem id={`alunos-front-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : filtroBack ? filtradoBack.map((aluno) => ( <MenuItem id={`alunos-back-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : alunos.map((aluno) => ( <MenuItem id={`alunos-geral-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> ))
                 }
               </Select>
             </FormControl>
@@ -139,8 +139,8 @@ export const EditarFeedback = () => {
             <FormControl variant="filled" sx={{ width: { xs:"100%", md:"100%" } }}>
               <InputLabel id="tipo">Tipo</InputLabel>
               <Select labelId="demo-simple-select-filled-label" defaultValue={state.tipo} id="tipo" error={!!errors.tipo} {...register("tipo")} >
-                <MenuItem value="POSITIVO">Positivo</MenuItem>
-                <MenuItem value="ATENCAO">Atencao</MenuItem>
+                <MenuItem id="positivo" value="POSITIVO">Positivo</MenuItem>
+                <MenuItem id="atencao" value="ATENCAO">Atencao</MenuItem>
               </Select>
             </FormControl>
 

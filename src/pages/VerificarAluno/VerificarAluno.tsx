@@ -79,7 +79,7 @@ export const VerificarAluno = () => {
       <Header />
 
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px"
+        <Typography id="titulo-body" sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px"
         }, fontWeight:"700",color:"white",marginTop:{ xs:"150px", md:"120px" }}} variant="h3">Verificar aluno</Typography>
 
         <Box component="div" sx={{ display: { xs:"flex", md:"flex"
@@ -143,11 +143,11 @@ export const VerificarAluno = () => {
                   <TableBody>
                     {avaliacoesPorID.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((avaliacao) => (
                       <StyledTableRow key={avaliacao.idAvaliacao}>
-                        <StyledTableCell  sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">{avaliacao.idAvaliacao}</StyledTableCell>
-                        <StyledTableCell id="dataInicio" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{avaliacao.dataCriacao.replace(/(\d{4})-(\d{2})-(\d{2})/,"$3/$2/$1")}</StyledTableCell>
-                        <StyledTableCell id="descricao" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{avaliacao.descricao}</StyledTableCell>  
-                        <StyledTableCell id="responsavel" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{avaliacao.responsavel.nome}</StyledTableCell>
-                        <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
+                        <StyledTableCell id={`idAvaliacao-${avaliacao.idAvaliacao}`} sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">{avaliacao.idAvaliacao}</StyledTableCell>
+                        <StyledTableCell id={`dataInicio-${avaliacao.idAvaliacao}`} sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{avaliacao.dataCriacao.replace(/(\d{4})-(\d{2})-(\d{2})/,"$3/$2/$1")}</StyledTableCell>
+                        <StyledTableCell id={`descricao-${avaliacao.idAvaliacao}`} sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{avaliacao.descricao}</StyledTableCell>  
+                        <StyledTableCell id={`responsavel-${avaliacao.idAvaliacao}`} sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{avaliacao.responsavel.nome}</StyledTableCell>
+                        <StyledTableCell id={`acoes-${avaliacao.idAvaliacao}`} sx={{textAlign:"center"}}><Button id={`botao-avaliar-acompanhamento-${avaliacao.idAvaliacao}`}
                         onClick={()=>{navigate("/editar-avaliacao", {state: avaliacao })}}
                         title="Editar Avaliação"><EditIcon/></Button></StyledTableCell>
                       </StyledTableRow>
@@ -161,7 +161,7 @@ export const VerificarAluno = () => {
             </Paper>
           </Stack>
 
-          <Button sx={{textTransform: "capitalize",width:{ xs:"20%", md:"150px" },display:"flex"}} onClick={()=>{navigate("/")}} variant="contained">Voltar</Button>
+          <Button id="botao-voltar" sx={{textTransform: "capitalize",width:{ xs:"20%", md:"150px" },display:"flex"}} onClick={()=>{navigate("/")}} variant="contained">Voltar</Button>
         </Box>
       </Box>
     </>

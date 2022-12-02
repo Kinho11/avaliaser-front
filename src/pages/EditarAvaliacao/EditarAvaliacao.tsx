@@ -71,7 +71,7 @@ export const EditarAvaliacao = () => {
       <Header/>
 
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px" }, fontWeight:"700",color:"white", marginTop:{ xs:"150px", md:"0" }}} variant="h3">Editar avaliação</Typography>
+        <Typography id="titulo-body" sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px" }, fontWeight:"700",color:"white", marginTop:{ xs:"150px", md:"0" }}} variant="h3">Editar avaliação</Typography>
 
         <Box component="form" onSubmit={handleSubmit(editAvaliacao)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"60%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf", gap:8 }}>
           <Stack component="div" spacing={3} sx={{ width:{ xs:"100%", md:"50%"
@@ -82,7 +82,7 @@ export const EditarAvaliacao = () => {
               <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial-acompanhamento" id="acompanhamento" {...register("idAcompanhamento")}>
                 <MenuItem value="initial-acompanhamento" disabled><em>Selecione o Acompanhamento</em></MenuItem>    
                 {acompanhamento.map((acompanhamentos)=> (
-                  <MenuItem key={acompanhamentos.idAcompanhamento} value={acompanhamentos.idAcompanhamento}>{acompanhamentos.titulo}</MenuItem>
+                  <MenuItem id={`acompanhamento-${acompanhamentos.idAcompanhamento}`} key={acompanhamentos.idAcompanhamento} value={acompanhamentos.idAcompanhamento}>{acompanhamentos.titulo}</MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -133,10 +133,10 @@ export const EditarAvaliacao = () => {
               <InputLabel id="aluno">Aluno</InputLabel>
               <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial-aluno" id="aluno" {...register("idAluno")}>
                 <MenuItem value="initial-aluno" disabled><em>Selecione o Aluno</em></MenuItem>
-                {filtroQA ? filtradoQA.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                : filtroFront ? filtradoFront.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                : filtroBack ? filtradoBack.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
-                : alunos.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> ))
+                {filtroQA ? filtradoQA.map((aluno) => ( <MenuItem id={`alunos-qa-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : filtroFront ? filtradoFront.map((aluno) => ( <MenuItem id={`alunos-front-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : filtroBack ? filtradoBack.map((aluno) => ( <MenuItem id={`alunos-back-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
+                : alunos.map((aluno) => ( <MenuItem id={`alunos-geral-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> ))
                 }
               </Select>
             </FormControl>
@@ -152,8 +152,8 @@ export const EditarAvaliacao = () => {
               <InputLabel id="status">Status</InputLabel>
               <Select labelId="demo-simple-select-filled-label" defaultValue="initial-status" id="status" {...register("status")}>
                 <MenuItem value="initial-status" disabled><em>Selecione o Status</em></MenuItem>
-                <MenuItem value="POSITIVO">Positivo</MenuItem>
-                <MenuItem value="ATENCAO">Atenção</MenuItem>
+                <MenuItem id="positivo" value="POSITIVO">Positivo</MenuItem>
+                <MenuItem id="atencao" value="ATENCAO">Atenção</MenuItem>
               </Select>
             </FormControl>
           </Stack>

@@ -71,9 +71,9 @@ export const EditarAluno = () => {
             <FormControl variant="filled" sx={{ width: { xs:"100%", md:"100%" }}}>
               <InputLabel id="selectAluno">Trilha do Aluno</InputLabel>
               <Select labelId="demo-simple-select-filled-label" defaultValue={state.stack} id="select-trilha" {...register("stack")}>
-                <MenuItem value="FRONTEND">Front-end</MenuItem>
-                <MenuItem value="BACKEND">Back-end</MenuItem>
-                <MenuItem value="QA">QA</MenuItem>
+                <MenuItem id='frontend' value="FRONTEND">Front-end</MenuItem>
+                <MenuItem id='backend' value="BACKEND">Back-end</MenuItem>
+                <MenuItem id='qa' value="QA">QA</MenuItem>
               </Select>
             </FormControl>
 
@@ -81,9 +81,8 @@ export const EditarAluno = () => {
             <Typography id="aviso-extensao" variant="body1" sx={{fontWeight:"700", display: "inline-block", paddingTop: 0, marginTop: 0, color: "#ff9800"}}>*Só são aceitas imagens com extensão .jpg</Typography>
           </Stack>
 
-          <Stack component="div" spacing={2} sx={{ width: { xs:"100%", md:"50%" }, display: "flex", alignItems: "center",marginTop:{ xs:2, md:0
-          }}}>
-            <Avatar alt="Foto Enviada" src={selectedImage ? URL.createObjectURL(selectedImage) : state.foto ? `data:image/jpeg;base64,${state.foto}` : ""} sx={{ width: 150, height: 150 }} />
+          <Stack component="div" spacing={2} sx={{ width: { xs:"100%", md:"50%" }, display: "flex", alignItems: "center",marginTop:{ xs:2, md:0 }}}>
+            <Avatar alt="Foto Enviada" id="foto-enviada" src={selectedImage ? URL.createObjectURL(selectedImage) : state.foto ? `data:image/jpeg;base64,${state.foto}` : ""} sx={{ width: 150, height: 150 }} />
 
             <Button component="label" variant="contained">
               <input id="imagemAluno" type="file" hidden accept="image/jpeg" onChange={imageChange} />

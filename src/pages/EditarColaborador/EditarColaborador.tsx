@@ -47,7 +47,7 @@ export const EditarColaborador = () => {
       <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
         <Titulo texto="Editar colaborador"/>
 
-        <Box component="form" onSubmit={handleSubmit(editarColaboradores)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"50%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf"  }}>
+        <Box component="form" onSubmit={handleSubmit(editarColaboradores)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"50%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf" }}>
 
           <Stack component="div" spacing={2} sx={{ width:{ xs:"100%", md:"50%" }, display: "flex", alignItems:{ xs:"start", md:"start" } }}>
 
@@ -65,7 +65,7 @@ export const EditarColaborador = () => {
           </Stack>
 
           <Stack component="div" spacing={2} sx={{ width: { xs:"100%", md:"50%" }, display: "flex", alignItems: "center",marginTop:{ xs:2, md:0 }}}>
-            <Avatar alt="Foto Enviada" src={selectedImage ? URL.createObjectURL(selectedImage) : state.foto ? `data:image/jpeg;base64,${state.foto}` : ""} sx={{ width: 150, height: 150 }} />
+            <Avatar alt="Foto Enviada" id="foto-enviada" src={selectedImage ? URL.createObjectURL(selectedImage) : state.foto ? `data:image/jpeg;base64,${state.foto}` : ""} sx={{ width: 150, height: 150 }} />
             
             <Button component="label" variant="contained">
               <input id="imagemAluno" type="file" hidden accept="image/jpeg" onChange={imageChange} />

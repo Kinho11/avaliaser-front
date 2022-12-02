@@ -52,7 +52,7 @@ export const EditarUsuario = () => {
             {errors.nome && <Typography id="erro-nome" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.nome.message}</Typography>}
           </FormControl>
 
-          <Avatar alt="Foto Enviada" src={selectedImage ? URL.createObjectURL(selectedImage) : infosUsuario.foto ? `data:image/jpeg;base64,${infosUsuario.foto}` : "" } sx={{ width: 150, height: 150 }} />
+          <Avatar alt="Foto Enviada" id="foto-enviada" src={selectedImage ? URL.createObjectURL(selectedImage) : infosUsuario.foto ? `data:image/jpeg;base64,${infosUsuario.foto}` : "" } sx={{ width: 150, height: 150 }} />
           <Button component="label" variant="contained">
             <input id="imagemUsuario" type="file" hidden accept="image/jpeg" onChange={imageChange} />
             <Typography sx={{ textTransform: "capitalize" }} variant="body1">Inserir Foto</Typography>
