@@ -24,7 +24,7 @@ const MenuProps = {
 };
 
 interface IEditarFeedback {
-  aluno: string,
+  idAluno: string,
   descricao: string,
   tipo: string
 }
@@ -33,6 +33,7 @@ export const EditarFeedback = () => {
   const { editarFeedback } = useContext(InstrutorContext);
   const { getAlunos, alunos } = useContext(AlunoContext);
   const {state} = useLocation()
+  // console.log(state)
 
   useEffect(() => { getAlunos(); }, [])
 
@@ -54,8 +55,9 @@ export const EditarFeedback = () => {
     resolver: yupResolver(EditarFeedbackSchema)
   })
   
-  const editarFeedbacks = (data: IEditarFeedback ) => {
-    console.log(data)
+  const editarFeedbacks = (data: any ) => {
+    const editarfeedback = {idAluno: parseInt(data.idAluno), descricao: data.descricao, tipo: data.tipo}
+    editarFeedback(state.idFeedBack,editarfeedback)
   }
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
@@ -117,7 +119,7 @@ export const EditarFeedback = () => {
 
             <FormControl variant="filled" sx={{ width: { xs:"100%", md:"100%" } }}>
               <InputLabel id="aluno">Selecione aluno</InputLabel>
-              <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label" defaultValue="initial-aluno" id="aluno" {...register("aluno")} >
+              <Select MenuProps={MenuProps} labelId="demo-simple-select-filled-label"  id="aluno" {...register("idAluno")} defaultValue="initial-aluno">
                 <MenuItem value="initial-aluno" disabled><em>Selecione o Aluno</em></MenuItem>
                 {filtroQA ? filtradoQA.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 
                 : filtroFront ? filtradoFront.map((aluno) => ( <MenuItem key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> )) 

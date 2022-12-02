@@ -48,6 +48,7 @@ export const InstrutorProvider = ({children}: IChildren) => {
       API.defaults.headers.common["Authorization"] = token;
       await API.put(`/feedback/editar-feedback/${id}`,dadosEditados)
       toast.success("Feedback editado com sucesso!!", toastConfig);
+      navigate("/lista-feedback")
     } catch (error) {
       toast.error("Campo nulo, ou preenchido de forma incorreta, ou com id inválido, tente de novo.", toastConfig);
     } finally {
