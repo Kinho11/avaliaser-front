@@ -2,11 +2,11 @@ import { Box, Typography, Paper, TableContainer, Table, TableRow, TableCell, Tab
 import React, { useContext, useEffect, useState } from "react"
 import { Navigate, useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header/Header"
-import { AlunoContext } from "../../context/AlunoContext";
 import EditIcon from "@mui/icons-material/Edit";
 
-import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
+
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { InstrutorContext } from "../../context/InstrutorContext";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -21,7 +21,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 interface Column {
-  id: "codigo" | "titulo" | "dataInicial" | "descricao" | "acoes";
+  id: "codigo" | "nome" | "status" | "acoes";
   label: string;
   minWidth?: number;
   align?: "right";
@@ -30,14 +30,13 @@ interface Column {
 
 const columns: Column[] = [
   { id: "codigo", label: "Codigo", minWidth: 5 },
-  { id: "titulo", label: "Titulo", minWidth: 5 },
-  { id: "dataInicial", label: "Data inicial", minWidth: 5 },
-  { id: "descricao", label: "Descrição", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
+  { id: "nome", label: "Nome", minWidth: 5 },
+  { id: "status", label: "Status", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
   { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") }
 ];
 
 export const ListarFeedback = () => {
-  const { getAlunos, alunos, deletarAluno } = useContext(AlunoContext);
+  const { pegarFeedback, feedback} = useContext(InstrutorContext);
 
   const navigate = useNavigate()
 
@@ -52,7 +51,7 @@ export const ListarFeedback = () => {
   };
 
  
-  useEffect(() => { getAlunos(); }, [])
+  useEffect(() => { pegarFeedback(); }, [])
 
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
@@ -78,16 +77,15 @@ export const ListarFeedback = () => {
                 </TableRow>
               </thead>
               <TableBody>
-                {alunos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
-                  <StyledTableRow key={data.idAluno}>
-                    <StyledTableCell sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">{data.idAluno}</StyledTableCell>
-                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.nome}</StyledTableCell> 
-                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.nome}</StyledTableCell> 
-                    <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{data.stack}</StyledTableCell>
+                {feedback.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
+                  <StyledTableRow key={data.idFeedBack}>
+                    <StyledTableCell sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}} component="td" scope="row">{data.idFeedBack}</StyledTableCell>
+                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.usuarioDTO?.nome}</StyledTableCell> 
+                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.tipo}</StyledTableCell> 
                     <StyledTableCell id="cargo" sx={{textAlign:"center"}}>
                       <Button id="botao-avaliar-acompanhamento" onClick={() => { navigate("/editar-feedback", {state: data}) }} title="Avaliar acompanhamento"><EditIcon/>
                     </Button>
-                    <Button id="botao-deletar-gestor" title="Deletar" onClick={() => deletarAluno(data.idAluno)}><DeleteForeverIcon /></Button>
+                    <Button id="botao-deletar-gestor" title="Deletar"><DeleteForeverIcon /></Button>
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
@@ -126,7 +124,7 @@ export const ListarFeedback = () => {
               </Box>
               
               </FormControl>
-            <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={alunos.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
+            <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={feedback.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
           </Box>
         </Paper>
       </Box>

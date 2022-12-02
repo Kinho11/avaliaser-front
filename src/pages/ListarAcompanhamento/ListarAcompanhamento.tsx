@@ -3,7 +3,7 @@ import { Header } from "../../components/Header/Header";
 
 import { TableCell, tableCellClasses, TableRow, Typography, Box, Paper, TableContainer, Table, TableBody, Button, TablePagination,styled } from "@mui/material";
 
-import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
+import EditIcon from "@mui/icons-material/Edit";
 import { Navigate, useNavigate } from "react-router-dom";
 import { GestorContext } from "../../context/GestorContext";
 
@@ -94,8 +94,8 @@ export const ListarAcompanhamento = () => {
                       )}</StyledTableCell>
                     <StyledTableCell id="descricao" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}} >{acompanhamentos.descricao}</StyledTableCell>
                     <StyledTableCell id="cargo" sx={{textAlign:"center"}}><Button id="botao-avaliar-acompanhamento"
-                    onClick={()=>{navigate("/avaliar-acompanhamento",{state: acompanhamentos})}}
-                    title="Avaliar acompanhamento"><AssignmentTurnedInIcon/></Button></StyledTableCell>
+                    onClick={()=>{navigate("/editar-acompanhamento",{state: acompanhamentos})}}
+                    title="Avaliar acompanhamento"><EditIcon /></Button></StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>

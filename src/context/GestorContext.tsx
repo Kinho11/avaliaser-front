@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { API } from "../utils/api";
-import { ICriarAcompanhamento, IChildren, IGestor } from "../utils/interface";
+import { ICriarAcompanhamento, IChildren, IGestor, ICriarAvaliacao, IEditarAcompanhamento } from "../utils/interface";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { toastConfig } from "../utils/toast";
@@ -18,7 +18,7 @@ export const GestorProvider = ({children} : IChildren) =>{
       nProgress.start()
       API.defaults.headers.common["Authorization"] = token;
       await API.post("/acompanhamento/cadastrar-acompanhamento",acompanhamento)
-      navigate("/dashboard/gestor")
+      navigate("/lista-acompanhamento")
       toast.success("Acompanhamento cadastrado com sucesso!", toastConfig);
     } catch (error) {
       toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);
@@ -27,7 +27,7 @@ export const GestorProvider = ({children} : IChildren) =>{
     }
   }
 
-  const pegarAcompanhamento = async() =>{
+  const pegarAcompanhamento = async () => {
     try {
       nProgress.start()
       API.defaults.headers.common["Authorization"] = token;
@@ -40,8 +40,37 @@ export const GestorProvider = ({children} : IChildren) =>{
     }
   }
 
+  const editAcompanhamento = async (dadosEditados: IEditarAcompanhamento, id: number) => {
+    try {
+      nProgress.start()
+      await API.put(`/acompanhamento/editar-acompanhamento/${id}`, dadosEditados, {
+        headers: { Authorization: localStorage.getItem("token") }
+      }).then((response) => {
+        toast.success("Acompanhamento editado com sucesso!", toastConfig);
+      })
+    } catch (error) {
+      toast.error("Você não possui credenciais para acessar essas informações.", toastConfig);
+    } finally {
+      nProgress.done()
+    }
+  }
+
+  const criarAvaliacao = async (avalicao: ICriarAvaliacao) => {
+    try {
+      nProgress.start()
+      API.defaults.headers.common["Authorization"] = token;
+      await API.post("/avaliacao-acompanhamento/cadastrar-avaliacao",avalicao)
+      navigate("/dashboard/gestor")
+      toast.success("Avaliação cadastrado com sucesso!", toastConfig);
+    } catch (error) {
+      toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);
+    } finally{
+      nProgress.done()
+    }
+  }
+
   return (
-    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento }}>
+    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento, criarAvaliacao, editAcompanhamento }}>
       {children}
     </GestorContext.Provider>
   );

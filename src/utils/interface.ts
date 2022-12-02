@@ -37,12 +37,23 @@ export interface IAluno {
   deletarAluno: (id: number) => Promise<void>,
   criarAluno: (infosAluno: ICadastroAluno, imagem: FormData) => Promise<void>,
   alunos: IAlunosCadastrados[]
+  editarAluno: (dadosEditados: IEditarAluno, id: number) => Promise<void>
 }
 
 export interface IGestor{
   criarAcompanhamento: (acompanhamento: ICriarAcompanhamento) => Promise<void>,
+  editAcompanhamento: (dadosEditados: IEditarAcompanhamento, id: number) => Promise<void>,
   pegarAcompanhamento: () => Promise<void>
   acompanhamento: ICriarAcompanhamento[]
+  criarAvaliacao: (avalicao: ICriarAvaliacao) => void
+}
+
+export interface IInstrutor{
+  cadastrarFeedback: (feedbacks: object) => Promise<void>,
+  pegarFeedback: () => Promise<void>,
+  feedback: ICadastrarFeedback[]
+  editarFeedback: (id: number, dadosEditados: IEditarFeedback) => Promise<void>
+
 }
 
 export interface ICadastroAluno {
@@ -105,4 +116,39 @@ export interface ICriarAcompanhamento{
   titulo: string,
   descricao: string,
   dataInicio: string
+}
+
+export interface IEditarAcompanhamento {
+  titulo: string,
+  descricao: string
+}
+
+export interface ICadastrarFeedback{
+  idFeedBack:number,
+  usuarioDTO: any,
+  idUsuario: number,
+  idAluno: number,
+  descricao: string,
+  tipo: string
+}
+
+export interface IEditarFeedback{
+  idAluno: number,
+  descricao: string,
+  tipo: string
+}
+
+export interface IEditarAluno{
+  idAluno: number,
+  stack:string,
+  nome: string,
+  email: string
+}
+
+export interface ICriarAvaliacao{
+  idAcompanhamento: number,
+  idAluno: number,
+  descricao: string,
+  tipo: string,
+  dataCriacao: string
 }
