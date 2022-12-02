@@ -76,6 +76,9 @@ export const EditarAluno = () => {
                 <MenuItem value="QA">QA</MenuItem>
               </Select>
             </FormControl>
+
+            <Typography id="aviso-imagem" variant="body1" sx={{fontWeight:"700", display: "inline-block", marginTop: "10px", paddingBottom: 0, marginBottom: 0, color: "#ff9800"}} >*Imagens são opcionais</Typography>
+            <Typography id="aviso-extensao" variant="body1" sx={{fontWeight:"700", display: "inline-block", paddingTop: 0, marginTop: 0, color: "#ff9800"}}>*Só são aceitas imagens com extensão .jpg</Typography>
           </Stack>
 
           <Stack component="div" spacing={2} sx={{ width: { xs:"100%", md:"50%" }, display: "flex", alignItems: "center",marginTop:{ xs:2, md:0
