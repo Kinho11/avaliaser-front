@@ -150,7 +150,7 @@ export const AvaliarAcompanhamento = () => {
             <FormControl variant="filled" sx={{ width: { xs:"100%", md:"100%" }}}>
               <InputLabel id="status">Status</InputLabel>
               <Select labelId="demo-simple-select-filled-label" defaultValue="initial-status" id="status" error={!!errors.tipo} {...register("tipo")}>
-                <MenuItem value="initial-status" disabled><em>Selecione a Trilha</em></MenuItem>
+                <MenuItem value="initial-status" disabled><em>Selecione o Status</em></MenuItem>
                 <MenuItem id="positivo" value="POSITIVO">Positivo</MenuItem>
                 <MenuItem id="atencao" value="ATENCAO">Atenção</MenuItem>
               </Select>

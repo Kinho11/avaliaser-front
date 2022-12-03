@@ -24,6 +24,7 @@ import { EditarAcompanhamento } from "./pages/EditarAcompanhamento/EditarAcompan
 import { RotaPrivada } from "./components/RotasPrivadas/RotasPrivadas";
 import { Intermediaria } from "./components/Intermediaria/Intermediaria";
 import { NotFound } from "./components/NotFound/NotFound";
+import { Loading } from "./components/Loading/Loading";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -48,6 +49,8 @@ function AppRoutes() {
             <Routes>
               <Route index element={<Login />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/dashboard/undefined" element={<Loading />} />
+
               {/* Redefinir senha com token e email */}
               <Route path="/recuperar-senha" element={<Intermediaria />} />
               <Route path="/redefinir-senha" element={<RedefinirSenha />} />
