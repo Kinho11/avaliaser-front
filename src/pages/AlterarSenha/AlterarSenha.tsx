@@ -46,17 +46,17 @@ export const AlterarSenha = () => {
 
             <FormControl sx={{ width: { xs:"100%", md:"100%" } }}>
               <TextField type="password" error={!!errors.senhaAntiga} id="senhaAntiga" {...register("senhaAntiga")} label="Senha antiga" placeholder="Digite sua senha antiga" variant="filled" focused />
-              {errors.senhaAntiga && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.senhaAntiga.message}</Typography>}
+              {errors.senhaAntiga && <Typography id="erro-senhaAntiga" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.senhaAntiga.message}</Typography>}
             </FormControl>
 
             <FormControl sx={{ width: { xs:"100%", md:"100%" } }}>
               <TextField type="password" error={!!errors.novaSenha} id="novaSenha" {...register("novaSenha")} label="Senha nova" placeholder="Digite sua senha nova" variant="filled" focused />
-              {errors.novaSenha && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.novaSenha.message}</Typography>}
+              {errors.novaSenha && <Typography id="erro-novaSenha" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.novaSenha.message}</Typography>}
             </FormControl>
 
             <FormControl sx={{ width:  { xs:"100%", md:"100%" }}}>
               <TextField type="password" id="confirmarNovaSenha"  error={!!errors.confirmarNovaSenha} {...register("confirmarNovaSenha")} label="Confirme senha nova" placeholder="Confirme sua senha nova" variant="filled" focused />
-              {errors.confirmarNovaSenha && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.confirmarNovaSenha.message}</Typography>}
+              {errors.confirmarNovaSenha && <Typography id="erro-confirmaSenha" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.confirmarNovaSenha.message}</Typography>}
             </FormControl>
           </Stack>
 

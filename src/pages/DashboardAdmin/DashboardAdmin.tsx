@@ -95,10 +95,10 @@ export const DashboardAdmin = () => {
               </thead>
               <TableBody>
                 {colaborador.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
-                  <StyledTableRow  key={data.idUsuario}>
-                    <StyledTableCell id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", width: { md: "340px" }}} scope="row">{data.nome}</StyledTableCell>
-                    <StyledTableCell id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{data.email}</StyledTableCell>
-                    <StyledTableCell id="cargo" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.cargo}</StyledTableCell>
+                  <StyledTableRow key={data.idUsuario}>
+                    <StyledTableCell onClick={() => navigate("/detalhes-colaborador", { state: data })} id="nome" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", width: { md: "340px" }}} scope="row">{data.nome}</StyledTableCell>
+                    <StyledTableCell onClick={() => navigate("/detalhes-colaborador", { state: data })} id="email" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem", whiteSpace:"nowrap",overflow:"hidden", textOverflow:"ellipsis",maxWidth:"100px"}}>{data.email}</StyledTableCell>
+                    <StyledTableCell onClick={() => navigate("/detalhes-colaborador", { state: data })} id="cargo" sx={{textAlign:"center", fontWeight:"600", fontSize: "1rem"}}>{data.cargo}</StyledTableCell>
                     <StyledTableCell id="acoes" sx={{textAlign:"center"}}>
                       <Button id={`botao-editar-admin-${data.idUsuario}`} title="Editar" onClick={() => { navigate("/editar-colaborador", { state: data }) }}><EditIcon/></Button>
                       <Button id={`botao-deletar-admin-${data.idUsuario}`} onClick={() => { handleOpen(); setIdDelete(data.idUsuario) }} title="Deletar"><DeleteForeverIcon /></Button>
