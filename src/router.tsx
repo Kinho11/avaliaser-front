@@ -35,6 +35,7 @@ import { AdminProvider } from "./context/AdminContext";
 import { AlunoProvider } from "./context/AlunoContext";
 import { GestorProvider } from "./context/GestorContext";
 import { InstrutorProvider } from "./context/InstrutorContext";
+import { DetalhesColaborador } from "./pages/DetalhesColaborador/DetalhesColaborador";
 
 function AppRoutes() {
   return (
@@ -60,6 +61,7 @@ function AppRoutes() {
                 <Route path="/dashboard/admin" element={<DashboardAdmin />} />
                 <Route path="/cadastrar-colaborador" element={<CadastrarColaborador />} />
                 <Route path="/editar-colaborador" element={<EditarColaborador />} />
+                <Route path="/detalhes-colaborador" element={<DetalhesColaborador />} />
 
                 {/* Rotas Gestor */}
                 <Route path="/dashboard/gestor" element={<DashboardGestor />} />
