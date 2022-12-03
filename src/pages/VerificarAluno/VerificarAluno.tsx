@@ -78,9 +78,9 @@ export const VerificarAluno = () => {
     <>
       <Header />
 
-      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
+      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 64px)" }}>
         <Typography id="titulo-body" sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px"
-        }, fontWeight:"700",color:"white",marginTop:{ xs:"150px", md:"120px" }}} variant="h3">Verificar aluno</Typography>
+        }, fontWeight:"700",color:"white" }} variant="h3">Verificar aluno</Typography>
 
         <Box component="div" sx={{ display: { xs:"flex", md:"flex"
         },flexDirection:"column",alignItems:"end",backgroundColor: "#fff", width: { xs:"90%", md:"50%" }, borderRadius: "10px", padding: { xs: 2, md: 3 }, boxShadow: "10px 10px 10px #2f407ccf",gap:2 }}>

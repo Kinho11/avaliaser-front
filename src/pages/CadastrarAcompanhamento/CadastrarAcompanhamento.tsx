@@ -40,12 +40,12 @@ export const CadastrarAcompanhamento = () => {
     <>
       <Header/>
 
-      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
+      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 64px)" }}>
         <Titulo texto="Cadastrar acompanhamento"/>
 
         <Box component="form" onSubmit={handleSubmit(cadastrarAcompanhamento)} sx={{ display: { xs:"flex", md:"flex" },flexDirection:"column",alignItems:"center",backgroundColor: "#fff", width: { xs:"90%", md:"30%" }, borderRadius: "10px", padding: { xs: 5, md: 5
         }, boxShadow: "10px 10px 10px #2f407ccf",gap:2 }}>
-          <img  src={logo} alt="" width={150} />
+          <img  src={logo} alt="Logo DBC" width={150} />
           <Stack component="div" spacing={2} sx={{ width:{ xs:"100%", md:"100%" }, display: "flex", alignItems:{ xs:"start", md:"start" }}}>
 
             <FormControl sx={{ width: { xs:"100%", md:"100%" }}}>

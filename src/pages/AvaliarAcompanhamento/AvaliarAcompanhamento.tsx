@@ -12,6 +12,8 @@ import { Header } from "../../components/Header/Header"
 
 import { AlunoContext } from "../../context/AlunoContext";
 import { GestorContext } from "../../context/GestorContext";
+import { toastConfig } from "../../utils/toast";
+import { toast } from "react-toastify";
 
 const itemHeigth = 48;
 const itemPaddingTop = 8;
@@ -51,8 +53,12 @@ export const AvaliarAcompanhamento = () => {
   }
 
   const avaliarAcompanhamento = (data: IAvaliarAcompanhamento) => {
-    const avaliacao = {idAcompanhamento: parseInt(data.idAcompanhamento),idAluno: parseInt(data.idAluno), tipo: data.tipo, descricao: data.descricao, dataCriacao: data.dataCriacao}
-    criarAvaliacao(avaliacao)
+    if(data.idAcompanhamento === "initial-acompanhamento" || data.idAluno === "initial-aluno" || data.tipo === "initial-status") {
+      toast.error("Preencha todos os campos!", toastConfig)
+    } else {
+      const avaliacao = {idAcompanhamento: parseInt(data.idAcompanhamento),idAluno: parseInt(data.idAluno), tipo: data.tipo, descricao: data.descricao, dataCriacao: data.dataCriacao}
+      criarAvaliacao(avaliacao)
+    }
   }
 
   if(infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
@@ -61,8 +67,9 @@ export const AvaliarAcompanhamento = () => {
     <>
       <Header/>
 
-      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography id="titulo-body" sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px"}, fontWeight:"700",color:"white", marginTop:{ xs:"150px", md:"0" }}} variant="h3">Avaliar acompanhamento</Typography>
+      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 64px)" }}>
+        <Typography id="titulo-body" sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px"}, fontWeight:"700",color:"white" }} variant="h3">Avaliar acompanhamento</Typography>
+        
         <Box component="form" onSubmit={handleSubmit(avaliarAcompanhamento)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"60%" }, borderRadius: "10px", padding: { xs: 5, md: 5
         }, boxShadow: "10px 10px 10px #2f407ccf", gap: 8 }}>
 
@@ -80,7 +87,8 @@ export const AvaliarAcompanhamento = () => {
             
             <FormControl variant="filled">
               <FormLabel sx={{color:"#1D58F9",fontWeight:"500",marginBottom:"10px"}} id="demo-controlled-radio-buttons-group">Filtrar alunos por trilha</FormLabel>
-              <Box sx={{display:"flex", alignItems: "center", gap:3}}>
+
+              <Box sx={{display:"flex", flexWrap: { xs: "wrap", md: "nowrap" }, alignItems: "center", gap:2}}>
 
                 <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                   <Stack spacing={2} direction="row">
@@ -100,7 +108,7 @@ export const AvaliarAcompanhamento = () => {
                       setFiltroFront(false)
                       setFiltroQA(false)
                     }} />
-                    <Typography sx={{fontWeight:"700"}}>Back</Typography>
+                    <Typography sx={{fontWeight:"700"}}>Backend</Typography>
                   </Stack>
                 </Box>
 
@@ -111,7 +119,7 @@ export const AvaliarAcompanhamento = () => {
                       setFiltroQA(false)
                       setFiltroBack(false)
                     }} />
-                    <Typography sx={{fontWeight:"700"}}>Front</Typography>
+                    <Typography sx={{fontWeight:"700"}}>Frontend</Typography>
                   </Stack>
                 </Box>
                 
@@ -141,8 +149,8 @@ export const AvaliarAcompanhamento = () => {
 
             <FormControl variant="filled" sx={{ width: { xs:"100%", md:"100%" }}}>
               <InputLabel id="status">Status</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" defaultValue="initial" id="status" error={!!errors.tipo} {...register("tipo")}>
-                <MenuItem value="initial" disabled><em>Selecione a Trilha</em></MenuItem>
+              <Select labelId="demo-simple-select-filled-label" defaultValue="initial-status" id="status" error={!!errors.tipo} {...register("tipo")}>
+                <MenuItem value="initial-status" disabled><em>Selecione a Trilha</em></MenuItem>
                 <MenuItem id="positivo" value="POSITIVO">Positivo</MenuItem>
                 <MenuItem id="atencao" value="ATENCAO">Atenção</MenuItem>
               </Select>

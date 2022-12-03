@@ -70,18 +70,18 @@ export const EditarFeedback = () => {
     <>
       <Header/>
 
-      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
+      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 64px)" }}>
         <Titulo texto="Editar feedback"/>
 
         <Box component="form" onSubmit={handleSubmit(editarFeedbacks)} sx={{ display: { xs:"flex", md:"flex" },flexDirection:"column",alignItems:"center",backgroundColor: "#fff", width: { xs:"90%", md:"35%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf",gap:2 }}>
 
-          <img  src={logo} alt="" width={150} />
+          <img  src={logo} alt="Logo DBC" width={150} />
           <Stack component="div" spacing={2} sx={{ width:{ xs:"100%", md:"100%" }, display: "flex", alignItems:{ xs:"start", md:"start" } }}>
 
             <FormControl variant="filled">
               <FormLabel sx={{color:"#1D58F9",fontWeight:"500",marginBottom:"10px"}} id="demo-controlled-radio-buttons-group">Filtrar alunos por stack:</FormLabel>
 
-              <Box sx={{display:"flex", alignItems: "center", gap:3 }}>
+              <Box sx={{display:"flex", flexWrap: { xs: "wrap", md: "nowrap" }, alignItems: "center", gap: 2 }}>
 
                 <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                   <Stack spacing={2} direction="row">
@@ -101,7 +101,7 @@ export const EditarFeedback = () => {
                       setFiltroFront(false)
                       setFiltroQA(false)
                     }} />
-                    <Typography sx={{fontWeight:"700"}}>Back</Typography>
+                    <Typography sx={{fontWeight:"700"}}>Backend</Typography>
                   </Stack>
                 </Box>
 
@@ -112,7 +112,7 @@ export const EditarFeedback = () => {
                       setFiltroQA(false)
                       setFiltroBack(false)
                     }} />
-                    <Typography sx={{fontWeight:"700"}}>Front</Typography>
+                    <Typography sx={{fontWeight:"700"}}>Frontend</Typography>
                   </Stack>
                 </Box>
 

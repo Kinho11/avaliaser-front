@@ -137,6 +137,10 @@ export const Header = () => {
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-acompanhamento")}  textAlign="center">Cadastrar acompanhamento</Typography>
                 </MenuItem>
+                <Divider />
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography onClick={() => navigate("/avaliar-acompanhamento")}  textAlign="center">Avaliar acompanhamento</Typography>
+                </MenuItem>
               </Menu>
             </Box>
 
@@ -165,6 +169,10 @@ export const Header = () => {
                 <Divider />
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-acompanhamento")}  textAlign="center">Cadastrar acompanhamento</Typography>
+                </MenuItem>
+                <Divider />
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography onClick={() => navigate("/avaliar-acompanhamento")}  textAlign="center">Avaliar acompanhamento</Typography>
                 </MenuItem>
               </Menu>
             </Box>
@@ -223,7 +231,7 @@ export const Header = () => {
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography onClick={() => navigate("/lista-feedback")} textAlign="center">Lista feedback</Typography>
+                  <Typography onClick={() => navigate("/lista-feedback")} textAlign="center">Lista feedbacks</Typography>
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleCloseNavMenu}>
@@ -252,7 +260,7 @@ export const Header = () => {
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography onClick={() => navigate("/lista-feedback")} textAlign="center">Lista feedback</Typography>
+                  <Typography onClick={() => navigate("/lista-feedback")} textAlign="center">Lista feedbacks</Typography>
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleCloseNavMenu}>

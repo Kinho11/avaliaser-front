@@ -14,6 +14,8 @@ import { alunoSchema} from "../../utils/schemas";
 import { ICadastroAluno } from "../../utils/interface";
 
 import { AlunoContext } from "../../context/AlunoContext";
+import { toast } from "react-toastify";
+import { toastConfig } from "../../utils/toast";
 
 export const CadastrarAluno = () => {
   const { criarAluno } = useContext(AlunoContext)
@@ -35,7 +37,13 @@ export const CadastrarAluno = () => {
     imagemAPI.append("file", selectedImage)
   }
 
-  const cadastroAluno = (data: ICadastroAluno) => { criarAluno(data, imagemAPI) };
+  const cadastroAluno = (data: ICadastroAluno) => { 
+    if(data.stack === "initial-stack") {
+      toast.error("Preencha todos os campos!", toastConfig)
+    } else {
+      criarAluno(data, imagemAPI) 
+    }
+  };
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   if(infosUsuario.cargo !== "Instrutor" && infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
@@ -43,7 +51,7 @@ export const CadastrarAluno = () => {
   return (
     <>
       <Header />
-      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
+      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 64px)" }}>
         <Titulo texto="Cadastrar aluno"/>
 
         <Box component="form" onSubmit={handleSubmit(cadastroAluno)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"50%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf" }}>
@@ -61,8 +69,8 @@ export const CadastrarAluno = () => {
 
             <FormControl variant="filled" sx={{ width: { xs:"100%", md:"100%" }}}>
               <InputLabel id="selectAluno">Trilha do Aluno</InputLabel>
-              <Select labelId="demo-simple-select-filled-label" defaultValue="initial" id="select-trilha" error={!!errors.stack}  {...register("stack")}>
-                <MenuItem value="initial" disabled><em>Selecione a Trilha</em></MenuItem>
+              <Select labelId="demo-simple-select-filled-label" defaultValue="initial-stack" id="select-trilha" error={!!errors.stack}  {...register("stack")}>
+                <MenuItem value="initial-stack" disabled><em>Selecione a Trilha</em></MenuItem>
                 <MenuItem id="frontend" value="FRONTEND">Front-End</MenuItem>
                 <MenuItem id="backend" value="BACKEND">Back-End</MenuItem>
                 <MenuItem id="qa" value="QA">Quality Assurance</MenuItem>

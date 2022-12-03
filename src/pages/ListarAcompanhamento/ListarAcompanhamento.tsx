@@ -59,8 +59,8 @@ export const ListarAcompanhamento = () => {
     <>
       <Header />
      
-      <Box sx={{height:"calc(100vh - 200px)",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",gap:5}}>
-        <Typography id="titulo-body" sx={{textAlign: "center", fontSize: { xs:30, md:44 },marginTop:"50px",fontWeight:"700",color:"white"}} variant="h3">Lista acompanhamento</Typography>
+      <Box sx={{height:"calc(100vh - 64px)",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",gap:5}}>
+        <Typography id="titulo-body" sx={{textAlign: "center", fontSize: { xs:30, md:44 },fontWeight:"700",color:"white"}} variant="h3">Lista acompanhamentos</Typography>
 
         <Paper sx={{ width: { xs:"95%", md:"65%" }, borderRadius: "10px", boxShadow: "10px 10px 10px #2f407ccf" }}>
           <TableContainer sx={{ maxHeight:430 }}>

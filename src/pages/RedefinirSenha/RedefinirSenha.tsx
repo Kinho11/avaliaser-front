@@ -41,7 +41,7 @@ export const RedefinirSenha = () => {
 
         <Box id="box-esquerda" sx={{ backgroundImage: `url(${backgroundRedefinriSenha})`, width: "45%", height: "100%", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", display:{ xs:"none", md:"block" }}}></Box>
 
-        <Box id="box-direita" sx={{ width: { xs:"100%", md:"55%" }, height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap",backgroundColor:"#f8f8ff" }}>
+        <Box id="box-direita" sx={{ width: { xs:"100%", md:"55%" }, height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", backgroundColor: { md: "#f8f8ff", xs: "linear-gradient(151deg, rgba(17,29,77,0.8631827731092436) 0%, rgba(28,88,248,0.938813025210084) 70%)" } }}>
 
           <Box id="box-login" component="form" onSubmit={handleSubmit(redefinirSenha)} sx={{ backgroundColor: "#fff", width: { xs:"90%", md:"70%" }, borderRadius: 3, padding: { xs: 2, md: 5 }, boxShadow: "0px 4px 14px rgba(0, 0, 0, 0.25)"}}>
 
@@ -73,7 +73,7 @@ export const RedefinirSenha = () => {
                 {errors.confirmarNovaSenha && <Typography id="erro-confirmar-nova-senha" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.confirmarNovaSenha.message}</Typography>}
               </FormControl>
 
-              <Button id="botao-redefinir-senha" size="medium" type="submit" endIcon={<LoginOutlined />} sx={{ width: "30%", backgroundColor: "#1e62fe" }} variant="contained">Redefinir</Button>       
+              <Button id="botao-redefinir-senha" size="medium" type="submit" endIcon={<LoginOutlined />} sx={{ backgroundColor: "#1e62fe" }} variant="contained">Redefinir</Button>       
             </Stack>
           </Box>
         </Box>

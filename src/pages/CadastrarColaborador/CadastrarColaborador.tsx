@@ -48,7 +48,7 @@ export const CadastrarColaborador = () => {
   return (
     <>
       <Header />
-      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
+      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 64px)" }}>
         <Titulo texto="Cadastrar colaborador"/>
 
         <Box component="form" onSubmit={handleSubmit(cadastroColaborador)} sx={{ display: { xs:"block", md:"flex"}, justifyContent: "space-between", backgroundColor: "#fff", width: {xs:"90%",md:"50%"

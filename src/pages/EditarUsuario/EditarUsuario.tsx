@@ -42,8 +42,8 @@ export const EditarUsuario = () => {
     <>
       <Header/>
 
-      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Titulo texto="Editar nome do perfil"/>
+      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 64px)" }}>
+        <Titulo texto="Editar perfil"/>
 
         <Box component="form" onSubmit={handleSubmit(nomeEditado)} sx={{ display: { xs:"flex", md:"flex" },flexDirection:"column",alignItems:"center",justifyContent: "center", backgroundColor: "#fff", width: { xs:"90%", md:"25%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf", gap:3 }}>
           <img src={logo} alt="Logo DBC Azul" width={100} />

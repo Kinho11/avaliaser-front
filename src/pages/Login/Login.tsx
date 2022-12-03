@@ -77,7 +77,7 @@ export const Login = () => {
 
         <Box id="box-esquerda" sx={{ backgroundImage: `url(${backgroundLogin})`, width: "40%", height: "100%", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", display:{ xs:"none", md:"block" }}}></Box>
 
-        <Box id="box-direita" sx={{ width: { xs:"100%", md:"60%" }, height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap",backgroundColor:"#f8f8ff" }}>
+        <Box id="box-direita" sx={{ width: { xs:"100%", md:"60%" }, height: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap",backgroundColor: { md: "#f8f8ff", xs: "linear-gradient(151deg, rgba(17,29,77,0.8631827731092436) 0%, rgba(28,88,248,0.938813025210084) 70%)" } }}>
 
           <Box id="box-login" component={"form"} onSubmit={handleSubmit(onSubmit)} sx={{ backgroundColor: "#fff", width: { xs:"90%", md:"70%"
           }, borderRadius: 3, padding: { xs: 2, md: 5 }, boxShadow: "0px 4px 14px rgba(0, 0, 0, 0.25)" }}>

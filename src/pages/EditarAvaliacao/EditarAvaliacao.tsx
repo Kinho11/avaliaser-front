@@ -56,7 +56,7 @@ export const EditarAvaliacao = () => {
   }
 
   const editAvaliacao = (data: IEditarAvaliacao) => {
-    if(data.idAcompanhamento === "initial-acompanhamento" || data.idAluno === "inital-aluno" || data.status === "initial-status") {
+    if(data.idAcompanhamento === "initial-acompanhamento" || data.idAluno === "initial-aluno" || data.status === "initial-status") {
       toast.error("Preencha todos os campos!", toastConfig)
     } else {
       const obj = { descricao: data.descricao, idAcompanhamento: parseInt(data.idAcompanhamento), idAluno: parseInt(data.idAluno), status: data.status }
@@ -70,8 +70,8 @@ export const EditarAvaliacao = () => {
     <>
       <Header/>
 
-      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 200px)" }}>
-        <Typography id="titulo-body" sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px" }, fontWeight:"700",color:"white", marginTop:{ xs:"150px", md:"0" }}} variant="h3">Editar avaliação</Typography>
+      <Box component="section" sx={{ display: "flex", flexDirection: "column", alignItems: "center",justifyContent: "center", height:"calc(100vh - 64px)" }}>
+        <Typography id="titulo-body" sx={{textAlign: "center",marginBottom:"20px",fontSize:{ xs:"35px", md:"40px" }, fontWeight:"700",color:"white" }} variant="h3">Editar avaliação</Typography>
 
         <Box component="form" onSubmit={handleSubmit(editAvaliacao)} sx={{ display: { xs:"block", md:"flex" }, justifyContent: "space-between", backgroundColor: "#fff", width: { xs:"90%", md:"60%" }, borderRadius: "10px", padding: { xs: 5, md: 5 }, boxShadow: "10px 10px 10px #2f407ccf", gap:8 }}>
           <Stack component="div" spacing={3} sx={{ width:{ xs:"100%", md:"50%"
@@ -90,7 +90,7 @@ export const EditarAvaliacao = () => {
             <FormControl variant="filled">
               <FormLabel sx={{color:"#1D58F9",fontWeight:"500",marginBottom:"10px"}} id="demo-controlled-radio-buttons-group">Filtrar alunos por stack:</FormLabel>
 
-              <Box sx={{display:"flex", alignItems: "center", gap:3}}>
+              <Box sx={{display:"flex", flexWrap: { xs: "wrap", md: "nowrap" }, alignItems: "center", gap:2}}>
 
                 <Box color="primary" sx={{display:"flex",flexDirection:"column", gap:1,color:"#1D58F9"}}>
                   <Stack spacing={2} direction="row">
@@ -110,7 +110,7 @@ export const EditarAvaliacao = () => {
                       setFiltroFront(false)
                       setFiltroQA(false)
                     }} />
-                    <Typography sx={{fontWeight:"700"}}>Back-End</Typography>
+                    <Typography sx={{fontWeight:"700"}}>Backend</Typography>
                   </Stack>
                 </Box>
 
@@ -121,7 +121,7 @@ export const EditarAvaliacao = () => {
                       setFiltroQA(false)
                       setFiltroBack(false)
                     }} />
-                    <Typography sx={{fontWeight:"700"}}>Front-End</Typography>
+                    <Typography sx={{fontWeight:"700"}}>Frontend</Typography>
                   </Stack>
                 </Box>
                   
