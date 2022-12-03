@@ -4,7 +4,7 @@ const regexEmail = /^[A-Za-z0-9._%+-]+@dbccompany.com.br$/
 
 export const userSchema = yup.object().shape({
   email: yup.string().required("Por favor, digite seu e-mail").email("Por favor, digite um e-mail válido").matches(regexEmail, "Só aceitamos email @dbccompany.com.br"),
-  senha: yup.string().required("Por favor, digite sua senha").min(3, "A senha deve ter no mínimo 3 caracteres")
+  senha: yup.string().required("Por favor, digite sua senha").min(8, "A senha deve ter no mínimo 8 caracteres")
 });
 
 export const alunoSchema = yup.object().shape({
@@ -39,8 +39,8 @@ export const redefinirSenhaSchema = yup.object().shape({
 });
 
 export const AlterarSenhaSchema = yup.object().shape({
-  senhaAntiga: yup.string().required("Por favor, digite sua antiga senha").min(3,"A nova senha deve conter no mínimo 3 caracteres"),
-  novaSenha: yup.string().required("Por favor, digite sua nova senha").min(3,"A nova senha deve conter no mínimo 3 caracteres"),
+  senhaAntiga: yup.string().required("Por favor, digite sua antiga senha").min(8,"A nova senha deve conter no mínimo 8 caracteres"),
+  novaSenha: yup.string().required("Por favor, digite sua nova senha").min(8,"A nova senha deve conter no mínimo 8 caracteres"),
   confirmarNovaSenha: yup.string().required("Por favor, confirme sua nova senha.").oneOf([yup.ref("novaSenha")],"As senhas devem corresponder!")
 });
 
