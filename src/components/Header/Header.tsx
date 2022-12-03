@@ -41,12 +41,12 @@ export const Header = () => {
               <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit">
                 <MenuIcon />
               </IconButton>
-              <Menu id="menu-responsivo" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "none" } }}>
-                <MenuItem onClick={handleCloseNavMenu}>
+              <Menu id="menu-responsivo-admin" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "none" } }}>
+                <MenuItem id="dashboard-responsivo-admin" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/dashboard/admin")} textAlign="center">Dashboard</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="cadastrar-colaborador-responsivo-admin" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-colaborador")} textAlign="center">Cadastrar colaborador</Typography>
                 </MenuItem>
               </Menu>
@@ -62,12 +62,12 @@ export const Header = () => {
                 <Typography textAlign="center"><strong>Menu</strong></Typography>
                 <MenuIcon />
               </IconButton>
-              <Menu id="menu-visible" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "none", md: "flex" } }}>
-                <MenuItem onClick={handleCloseNavMenu}>
+              <Menu id="menu-visible-admin" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "none", md: "flex" } }}>
+                <MenuItem id="dashboard-visible-admin" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/dashboard/admin")} textAlign="center">Dashboard</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="cadastrar-colaborador-visible-admin" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-colaborador")} textAlign="center">Cadastrar colaborador</Typography>
                 </MenuItem>
               </Menu>
@@ -121,24 +121,24 @@ export const Header = () => {
               <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit">
                 <MenuIcon />
               </IconButton>
-              <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "none" } }}>
-                <MenuItem onClick={handleCloseNavMenu}>
+              <Menu id="menu-responsivo-gestor" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "none" } }}>
+                <MenuItem id="dashboard-responsivo-gestor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/dashboard/gestor")} textAlign="center">Dashboard</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="lista-acompanhamento-responsivo-gestor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/lista-acompanhamento")} textAlign="center">Lista acompanhamentos</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="cadastrar-aluno-responsivo-gestor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-aluno")} textAlign="center">Cadastrar aluno</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="cadastrar-acompanhamento-responsivo-gestor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-acompanhamento")}  textAlign="center">Cadastrar acompanhamento</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="avaliar-acompanhamento-responsivo-gestor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/avaliar-acompanhamento")}  textAlign="center">Avaliar acompanhamento</Typography>
                 </MenuItem>
               </Menu>
@@ -154,24 +154,24 @@ export const Header = () => {
                 <Typography textAlign="center"><strong>Menu</strong></Typography>
                 <MenuIcon />
               </IconButton>
-              <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "none", md: "flex" } }}>
-                <MenuItem onClick={handleCloseNavMenu}>
+              <Menu id="menu-visible-gestor" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "none", md: "flex" } }}>
+                <MenuItem id="dashboard-visible-gestor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/dashboard/gestor")} textAlign="center">Dashboard</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="lista-acompanhamento-visible-gestor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/lista-acompanhamento")} textAlign="center">Lista acompanhamentos</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="cadastrar-aluno-visible-gestor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-aluno")} textAlign="center">Cadastrar aluno</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="cadastrar-acompanhamento-visible-gestor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-acompanhamento")}  textAlign="center">Cadastrar acompanhamento</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="avaliar-acompanhamento-visible-gestor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/avaliar-acompanhamento")}  textAlign="center">Avaliar acompanhamento</Typography>
                 </MenuItem>
               </Menu>
@@ -225,20 +225,20 @@ export const Header = () => {
               <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit">
                 <MenuIcon />
               </IconButton>
-              <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "none" } }}>
-                <MenuItem onClick={handleCloseNavMenu}>
+              <Menu id="menu-responsivo-instrutor" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "none" } }}>
+                <MenuItem id="dashboard-responsivo-instrutor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/dashboard/instrutor")} textAlign="center">Dashboard</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="dashboard-feedback-responsivo-instrutor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/lista-feedback")} textAlign="center">Lista feedbacks</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="cadastrar-aluno-responsivo-instrutor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-aluno")} textAlign="center">Cadastrar aluno</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="cadastrar-feedback-responsivo-instrutor" onClick={handleCloseNavMenu}>
                   <Typography onClick={()=>{navigate("/cadastrar-feedback")}} textAlign="center">Cadastrar feedback</Typography>
                 </MenuItem>
               </Menu>
@@ -254,20 +254,20 @@ export const Header = () => {
               <Typography textAlign="center"><strong>Menu</strong></Typography>
                 <MenuIcon />
               </IconButton>
-              <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "none", md: "flex" } }}>
-                <MenuItem onClick={handleCloseNavMenu}>
+              <Menu id="menu-visible-instrutor" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left" }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left" }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "none", md: "flex" } }}>
+                <MenuItem id="dashboard-visible-instrutor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/dashboard/instrutor")} textAlign="center">Dashboard</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="dashboard-feedbacks-visible-instrutor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/lista-feedback")} textAlign="center">Lista feedbacks</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="cadastrar-aluno-visible-instrutor" onClick={handleCloseNavMenu}>
                   <Typography onClick={() => navigate("/cadastrar-aluno")} textAlign="center">Cadastrar aluno</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem id="cadastrar-feedback-visible-instrutor" onClick={handleCloseNavMenu}>
                   <Typography onClick={()=>{navigate("/cadastrar-feedback")}} textAlign="center">Cadastrar feedback</Typography>
                 </MenuItem>
               </Menu>
