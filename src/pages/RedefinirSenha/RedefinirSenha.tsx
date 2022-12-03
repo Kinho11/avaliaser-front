@@ -58,7 +58,7 @@ export const RedefinirSenha = () => {
                     </IconButton>
                   </InputAdornment>
                 } />
-                {errors.novaSenha && <Typography id="erro-nova-mensagem" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.novaSenha.message}</Typography>}
+                {errors.novaSenha && <Typography id="erro-nova-senha" sx={{fontWeight:"500", display: "flex", marginTop: "5px"}} color="error">{errors.novaSenha.message}</Typography>}
               </FormControl>
 
               <FormControl sx={{ width: { xs:"90%", md: "70%" }}} variant="outlined">

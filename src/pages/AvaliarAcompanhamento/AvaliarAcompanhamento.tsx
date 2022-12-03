@@ -82,7 +82,7 @@ export const AvaliarAcompanhamento = () => {
                   <MenuItem id={`acompanhamento-${acompanhamentos.idAcompanhamento}`} key={acompanhamentos.idAcompanhamento} value={acompanhamentos.idAcompanhamento}>{acompanhamentos.titulo}</MenuItem>
                 ))}
               </Select>
-              {errors.idAcompanhamento && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.idAcompanhamento.message}</Typography>}
+              {errors.idAcompanhamento && <Typography id="erro-acompanhamento" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.idAcompanhamento.message}</Typography>}
             </FormControl>
             
             <FormControl variant="filled">
@@ -137,7 +137,7 @@ export const AvaliarAcompanhamento = () => {
                   : alunos.map((aluno) => ( <MenuItem id={`alunos-geral-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> ))
                   }
                 </Select>
-              {errors.idAluno && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.idAluno.message}</Typography>}
+              {errors.idAluno && <Typography id="erro-aluno" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.idAluno.message}</Typography>}
             </FormControl>
 
             <FormControl variant="filled" sx={{ width: { xs:"100%", md:"100%" } }}>
@@ -154,7 +154,7 @@ export const AvaliarAcompanhamento = () => {
                 <MenuItem id="positivo" value="POSITIVO">Positivo</MenuItem>
                 <MenuItem id="atencao" value="ATENCAO">Atenção</MenuItem>
               </Select>
-              {errors.tipo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.tipo.message}</Typography>}
+              {errors.tipo && <Typography id="erro-status" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.tipo.message}</Typography>}
             </FormControl>
 
           </Stack>
@@ -163,12 +163,12 @@ export const AvaliarAcompanhamento = () => {
           }}}>
             <FormControl sx={{ width: { xs:"100%", md:"100%" }}}>
               <TextField id="descricao" error={!!errors.descricao} label="Digite uma descrição" placeholder="Digite uma descrição" multiline variant="filled" {...register("descricao")} />
-              {errors.descricao && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.descricao.message}</Typography>}
+              {errors.descricao && <Typography id="erro-descricao" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.descricao.message}</Typography>}
             </FormControl>
 
             <FormControl sx={{ width: { xs:"100%", md:"100%" }}}>
               <TextField id="data" error={!!errors.dataCriacao} label="Data inicial" type="date" sx={{ width: "100%" }} InputLabelProps={{ shrink: true }} {...register("dataCriacao")} />
-              {errors.dataCriacao && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.dataCriacao.message}</Typography>}
+              {errors.dataCriacao && <Typography id="erro-dataCriacao" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.dataCriacao.message}</Typography>}
             </FormControl>
 
             <Button id="botao-avaliar" type="submit" sx={{textTransform: "capitalize", width:{ xs:"20%", md:"150px" },marginTop:{ xs:"10px!important", md:"200px!important" }}} variant="contained">Avaliar</Button>

@@ -83,7 +83,7 @@ export const CadastrarColaborador = () => {
                   </Stack>
                 </Box>
               </Box>
-              {errors.cargo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.cargo.message}</Typography>}
+              {errors.cargo && <Typography id="erro-cargo" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.cargo.message}</Typography>}
 
             </FormControl>
             <Typography id="aviso-imagem" variant="body1" sx={{fontWeight:"700", display: "inline-block", marginTop: "10px", paddingBottom: 0, marginBottom: 0, color: "#ff9800"}} >*Imagens são opcionais</Typography>

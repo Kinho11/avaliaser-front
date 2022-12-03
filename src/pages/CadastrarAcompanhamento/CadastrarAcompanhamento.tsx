@@ -50,17 +50,17 @@ export const CadastrarAcompanhamento = () => {
 
             <FormControl sx={{ width: { xs:"100%", md:"100%" }}}>
               <TextField id="titulo" error={!!errors.titulo} {...register("titulo")}label="Titulo acompanhamento" placeholder="Digite um titulo" variant="filled" focused />
-              {errors.titulo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.titulo.message}</Typography>}
+              {errors.titulo && <Typography id="erro-titulo" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.titulo.message}</Typography>}
             </FormControl>
 
             <FormControl sx={{ width: { xs:"100%", md:"100%" }}}>
               <TextField id="descricao" error={!!errors.descricao} label="Digite uma descrição" placeholder="Digite uma descrição" multiline variant="filled" {...register("descricao")} />
-              {errors.descricao && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.descricao.message}</Typography>}
+              {errors.descricao && <Typography id="erro-descricao" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.descricao.message}</Typography>}
             </FormControl>
 
             <FormControl sx={{ width: { xs:"100%", md:"100%" }}}>
               <TextField id="dataInicio" error={!!errors.dataInicio} label="Data inicial" type="date" sx={{ width: "100%" }} InputLabelProps={{ shrink: true }} {...register("dataInicio")} />
-              {errors.dataInicio && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.dataInicio.message}</Typography>}
+              {errors.dataInicio && <Typography id="erro-dataInicio" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.dataInicio.message}</Typography>}
             </FormControl>
           </Stack>
 

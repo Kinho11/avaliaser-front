@@ -45,12 +45,12 @@ export const EditarAcompanhamento = () => {
 
             <FormControl sx={{ width: { xs:"100%", md:"100%" }}}>
               <TextField id="titulo" error={!!errors.titulo} {...register("titulo")} label="Titulo acompanhamento" placeholder="Digite um titulo" variant="filled" focused defaultValue={state.titulo} />
-              {errors.titulo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.titulo.message}</Typography>}
+              {errors.titulo && <Typography id="erro-titulo" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.titulo.message}</Typography>}
             </FormControl>
 
             <FormControl sx={{ width: { xs:"100%", md:"100%" }}}>
               <TextField id="descricao" error={!!errors.descricao} label="Digite uma descrição" placeholder="Digite uma descrição" focused variant="filled" {...register("descricao")} defaultValue={state.descricao}/>
-              {errors.descricao && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.descricao.message}</Typography>}
+              {errors.descricao && <Typography id="erro-descricao" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px"}} color="error">{errors.descricao.message}</Typography>}
             </FormControl>
 
           </Stack>

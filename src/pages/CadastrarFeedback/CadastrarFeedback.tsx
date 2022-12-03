@@ -129,12 +129,12 @@ export const CadastrarFeedback = () => {
                 : alunos.map((aluno) => ( <MenuItem id={`alunos-geral-${aluno.idAluno}`} key={aluno.idAluno} value={aluno.idAluno}>{aluno.nome}</MenuItem> ))
                 }
               </Select>
-              {errors.idAluno && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.idAluno.message}</Typography>}
+              {errors.idAluno && <Typography id="erro-aluno" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.idAluno.message}</Typography>}
             </FormControl>
 
             <FormControl sx={{ width: { xs:"100%", md:"100%" }}}>
               <TextField id="descricao" {...register("descricao")} error={!!errors.descricao} label="Digite uma descrição" placeholder="Digite uma descrição" multiline variant="filled" />
-              {errors.descricao && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.descricao.message}</Typography>}
+              {errors.descricao && <Typography id="erro-descricao" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.descricao.message}</Typography>}
             </FormControl>
 
             <FormControl variant="filled" sx={{ width: { xs:"100%", md:"100%" }}}>
@@ -144,7 +144,7 @@ export const CadastrarFeedback = () => {
                 <MenuItem value="POSITIVO">Positivo</MenuItem>
                 <MenuItem value="ATENCAO">Atencao</MenuItem>
               </Select>
-              {errors.tipo && <Typography id="erro-cargo01" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.tipo.message}</Typography>}
+              {errors.tipo && <Typography id="erro-status" sx={{fontWeight:"500", display: "inline-block", marginTop: "5px",whiteSpace:"nowrap"}} color="error">{errors.tipo.message}</Typography>}
             </FormControl>
           </Stack>
 
