@@ -21,7 +21,7 @@ export const InstrutorProvider = ({children}: IChildren) => {
       API.defaults.headers.common["Authorization"] = token;
       await API.post("/feedback/cadastrar-feedback",feedbacks)
       navigate("/lista-feedback")
-      toast.success("Acompanhamento cadastrado com sucesso!", toastConfig);
+      toast.success("Feedback cadastrado com sucesso!", toastConfig);
     } catch (error) {
       toast.error("Campo nulo, ou preenchido de forma incorreta, tente de novo.", toastConfig);
     } finally{
