@@ -14,6 +14,7 @@ export const InstrutorProvider = ({children}: IChildren) => {
 
   const [feedback,setFeedback] = useState<ICadastrarFeedback[]>([])
   const [feedbackPorID, setFeedbackPorID] = useState<IFeedbackPorId[]>([])
+  const [feedbacks, setFeedbacks] = useState<any | null>(null)
 
   const cadastrarFeedback = async (feedbacks: object) =>{
     try {
@@ -56,12 +57,13 @@ export const InstrutorProvider = ({children}: IChildren) => {
     }
   }
 
-  const getFeedbackPorID = async (id: number) => {
+  const getFeedbackPorID = async (id: number, page: number) => {
     try {
       nProgress.start()
       API.defaults.headers.common["Authorization"] = localStorage.getItem("token");
-      const { data } = await API.get(`/feedback/listar-feedback-por-id/${id}?page=0&size=1000`)
+      const { data } = await API.get(`/feedback/listar-feedback-por-id/${id}?page=${page}&size=10`)
       setFeedbackPorID(data.elementos)
+      setFeedbacks(data)
     } catch (error) {
       toast.error("Houve um erro inesperado.", toastConfig);
     } finally{
@@ -70,7 +72,7 @@ export const InstrutorProvider = ({children}: IChildren) => {
   }
   
   return (
-    <InstrutorContext.Provider value={{ cadastrarFeedback, pegarFeedback, feedback, editarFeedback, getFeedbackPorID, feedbackPorID }}>
+    <InstrutorContext.Provider value={{ cadastrarFeedback, pegarFeedback, feedback, editarFeedback, getFeedbackPorID, feedbackPorID, feedbacks }}>
       {children}
     </InstrutorContext.Provider>
   );

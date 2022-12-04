@@ -44,20 +44,22 @@ export interface IGestor {
   criarAcompanhamento: (acompanhamento: ICriarAcompanhamento) => Promise<void>,
   editAcompanhamento: (dadosEditados: IEditarAcompanhamento, id: number) => Promise<void>,
   pegarAcompanhamento: () => Promise<void>,
-  getAvaliacaoPorID: (id: number) => Promise<void>,
+  getAvaliacaoPorID: (id: number, page: number) => Promise<void>,
   criarAvaliacao: (avalicao: ICriarAvaliacao) => void,
   editarAvaliacao: (dadosEditados: IEditarAvaliacao, id: number) => Promise<void>,
   acompanhamento: ICriarAcompanhamento[],
-  avaliacoesPorID: IAvaliacaoPorId[]
+  avaliacoesPorID: IAvaliacaoPorId[],
+  avaliacoes: any | null
 }
 
 export interface IInstrutor {
   cadastrarFeedback: (feedbacks: object) => Promise<void>,
   pegarFeedback: () => Promise<void>,
-  getFeedbackPorID: (id: number) => Promise<void>,
+  getFeedbackPorID: (id: number, page: number) => Promise<void>,
   editarFeedback: (id: number, dadosEditados: IEditarFeedback) => Promise<void>,
   feedback: ICadastrarFeedback[],
-  feedbackPorID: IFeedbackPorId[]
+  feedbackPorID: IFeedbackPorId[],
+  feedbacks: any | null
 }
 
 export interface IEditarAvaliacao {

@@ -13,6 +13,7 @@ export const GestorProvider = ({children} : IChildren) =>{
   const navigate = useNavigate();
   const [acompanhamento,setAcompanhamento] = useState<ICriarAcompanhamento[]>([])
   const [avaliacoesPorID, setAvaliacoesPorID] = useState<IAvaliacaoPorId[]>([])
+  const [avaliacoes, setAvaliacoes] = useState<any | null>(null)
 
   const criarAcompanhamento = async (acompanhamento: ICriarAcompanhamento) =>{
     try {
@@ -87,12 +88,13 @@ export const GestorProvider = ({children} : IChildren) =>{
     }
   }
 
-  const getAvaliacaoPorID = async (id: number) => {
+  const getAvaliacaoPorID = async (id: number, page: number) => {
     try {
       nProgress.start()
       API.defaults.headers.common["Authorization"] = localStorage.getItem("token");
-      const { data } = await API.get(`/avaliacao-acompanhamento/${id}?page=0&size=1000`)
+      const { data } = await API.get(`/avaliacao-acompanhamento/${id}?page=${page}&size=10`)
       setAvaliacoesPorID(data.elementos)
+      setAvaliacoes(data)
     } catch (error) {
       toast.error("Houve um erro inesperado.", toastConfig);
     } finally{
@@ -101,7 +103,7 @@ export const GestorProvider = ({children} : IChildren) =>{
   }
 
   return (
-    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento, criarAvaliacao, editAcompanhamento, getAvaliacaoPorID, avaliacoesPorID, editarAvaliacao }}>
+    <GestorContext.Provider value={{ criarAcompanhamento, pegarAcompanhamento, acompanhamento, criarAvaliacao, editAcompanhamento, getAvaliacaoPorID, avaliacoesPorID, editarAvaliacao, avaliacoes }}>
       {children}
     </GestorContext.Provider>
   );

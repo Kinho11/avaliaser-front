@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from "react";
 
 import { Navigate, useLocation, useNavigate } from "react-router-dom"
 
-import { Box, Typography, Stack,Button, Paper, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TablePagination, TableRow, Avatar } from "@mui/material";
+import { Box, Typography, Stack,Button, Paper, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TableRow, Avatar, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 import { Header } from "../../components/Header/Header";
 
@@ -56,20 +58,21 @@ export const VerificarAluno = () => {
   const navigate = useNavigate()
   const { state } = useLocation();
 
-  const { getAvaliacaoPorID, avaliacoesPorID } = useContext(GestorContext);
-  const { getFeedbackPorID, feedbackPorID } = useContext(InstrutorContext)
+  const { getAvaliacaoPorID, avaliacoesPorID, avaliacoes } = useContext(GestorContext);
+  const { getFeedbackPorID, feedbackPorID, feedbacks } = useContext(InstrutorContext)
 
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  // Paginação Avaliacao
+  const avancarAvaliacao = () => { if(avaliacoes.pagina !== avaliacoes.quantidadePaginas - 1)  getAvaliacaoPorID(state.idAluno, avaliacoes.pagina + 1); }
+  const voltarAvaliacao = () => { if(avaliacoes.pagina !== 0) getAvaliacaoPorID(state.idAluno, avaliacoes.pagina - 1) }
 
-  const handleChangePage = (event: unknown, newPage: number) => { setPage(newPage); };
+  // Paginação Feedback
+  const avancarFeedback = () => { if(feedbacks.pagina !== feedbacks.quantidadePaginas - 1)  getFeedbackPorID(state.idAluno, feedbacks.pagina + 1); }
+  const voltarFeedback = () => { if(feedbacks.pagina !== 0) getFeedbackPorID(state.idAluno, feedbacks.pagina - 1) }
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  const [page] = useState(0);
+  const [rowsPerPage] = useState(10);
 
-  useEffect(() => { getAvaliacaoPorID(state.idAluno); getFeedbackPorID(state.idAluno); }, [])
+  useEffect(() => { getAvaliacaoPorID(state.idAluno, 0); getFeedbackPorID(state.idAluno, 0); }, [])
 
   const infosUsuario = JSON.parse(localStorage.getItem("infoUsuario") || "{}");
   if(infosUsuario.cargo !== "Instrutor" && infosUsuario.cargo !== "Gestor de Pessoas") return <Navigate to="/"/>
@@ -125,7 +128,11 @@ export const VerificarAluno = () => {
               </TableContainer>
 
               {/* Paginação */}
-              <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={feedbackPorID.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
+              <Box sx={{ padding: 1, display: "flex", alignItems: "center", justifyContent: "end" }}>
+                <IconButton onClick={voltarFeedback}><NavigateBeforeIcon /></IconButton>
+                <span><strong>{feedbacks?.pagina + 1}/{feedbacks?.quantidadePaginas}</strong></span>
+                <IconButton onClick={avancarFeedback}><NavigateNextIcon /></IconButton>
+              </Box>
             </Paper>
 
             {/* Tabela Avaliações */}
@@ -157,11 +164,15 @@ export const VerificarAluno = () => {
               </TableContainer>
 
               {/* Paginação */}
-              <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={avaliacoesPorID.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
+              <Box sx={{ padding: 1, display: "flex", alignItems: "center", justifyContent: "end" }}>
+                <IconButton onClick={voltarAvaliacao}><NavigateBeforeIcon /></IconButton>
+                <span><strong>{avaliacoes?.pagina + 1}/{avaliacoes?.quantidadePaginas}</strong></span>
+                <IconButton onClick={avancarAvaliacao}><NavigateNextIcon /></IconButton>
+              </Box>
             </Paper>
           </Stack>
 
-          <Button id="botao-voltar" sx={{textTransform: "capitalize",width:{ xs:"20%", md:"150px" },display:"flex"}} onClick={()=>{navigate("/")}} variant="contained">Voltar</Button>
+          <Button id="botao-voltar" sx={{textTransform: "capitalize",width:{ xs:"20%", md:"150px" },display:"flex" }} onClick={()=>{navigate("/")}} variant="contained">Voltar</Button>
         </Box>
       </Box>
     </>
