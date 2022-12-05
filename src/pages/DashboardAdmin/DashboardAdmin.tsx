@@ -110,7 +110,7 @@ export const DashboardAdmin = () => {
           </TableContainer>
 
           {/* Paginação */}
-          <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={colaborador.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
+          <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={colaborador.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} labelRowsPerPage="Linhas por página:" />
 
           {/* Modal Confirmar Delete */}
           <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-titulo" aria-describedby="modal-modal-description" sx={{ backdropFilter: "blur(10px)" }}>
