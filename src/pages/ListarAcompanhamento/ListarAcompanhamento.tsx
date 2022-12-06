@@ -89,7 +89,7 @@ export const ListarAcompanhamento = () => {
           </TableContainer>
 
           {/* Paginação */}
-          <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={acompanhamento.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
+          <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={acompanhamento.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} labelRowsPerPage="Linhas por página:" />
         </Paper>
       </Box>
     </>

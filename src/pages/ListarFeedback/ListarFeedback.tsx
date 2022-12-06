@@ -82,7 +82,7 @@ export const ListarFeedback = () => {
 
           {/* Paginação */}
           <Box sx={{display:"flex",alignItems:"center",justifyContent:"end",width:"100%",padding:"0 20px"}}>
-            <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={feedback.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
+            <TablePagination rowsPerPageOptions={[10, 20, 30]} component="div" count={feedback.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} labelRowsPerPage="Linhas por página:" />
           </Box>
         </Paper>
       </Box>
