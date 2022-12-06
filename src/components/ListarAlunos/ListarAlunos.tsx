@@ -28,7 +28,7 @@ interface Column {
 const columns: Column[] = [
   { id: "codigo", label: "Código", minWidth: 5 },
   { id: "nome", label: "Nome", minWidth: 5 },
-  { id: "stack", label: "Status", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
+  { id: "stack", label: "Stack", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") },
   { id: "acoes", label: "Ações", minWidth: 5, align: "right", format: (value: number) => value.toLocaleString("en-US") }
 ];
 
